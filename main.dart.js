@@ -25039,9 +25039,9 @@ b8(a,b,c){var s,r=new A.agx(A.G(t.N,t.z),[],[])
 r.f=a
 r.d=b
 r.r=c
-s=new A.agw("http://85.239.242.109:8000")
+s=new A.agw("http://snowflakeapi.localhost:8000")
 s.a=a
-s.b="http://85.239.242.109:8000/"+a
+s.b="http://snowflakeapi.localhost:8000/"+a
 s.f=b
 r.x=s
 return r},
@@ -127345,7 +127345,7 @@ anI(){var s=this,r=null
 return A.Y(r,A.i(r,B.O9,B.f,r,r,new A.aE(r,r,A.aS(s.at?B.H:B.B,B.K,0.7),B.aU,r,r,B.M),r,s.x,r,r,r,r,r,s.w),B.t,!1,r,r,r,r,r,r,r,r,r,r,r,new A.aB_(s),r,r,r,r,r,r)},
 Rj(){var s=this,r=A.xD(s.f),q=s.c
 if(s.r){q.toString
-q="http://85.239.242.109:8000"+q}else q.toString
+q="http://snowflakeapi.localhost:8000"+q}else q.toString
 return A.bwi(r,new A.EY(new A.uB(s.e,null,"snow_flake_assets"),new A.zh(q),new A.aAZ(s),s.w,s.x,s.y,null))},
 Nl(){var s,r=null
 if(this.Q){s=A.aS(B.B,B.K,0.7)
