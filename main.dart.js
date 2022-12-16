@@ -25039,9 +25039,9 @@ b8(a,b,c){var s,r=new A.agC(A.G(t.N,t.z),[],[])
 r.f=a
 r.d=b
 r.r=c
-s=new A.agB("http://127.0.0.1:8000")
+s=new A.agB("https://snowflakecobackend.com")
 s.a=a
-s.b="http://127.0.0.1:8000/"+a
+s.b="https://snowflakecobackend.com/"+a
 s.f=b
 r.x=s
 return r},
@@ -127650,7 +127650,7 @@ anI(){var s=this,r=null
 return A.Z(r,A.i(r,B.Of,B.f,r,r,new A.aE(r,r,A.aS(s.at?B.H:B.B,B.L,0.7),B.aU,r,r,B.M),r,s.x,r,r,r,r,r,s.w),B.t,!1,r,r,r,r,r,r,r,r,r,r,r,new A.aB4(s),r,r,r,r,r,r)},
 Rj(){var s=this,r=A.xG(s.f),q=s.c
 if(s.r){q.toString
-q="http://127.0.0.1:8000"+q}else q.toString
+q="https://snowflakecobackend.com"+q}else q.toString
 return A.bwI(r,new A.F_(new A.uE(s.e,null,"snow_flake_assets"),new A.zk(q),new A.aB3(s),s.w,s.x,s.y,null))},
 Nn(){var s,r=null
 if(this.Q){s=A.aS(B.B,B.L,0.7)
