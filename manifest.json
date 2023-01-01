@@ -1,11 +1,11 @@
 {
-    "name": "snow_flake_noon_web",
-    "short_name": "snow_flake_noon_web",
+    "name": "snow_flake_client_website",
+    "short_name": "snow_flake_client_website",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "A new Flutter application.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
