@@ -30,12 +30,14 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/assets/images/icon.png"/>
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
   <title>Snowflake Company Website</title>
   <link rel="manifest" href="manifest.json">
   <script src="https://js.stripe.com/v3/"></script>
   <script>
     // The value below is injected by flutter build, do not touch.
-    var serviceWorkerVersion = "1158254779";
+    var serviceWorkerVersion = "314807053";
   </script>
   <script src="flutter.js" defer></script>
 </head>
@@ -48,7 +50,23 @@
        https://developers.google.com/web/fundamentals/primers/service-workers -->
 
   <form id="checkOutForm" hidden="hidden"></form>
-
+  <div style="display: none;" hidden="hidden">Country: <span id="country"></span></div>
+  <div style="display: none;" hidden="hidden">State: <span id="state"></span></div>
+  <div style="display: none;" hidden="hidden">City: <span id="city"></span></div>
+  <div style="display: none;" hidden="hidden">Latitude: <span id="latitude"></span></div>
+  <div style="display: none;" hidden="hidden">Longitude: <span id="longitude"></span></div>
+  <div style="display: none;" hidden="hidden">IP: <span id="ip"></span></div>
+  <script>
+        $.getJSON('https://geolocation-db.com/json/')
+           .done (function(location) {
+              $('#country').html(location.country_name);
+              $('#state').html(location.state);
+              $('#city').html(location.city);
+              $('#latitude').html(location.latitude);
+              $('#longitude').html(location.longitude);
+              $('#ip').html(location.IPv4);
+           });
+  </script>
   <!--<script>
     var serviceWorkerVersion = null;
     var scriptLoaded = false;
