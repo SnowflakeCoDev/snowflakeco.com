@@ -4,9 +4,9 @@ const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 
 const RESOURCES = {"version.json": "7bd46033a147c8d33a1d572af3ad7af4",
-"index.html": "826009b2d4f6d22146c1a488cdb1d499",
-"/": "826009b2d4f6d22146c1a488cdb1d499",
-"main.dart.js": "1cbfc457c223ec1708f2716649cead7a",
+"index.html": "f9a771a9ed1a8ee11a260d62e1bb689a",
+"/": "f9a771a9ed1a8ee11a260d62e1bb689a",
+"main.dart.js": "9e7b23a163c7563296af01e6227330f6",
 "flutter.js": "7d69e653079438abfbb24b82a655b0a4",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
@@ -36,11 +36,11 @@ const RESOURCES = {"version.json": "7bd46033a147c8d33a1d572af3ad7af4",
 "assets/assets/images/icon.png": "478f42cabf1cde07057e24d655888a07",
 "assets/assets/images/snowflake-logo.png": "95f005e46181979e15c450417af4927e",
 "canvaskit/skwasm.js": "87063acf45c5e1ab9565dcf06b0c18b8",
-"canvaskit/skwasm.wasm": "2fc47c0a0c3c7af8542b601634fe9674",
+"canvaskit/skwasm.wasm": "4124c42a73efa7eb886d3400a1ed7a06",
 "canvaskit/chromium/canvaskit.js": "0ae8bbcc58155679458a0f7a00f66873",
-"canvaskit/chromium/canvaskit.wasm": "143af6ff368f9cd21c863bfa4274c406",
+"canvaskit/chromium/canvaskit.wasm": "f87e541501c96012c252942b6b75d1ea",
 "canvaskit/canvaskit.js": "eb8797020acdbdf96a12fb0405582c1b",
-"canvaskit/canvaskit.wasm": "73584c1a3367e3eaf757647a8f5c5989",
+"canvaskit/canvaskit.wasm": "64edb91684bdb3b879812ba2e48dd487",
 "canvaskit/skwasm.worker.js": "bfb704a6c714a75da9ef320991e88b03"};
 // The application shell files that are downloaded before a service worker can
 // start.
