@@ -11,17 +11,6 @@
       touch-action: auto !important;
     }
   </style>
-  <script>
-    // Detect Facebook and Messenger in-app browsers
-    const ua = navigator.userAgent || navigator.vendor || window.opera;
-    const isMessenger = ua.includes("FBAN") || ua.includes("FBAV");
-
-    if (isMessenger) {
-      // Redirect to prompt "Open in browser"
-      // You can append a query param or show a page asking users to reopen
-      window.location.href = "https://snowflakeco.com/mamacare/onlinestore";
-    }
-  </script>
   <!--
     If you are serving your web app in a path other than the root, change the
     href value below to reflect the base path you are serving from.
