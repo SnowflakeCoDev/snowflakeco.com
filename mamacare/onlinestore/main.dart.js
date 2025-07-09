@@ -27957,7 +27957,7 @@ A.asx(A.a([B.Lz,B.LA],t.UW))
 q=$.pH()
 q.b=B.hd
 q.a=B.LC
-p=self.window.location.href
+p=self.window.navigator.userAgent
 if(p.length!==0){q.c=p
 if(B.d.q(p.toLowerCase(),"Mobile".toLowerCase()))if(!B.d.q(p.toLowerCase(),"FBAV".toLowerCase()))B.d.q(p.toLowerCase(),"FBAN".toLowerCase())}s=2
 return A.N(A.aGh(),$async$aGB)
