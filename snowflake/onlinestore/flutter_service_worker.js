@@ -3,13 +3,15 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 
-const RESOURCES = {"flutter_bootstrap.js": "d7bedefe278b061f73df2e641308f053",
+const RESOURCES = {"flutter_bootstrap.js": "51c37ce6bb9396e1209ac6a7867597f9",
 "version.json": "e62cb8729730b0c923ec5d314e0ecf8c",
 "index.html": "a772cd6926920beb1ebf34893e021d7b",
 "/": "a772cd6926920beb1ebf34893e021d7b",
-"main.dart.js": "d6f7fb989ca4ed251980d79017dcf0ae",
+"main.dart.js": "425263fad17663e27cdf2f457cd8d118",
 "flutter.js": "76f08d47ff9f5715220992f993002504",
+"main.dart.mjs": "fff9ef955a4712ba0570a685db61f517",
 "manifest.json": "a671555ed631abbd0dc1207315ac104a",
+"main.dart.wasm": "d18f989be165c3cb793c5132098102a0",
 "assets/AssetManifest.json": "73d4cf43ea38ed8810796de151127a70",
 "assets/NOTICES": "090c0432f720d556ca8a1bd0d0ac7432",
 "assets/FontManifest.json": "3ddd9b2ab1c2ae162d46e3cc7b78ba88",
@@ -45,6 +47,8 @@ const RESOURCES = {"flutter_bootstrap.js": "d7bedefe278b061f73df2e641308f053",
 // The application shell files that are downloaded before a service worker can
 // start.
 const CORE = ["main.dart.js",
+"main.dart.wasm",
+"main.dart.mjs",
 "index.html",
 "flutter_bootstrap.js",
 "assets/AssetManifest.bin.json",
