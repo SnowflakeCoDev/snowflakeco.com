@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <base href="../onlinestore/">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="A new Flutter project.">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="artecho_digital_app">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <title>artecho_digital_app</title>
+  <link rel="manifest" href="manifest.json">
+  <style>
+    html, body {
+    height: 100%;
+    margin: 0;
+    overscroll-behavior-y: none;   /* prevent pull-to-refresh / chain to browser */
+    overscroll-behavior-x: contain;
+    touch-action: pan-x pan-y;     /* keep normal scrolling but block weird gestures */
+  }
+
+    /* If you have a main app container, you can reinforce it too */
+    #flutter_container, #flutter-root {
+      overscroll-behavior: none;
+    }
+  </style>
+  <script>
+    (function () {
+      var startY = 0;
+      var atTop = false;
+
+      // Track where the touch starts and whether we're at the top
+      document.addEventListener('touchstart', function (e) {
+        startY = e.touches && e.touches.length ? e.touches[0].clientY : 0;
+        var el = document.scrollingElement || document.documentElement || document.body;
+        atTop = (el.scrollTop <= 0);
+      }, { passive: true });
+
+      // If we're at the very top and the user is swiping downward, prevent default to stop dismiss
+      document.addEventListener('touchmove', function (e) {
+        if (!e.touches || !e.touches.length) return;
+        var currentY = e.touches[0].clientY;
+        var isPullingDown = currentY - startY > 0;
+        if (atTop && isPullingDown) {
+          // Important: must be non-passive to call preventDefault
+          e.preventDefault();
+        }
+      }, { passive: false });
+    })();
+  </script>
+
+</head>
+
+<body>
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>
