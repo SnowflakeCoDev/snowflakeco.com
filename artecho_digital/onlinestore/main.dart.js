@@ -31343,7 +31343,7 @@ A.Yp.prototype={
 $0(){v.G.window.location.replace("https://snowflake-co-uk.redbubble.com")},
 $S:0}
 A.Yq.prototype={
-$0(){v.G.window.location.replace("https://l.facebook.com/l.php?u=https%3A%2F%2Fauthor.amazon.com%2Fbooks%3Ffbclid%3DIwZXh0bgNhZW0CMTEAAR5nqSU8nEig4PE0Qg4ooAIcuNodhD_Hv5XVmdmVlD0ShCS2v4iZZ1t2zN9hxw_aem_ALsv13GZAl00tUDYRWaaOw&h=AT08S5-4HRF1UIuSVgeoPo-GW7HlB_Xfp0MKZsDXscFT0FoO20j8WWIMPk7BrPqV_-N6f-P9mtMB02FstocUBimaSAexL_JHFZLyAbgJiiAG5AN4oPiwNETkRxtN&s=1")},
+$0(){v.G.window.location.replace("https://www.amazon.com/-/e/B0FYKKLM9J")},
 $S:0}
 A.xL.prototype={
 U(a){var s,r=this,q=null,p=r.f,o=A.agi(q,q,p,B.J,q,q,r.Q,q,q,q,q,q,B.J,q,B.J,new A.cI(A.k0(new A.aA(20,20)),B.q),new A.cj(r.z,0,B.O,-1),q,B.J,q,q,q),n=A.k0(new A.aA(20,20)),m=A.afE(new A.yU(r.ax,q,q,q,o,q,q,!1,q,q,r.c,q),new A.hq(p,q,q,n,q,q,B.c5),r.e,q,q,q)
