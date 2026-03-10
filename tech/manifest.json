@@ -1,6 +1,6 @@
 {
-    "name": "saas_order_app",
-    "short_name": "saas_order_app",
+    "name": "snowflake_tech_app",
+    "short_name": "snowflake_tech_app",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

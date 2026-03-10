@@ -14,7 +14,7 @@
     This is a placeholder for base href that will be replaced by the value of
     the `--base-href` argument provided to `flutter build`.
   -->
-  <base href="../saas_order/">
+  <base href="../tech/">
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
@@ -23,13 +23,13 @@
   <!-- iOS meta tags & icons -->
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="saas_order_app">
+  <meta name="apple-mobile-web-app-title" content="snowflake_tech_app">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
 
-  <title>saas_order_app</title>
+  <title>snowflake_tech_app</title>
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
@@ -42,13 +42,6 @@
     * https://docs.flutter.dev/platform-integration/web/initialization
   -->
   <script src="flutter_bootstrap.js" async></script>
-<!--  <div id="fb-root"></div>
-  <button onclick="launchWhatsAppSignup()" style="background-color: #1877f2; border: 0; border-radius: 4px; color: #fff; cursor: pointer; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: bold; height: 40px; padding: 0 24px;">Login with Facebook</button>
-  <p>Session info response:</p>
-  <pre id="session-info-response"></pre>
-  </br>
-  <p>SDK response:</p>
-  <pre id="sdk-response"></pre>-->
   <script>
     window.addEventListener('message', (event) => {
       if (event.origin !== "https://www.facebook.com" && event.origin !== "https://web.facebook.com") {
@@ -96,7 +89,7 @@
     const launchWhatsAppSignup = () => {
       // Launch Facebook login
       FB.login(fbLoginCallback, {
-        config_id: '1464987365332092', // configuration ID goes here
+        config_id: 'XXXXXXXXX', // configuration ID goes here
         response_type: 'code', // must be set to 'code' for System User access token
         override_default_response_type: true, // when true, any response types passed in the "response_type" will take precedence over the default types
         extras: {"version":"v3"}
@@ -107,7 +100,7 @@
   <script>
     window.fbAsyncInit = function() {
       FB.init({
-        appId            : '2430230277414636',
+        appId            : 'XXXXXXXX',
         autoLogAppEvents : true,
         xfbml            : true,
         version          : 'v25.0'
