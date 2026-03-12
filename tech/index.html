@@ -42,6 +42,7 @@
     * https://docs.flutter.dev/platform-integration/web/initialization
   -->
   <script src="flutter_bootstrap.js" async></script>
+  <button id="whatsAppButton" hidden="hidden" onclick="launchWhatsAppSignup()" style="background-color: #1877f2; border: 0; border-radius: 4px; color: #fff; cursor: pointer; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: bold; height: 40px; padding: 0 24px;">Login with Facebook</button>
   <script>
     window.addEventListener('message', (event) => {
       if (event.origin !== "https://www.facebook.com" && event.origin !== "https://web.facebook.com") {
@@ -52,12 +53,17 @@
         if (data.type === 'WA_EMBEDDED_SIGNUP') {
           // if user finishes the Embedded Signup flow
           if (data.event === 'FINISH') {
-            const {phone_number_id, waba_id} = data.data;
-            console.log("Phone number ID ", phone_number_id, " WhatsApp business account ID ", waba_id);
+            const { phone_number_id, waba_id, code } = data.data;
+            console.log("Phone Number ID:", phone_number_id);
+            console.log("WABA ID:", waba_id);
+            console.log("Exchange Code:", code);
+
+            // Send to your app
             window.postMessage({
               type: "WA_SIGNUP_SUCCESS",
               phone_number_id: phone_number_id,
-              waba_id: waba_id
+              waba_id: waba_id,
+              code: code
             }, "*");
             // if user cancels the Embedded Signup flow
           } else if (data.event === 'CANCEL') {
@@ -86,7 +92,7 @@
       document.getElementById("sdk-response").textContent = JSON.stringify(response, null, 2);
     }
 
-    function launchWhatsAppSignup() {
+    const launchWhatsAppSignup = () => {
       // Launch Facebook login
       FB.login(fbLoginCallback, {
         config_id: '1464987365332092', // configuration ID goes here
