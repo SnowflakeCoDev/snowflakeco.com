@@ -53,17 +53,12 @@
         if (data.type === 'WA_EMBEDDED_SIGNUP') {
           // if user finishes the Embedded Signup flow
           if (data.event === 'FINISH') {
-            const { phone_number_id, waba_id, code } = data.data;
-            console.log("Phone Number ID:", phone_number_id);
-            console.log("WABA ID:", waba_id);
-            console.log("Exchange Code:", code);
-
-            // Send to your app
+            const {phone_number_id, waba_id} = data.data;
+            console.log("Phone number ID ", phone_number_id, " WhatsApp business account ID ", waba_id);
             window.postMessage({
               type: "WA_SIGNUP_SUCCESS",
               phone_number_id: phone_number_id,
-              waba_id: waba_id,
-              code: code
+              waba_id: waba_id
             }, "*");
             // if user cancels the Embedded Signup flow
           } else if (data.event === 'CANCEL') {
