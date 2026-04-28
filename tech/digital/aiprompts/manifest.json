@@ -1,6 +1,6 @@
 {
-    "name": "test_web_content_page",
-    "short_name": "test_web_content_page",
+    "name": "ai_prompts_app",
+    "short_name": "ai_prompts_app",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
