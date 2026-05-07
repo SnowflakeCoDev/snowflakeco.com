@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lydia Pharmacy — Mobile Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Tajawal:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --brand:#C8102E;
+    --brand-hover:#A50D26;
+    --brand-soft:#FCEAEC;
+    --dark:#1A1A1A;
+    --surface:#FFFFFF;
+    --surface-alt:#FAFAFA;
+    --surface-muted:#F2F2F4;
+    --text-primary:#1A1A1A;
+    --text-secondary:#6B6B70;
+    --text-tertiary:#A0A0A6;
+    --success:#2E8B57;
+    --warning:#E08E00;
+    --error:#D32F2F;
+    --info:#0B6FB8;
+    --border:#E5E5E8;
+    --shadow-sm:0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md:0 4px 12px rgba(0,0,0,0.08);
+    --shadow-lg:0 12px 32px rgba(0,0,0,0.12);
+    --shadow-cta:0 6px 16px rgba(200,16,46,0.25);
+    --radius-sm:6px;
+    --radius-md:12px;
+    --radius-lg:20px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased}
+  html,body{font-family:'Cairo',sans-serif;background:#EDEDF0;color:var(--text-primary);min-height:100vh}
+  body{padding:48px 24px 80px;background-image:radial-gradient(circle at 20% 0%, #FCEAEC 0%, transparent 40%),radial-gradient(circle at 80% 100%, #FFE9D6 0%, transparent 40%),#EDEDF0}
+
+  /* Page Header */
+  .doc-header{max-width:1400px;margin:0 auto 56px;text-align:center}
+  .doc-header .pill{display:inline-flex;align-items:center;gap:8px;background:var(--surface);padding:6px 14px;border-radius:999px;font-size:12px;font-weight:600;color:var(--brand);box-shadow:var(--shadow-sm);margin-bottom:16px}
+  .doc-header .pill::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--brand);animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+  .doc-header h1{font-family:'Tajawal',sans-serif;font-size:42px;font-weight:800;letter-spacing:-0.02em;margin-bottom:8px}
+  .doc-header h1 .accent{color:var(--brand)}
+  .doc-header p{color:var(--text-secondary);font-size:15px;max-width:640px;margin:0 auto}
+
+  /* Phone Grid */
+  .phone-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:48px;max-width:1400px;margin:0 auto;justify-content:center;justify-items:center}
+  @media(min-width:1100px){.phone-grid{grid-template-columns:repeat(4,minmax(340px,1fr))}}
+
+  .phone-wrap{display:flex;flex-direction:column;align-items:center;gap:18px}
+  .phone-label{font-family:'Tajawal',sans-serif;font-weight:700;font-size:14px;color:var(--text-primary);text-align:center}
+  .phone-label .num{display:inline-block;background:var(--brand);color:white;padding:2px 10px;border-radius:999px;font-size:11px;margin-inline-start:8px;vertical-align:middle}
+  .phone-label .sub{display:block;font-weight:400;font-size:12px;color:var(--text-secondary);margin-top:4px;direction:rtl}
+
+  /* Phone Frame */
+  .phone{
+    width:340px;height:720px;
+    background:#0a0a0a;
+    border-radius:46px;
+    padding:10px;
+    box-shadow:0 30px 60px -15px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.05) inset, 0 8px 0 #050505 inset;
+    position:relative;
+    flex-shrink:0;
+  }
+  .phone::before{
+    content:'';position:absolute;top:18px;left:50%;transform:translateX(-50%);
+    width:90px;height:24px;background:#000;border-radius:14px;z-index:10;
+  }
+  .screen{
+    width:100%;height:100%;
+    background:var(--surface-alt);
+    border-radius:36px;
+    overflow:hidden;
+    position:relative;
+    direction:rtl;
+  }
+
+  /* Status Bar */
+  .status-bar{
+    position:absolute;top:0;left:0;right:0;height:44px;
+    display:flex;align-items:flex-end;justify-content:space-between;
+    padding:0 24px 6px;font-size:13px;font-weight:600;
+    z-index:20;direction:ltr;
+  }
+  .status-bar .time{font-family:'Inter',sans-serif}
+  .status-bar .icons{display:flex;gap:5px;align-items:center}
+  .status-bar svg{width:14px;height:14px}
+
+  /* Common */
+  .scroll-content{position:absolute;top:0;left:0;right:0;bottom:0;overflow-y:auto;-webkit-overflow-scrolling:touch}
+  .scroll-content::-webkit-scrollbar{display:none}
+
+  /* ===================== HOME SCREEN ===================== */
+  .home .top-bar{
+    position:sticky;top:0;background:var(--surface);
+    padding:54px 16px 12px;z-index:5;
+    display:flex;align-items:center;justify-content:space-between;gap:8px;
+    border-bottom:1px solid var(--border);
+  }
+  .logo-mini{display:flex;align-items:center;gap:8px}
+  .logo-mini .mark{width:34px;height:34px;border-radius:50%;background:var(--brand);display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:18px;font-family:'Tajawal',sans-serif}
+  .logo-mini .name{font-family:'Tajawal',sans-serif;font-weight:800;font-size:14px;line-height:1.1}
+  .logo-mini .name small{display:block;font-size:9px;color:var(--text-secondary);font-weight:500;letter-spacing:.04em}
+  .top-icons{display:flex;gap:6px}
+  .icon-btn{width:36px;height:36px;border-radius:10px;background:var(--surface-muted);display:flex;align-items:center;justify-content:center;position:relative;border:none;cursor:pointer}
+  .icon-btn svg{width:18px;height:18px;stroke:var(--text-primary);fill:none;stroke-width:2}
+  .icon-btn .dot{position:absolute;top:6px;inset-inline-end:6px;width:8px;height:8px;background:var(--brand);border-radius:50%;border:2px solid var(--surface-muted);box-sizing:content-box}
+  .icon-btn .badge{position:absolute;top:2px;inset-inline-end:2px;background:var(--brand);color:white;font-size:9px;font-weight:700;min-width:16px;height:16px;border-radius:8px;display:flex;align-items:center;justify-content:center;padding:0 4px;border:1.5px solid var(--surface-muted)}
+
+  /* Hero */
+  .hero{margin:14px 16px 0;border-radius:var(--radius-lg);overflow:hidden;position:relative;height:160px;background:linear-gradient(135deg,#C8102E 0%,#8E0B20 100%)}
+  .hero::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 80% 20%, rgba(255,255,255,0.18) 0%, transparent 50%)}
+  .hero-content{position:relative;z-index:2;padding:20px;height:100%;display:flex;flex-direction:column;justify-content:space-between;color:white}
+  .hero-tag{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;opacity:.85}
+  .hero h2{font-family:'Tajawal',sans-serif;font-size:22px;font-weight:800;line-height:1.2;margin-top:6px;max-width:65%}
+  .hero p{font-size:12px;opacity:.9;max-width:65%;margin-top:4px}
+  .hero-cta{align-self:flex-start;background:white;color:var(--brand);padding:8px 14px;border-radius:999px;font-size:12px;font-weight:700;border:none;display:flex;align-items:center;gap:6px}
+  .hero-illust{position:absolute;inset-inline-end:-10px;bottom:0;width:110px;height:130px;opacity:.95}
+  .dots{position:absolute;bottom:10px;inset-inline-start:50%;transform:translateX(50%);display:flex;gap:5px;z-index:3}
+  .dots span{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,0.4)}
+  .dots span.active{width:16px;border-radius:3px;background:white}
+
+  /* Section */
+  .section{padding:20px 16px 0}
+  .section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+  .section-head h3{font-family:'Tajawal',sans-serif;font-size:16px;font-weight:700}
+  .section-head a{color:var(--brand);font-size:12px;font-weight:600;text-decoration:none}
+
+  /* Categories */
+  .cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  .cat{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
+  .cat-ico{width:54px;height:54px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:24px;background:var(--surface);box-shadow:var(--shadow-sm)}
+  .cat:nth-child(1) .cat-ico{background:#FCEAEC}
+  .cat:nth-child(2) .cat-ico{background:#E8F4FF}
+  .cat:nth-child(3) .cat-ico{background:#E8F8EE}
+  .cat:nth-child(4) .cat-ico{background:#FFF4E0}
+  .cat:nth-child(5) .cat-ico{background:#F1ECFE}
+  .cat:nth-child(6) .cat-ico{background:#FFE9DC}
+  .cat:nth-child(7) .cat-ico{background:#E0F2F1}
+  .cat:nth-child(8) .cat-ico{background:#F4F4F4}
+  .cat-name{font-size:10px;font-weight:600;color:var(--text-primary);line-height:1.2}
+
+  /* Products */
+  .product-row{display:flex;gap:12px;overflow-x:auto;padding-bottom:6px;margin-inline:-16px;padding-inline:16px;scroll-snap-type:x mandatory}
+  .product-row::-webkit-scrollbar{display:none}
+  .product-card{flex:0 0 140px;background:var(--surface);border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-sm);scroll-snap-align:start;position:relative}
+  .product-card .heart{position:absolute;top:8px;inset-inline-end:8px;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.95);display:flex;align-items:center;justify-content:center;z-index:2;backdrop-filter:blur(4px)}
+  .product-card .heart svg{width:14px;height:14px;stroke:var(--text-primary);fill:none;stroke-width:2}
+  .product-card .heart.active svg{fill:var(--brand);stroke:var(--brand)}
+  .product-card .img{width:100%;height:120px;background:var(--surface-muted);position:relative;display:flex;align-items:center;justify-content:center;font-size:42px}
+  .product-card .info{padding:10px}
+  .product-card .brand{font-size:9px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.05em;font-weight:600}
+  .product-card .name{font-size:12px;font-weight:600;line-height:1.3;margin-top:2px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;height:32px}
+  .product-card .price-row{display:flex;align-items:center;justify-content:space-between;margin-top:6px}
+  .product-card .price{font-family:'Inter',sans-serif;font-weight:700;color:var(--brand);font-size:13px}
+  .product-card .price small{color:var(--text-tertiary);text-decoration:line-through;font-weight:500;font-size:10px;margin-inline-start:4px}
+  .product-card .add-btn{width:24px;height:24px;border-radius:6px;background:var(--brand);color:white;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;border:none}
+
+  /* Discount Banner */
+  .promo{margin:20px 16px 0;background:linear-gradient(95deg,#1a1a1a 0%,#3a1014 100%);border-radius:var(--radius-md);padding:14px;color:white;display:flex;align-items:center;gap:12px;position:relative;overflow:hidden}
+  .promo::before{content:'';position:absolute;width:80px;height:80px;border-radius:50%;background:var(--brand);opacity:.4;filter:blur(20px);inset-inline-end:-20px;top:-20px}
+  .promo .ico{width:42px;height:42px;border-radius:10px;background:var(--brand);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px;z-index:1}
+  .promo .txt{flex:1;z-index:1}
+  .promo .txt h4{font-family:'Tajawal',sans-serif;font-size:13px;font-weight:700}
+  .promo .txt p{font-size:10px;opacity:.8;margin-top:2px}
+  .promo .arrow{width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;z-index:1;font-size:14px}
+
+  /* Trust block */
+  .trust{margin:20px 16px;padding:14px;background:var(--surface);border-radius:var(--radius-md);box-shadow:var(--shadow-sm);display:flex;justify-content:space-around;text-align:center}
+  .trust-item .num{font-family:'Tajawal',sans-serif;font-weight:800;font-size:16px;color:var(--brand)}
+  .trust-item .lbl{font-size:9px;color:var(--text-secondary);margin-top:2px}
+  .trust-item.divider{width:1px;background:var(--border)}
+
+  /* Bottom Tab Bar */
+  .tab-bar{position:absolute;bottom:0;left:0;right:0;height:68px;background:var(--surface);border-top:1px solid var(--border);display:flex;justify-content:space-around;align-items:center;padding:0 8px 14px;z-index:10}
+  .tab{display:flex;flex-direction:column;align-items:center;gap:3px;flex:1;color:var(--text-tertiary)}
+  .tab svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2}
+  .tab.active{color:var(--brand)}
+  .tab.active svg{fill:var(--brand);stroke:var(--brand)}
+  .tab .lbl{font-size:9px;font-weight:600}
+  .tab.active .lbl{font-weight:700}
+  .tab.cart{position:relative}
+  .tab.cart::before{content:'';position:absolute;top:-22px;width:48px;height:48px;background:var(--brand);border-radius:50%;box-shadow:var(--shadow-cta);display:flex;align-items:center;justify-content:center}
+  .tab.cart .icon-cart{width:48px;height:48px;border-radius:50%;background:var(--brand);display:flex;align-items:center;justify-content:center;margin-top:-30px;box-shadow:var(--shadow-cta);position:relative}
+  .tab.cart .icon-cart svg{stroke:white;fill:none;width:22px;height:22px}
+  .tab.cart .lbl{display:none}
+  .tab.cart .b{position:absolute;top:-2px;inset-inline-end:-2px;background:#fff;color:var(--brand);font-size:10px;font-weight:700;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid var(--brand)}
+
+  /* WhatsApp FAB */
+  .fab-wa{position:absolute;bottom:84px;inset-inline-end:14px;width:48px;height:48px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(37,211,102,0.4);z-index:9}
+  .fab-wa svg{width:24px;height:24px;fill:white}
+
+  /* ===================== PRODUCT DETAIL ===================== */
+  .pd .nav-bar{position:sticky;top:0;z-index:5;padding:54px 16px 12px;display:flex;justify-content:space-between;background:transparent}
+  .pd .nav-bar .icon-btn{background:rgba(255,255,255,0.95);backdrop-filter:blur(8px)}
+  .pd .gallery{height:300px;background:linear-gradient(135deg,#FCEAEC 0%,#FFF 100%);position:relative;display:flex;align-items:center;justify-content:center;font-size:120px}
+  .pd .gallery-dots{position:absolute;bottom:16px;inset-inline-start:50%;transform:translateX(50%);display:flex;gap:6px}
+  .pd .gallery-dots span{width:6px;height:6px;border-radius:50%;background:rgba(0,0,0,0.2)}
+  .pd .gallery-dots span.active{background:var(--brand);width:18px;border-radius:3px}
+  .pd .info-sheet{background:var(--surface);border-radius:24px 24px 0 0;margin-top:-24px;padding:24px 18px 100px;position:relative;z-index:2}
+  .pd .brand-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+  .pd .brand-row .br{font-size:10px;color:var(--text-secondary);font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+  .pd .stock{display:inline-flex;align-items:center;gap:4px;font-size:10px;color:var(--success);font-weight:600}
+  .pd .stock::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--success)}
+  .pd h1{font-family:'Tajawal',sans-serif;font-size:20px;font-weight:700;line-height:1.3}
+  .pd .price-row{display:flex;align-items:baseline;gap:8px;margin-top:8px}
+  .pd .price{font-family:'Inter',sans-serif;font-size:24px;font-weight:800;color:var(--brand)}
+  .pd .price-old{color:var(--text-tertiary);text-decoration:line-through;font-weight:500;font-size:14px}
+  .pd .save-tag{background:var(--brand-soft);color:var(--brand);padding:2px 8px;border-radius:999px;font-size:10px;font-weight:700}
+  .pd .qty-row{display:flex;align-items:center;justify-content:space-between;margin-top:18px;padding:12px;background:var(--surface-muted);border-radius:var(--radius-md)}
+  .pd .qty-row .lbl{font-size:13px;font-weight:600}
+  .pd .stepper{display:flex;align-items:center;gap:0;background:var(--surface);border-radius:8px;border:1px solid var(--border)}
+  .pd .stepper button{width:32px;height:32px;background:none;border:none;font-size:16px;font-weight:600;color:var(--text-primary)}
+  .pd .stepper .v{padding:0 16px;font-weight:700;font-family:'Inter',sans-serif}
+  .pd .tabs{display:flex;gap:4px;margin-top:20px;border-bottom:1px solid var(--border)}
+  .pd .tab{padding:10px 4px;font-size:12px;font-weight:600;color:var(--text-secondary);position:relative;cursor:pointer;flex:1;text-align:center}
+  .pd .tab.active{color:var(--brand)}
+  .pd .tab.active::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:2px;background:var(--brand);border-radius:2px}
+  .pd .desc{margin-top:14px;font-size:12px;color:var(--text-secondary);line-height:1.7}
+  .pd .features{margin-top:14px;display:flex;flex-direction:column;gap:8px}
+  .pd .feat{display:flex;gap:8px;align-items:flex-start;font-size:11px}
+  .pd .feat::before{content:'✓';color:var(--success);font-weight:700;flex-shrink:0}
+  .pd .bottom-cta{position:absolute;bottom:0;left:0;right:0;background:var(--surface);padding:12px 16px 24px;border-top:1px solid var(--border);display:flex;gap:8px;z-index:10}
+  .pd .btn-cart{flex:1;background:var(--brand);color:white;border:none;border-radius:var(--radius-md);padding:14px;font-weight:700;font-size:14px;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:6px;box-shadow:var(--shadow-cta)}
+  .pd .btn-wa{width:52px;height:52px;border-radius:var(--radius-md);background:#25D366;border:none;display:flex;align-items:center;justify-content:center}
+  .pd .btn-wa svg{width:24px;height:24px;fill:white}
+
+  /* ===================== CART SCREEN ===================== */
+  .cart .head{padding:54px 16px 16px;background:var(--surface);border-bottom:1px solid var(--border)}
+  .cart .head h1{font-family:'Tajawal',sans-serif;font-size:18px;font-weight:700}
+  .cart .head p{font-size:11px;color:var(--text-secondary);margin-top:2px}
+  .cart-list{padding:14px 16px;display:flex;flex-direction:column;gap:10px}
+  .cart-item{display:flex;gap:12px;background:var(--surface);padding:12px;border-radius:var(--radius-md);box-shadow:var(--shadow-sm)}
+  .cart-item .thumb{width:64px;height:64px;border-radius:8px;background:var(--surface-muted);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:28px}
+  .cart-item .info{flex:1;min-width:0}
+  .cart-item .br{font-size:9px;color:var(--text-secondary);text-transform:uppercase;font-weight:600;letter-spacing:.05em}
+  .cart-item .nm{font-size:12px;font-weight:600;line-height:1.3;margin-top:1px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+  .cart-item .ctrl{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+  .cart-item .stp{display:flex;align-items:center;background:var(--surface-muted);border-radius:8px;height:28px}
+  .cart-item .stp button{width:28px;height:28px;background:none;border:none;font-size:14px;font-weight:600}
+  .cart-item .stp .v{padding:0 10px;font-weight:700;font-size:12px;font-family:'Inter',sans-serif}
+  .cart-item .pr{font-family:'Inter',sans-serif;font-weight:700;color:var(--brand);font-size:13px}
+
+  .cart-warning{margin:0 16px;padding:10px 12px;background:#FFF6E5;border:1px solid #FFE0A6;border-radius:var(--radius-sm);display:flex;gap:8px;align-items:flex-start}
+  .cart-warning .ico{font-size:14px}
+  .cart-warning .tx{font-size:10px;color:#7A4F00;line-height:1.4}
+
+  .cart-summary{margin:16px;background:var(--surface);border-radius:var(--radius-md);padding:14px;box-shadow:var(--shadow-sm)}
+  .cart-summary h3{font-family:'Tajawal',sans-serif;font-size:13px;font-weight:700;margin-bottom:10px}
+  .sum-row{display:flex;justify-content:space-between;font-size:12px;padding:6px 0;color:var(--text-secondary)}
+  .sum-row.total{padding-top:10px;border-top:1px dashed var(--border);margin-top:6px;font-size:14px;color:var(--text-primary);font-weight:700}
+  .sum-row.total .v{color:var(--brand);font-family:'Inter',sans-serif;font-size:18px}
+  .sum-row .v{font-family:'Inter',sans-serif;font-weight:600;color:var(--text-primary)}
+  .promo-input{margin-top:12px;display:flex;gap:6px}
+  .promo-input input{flex:1;border:1px dashed var(--border);background:var(--surface-alt);padding:8px 10px;border-radius:8px;font-size:11px;font-family:inherit;direction:rtl;text-align:right}
+  .promo-input button{background:var(--surface-muted);border:none;padding:0 14px;border-radius:8px;font-size:11px;font-weight:600}
+
+  .checkout-btn{position:absolute;bottom:0;left:0;right:0;background:var(--surface);padding:12px 16px 20px;border-top:1px solid var(--border)}
+  .checkout-btn button{width:100%;background:var(--brand);color:white;border:none;border-radius:var(--radius-md);padding:14px;font-weight:700;font-size:14px;font-family:inherit;display:flex;align-items:center;justify-content:space-between;padding:14px 18px;box-shadow:var(--shadow-cta)}
+  .checkout-btn button .arr{font-size:18px}
+
+  /* ===================== PROFILE ===================== */
+  .pf .head{padding:54px 16px 24px;background:linear-gradient(135deg,var(--brand) 0%,#8E0B20 100%);color:white;position:relative;overflow:hidden}
+  .pf .head::after{content:'';position:absolute;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,0.1);bottom:-30px;inset-inline-end:-30px}
+  .pf .head h1{font-family:'Tajawal',sans-serif;font-size:18px;font-weight:700;margin-bottom:18px;position:relative;z-index:2}
+  .pf .user-card{background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border-radius:var(--radius-md);padding:14px;display:flex;gap:12px;align-items:center;border:1px solid rgba(255,255,255,0.2);position:relative;z-index:2}
+  .pf .avatar{width:52px;height:52px;border-radius:50%;background:white;color:var(--brand);display:flex;align-items:center;justify-content:center;font-family:'Tajawal',sans-serif;font-weight:800;font-size:20px;flex-shrink:0}
+  .pf .user-info{flex:1}
+  .pf .user-info .nm{font-family:'Tajawal',sans-serif;font-weight:700;font-size:15px}
+  .pf .user-info .ph{font-size:11px;opacity:.85;margin-top:2px;font-family:'Inter',sans-serif;direction:ltr;text-align:right}
+  .pf .edit-btn{background:rgba(255,255,255,0.2);border:none;color:white;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center}
+  .pf .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 16px 0;background:var(--surface);border-radius:var(--radius-md);padding:14px;box-shadow:var(--shadow-sm)}
+  .pf .stat{text-align:center}
+  .pf .stat .v{font-family:'Tajawal',sans-serif;font-weight:800;font-size:16px;color:var(--brand)}
+  .pf .stat .l{font-size:9px;color:var(--text-secondary);margin-top:2px}
+  .pf .stat:not(:last-child){border-inline-end:1px solid var(--border)}
+  .pf .menu{margin:14px 16px;background:var(--surface);border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-sm)}
+  .pf .row{display:flex;align-items:center;gap:12px;padding:14px;border-bottom:1px solid var(--border)}
+  .pf .row:last-child{border-bottom:none}
+  .pf .row .ic{width:36px;height:36px;border-radius:10px;background:var(--brand-soft);display:flex;align-items:center;justify-content:center;font-size:16px}
+  .pf .row .lb{flex:1;font-size:13px;font-weight:600}
+  .pf .row .lb small{display:block;font-weight:400;font-size:10px;color:var(--text-secondary);margin-top:2px}
+  .pf .row .arrow{color:var(--text-tertiary);font-size:18px}
+  .pf .row.danger .ic{background:#FCEAEC}
+  .pf .row.danger .lb{color:var(--brand)}
+  .pf .lang-toggle{display:flex;background:var(--surface-muted);border-radius:8px;padding:2px;font-size:11px;font-weight:600}
+  .pf .lang-toggle span{padding:4px 10px;border-radius:6px}
+  .pf .lang-toggle .on{background:var(--brand);color:white}
+
+  /* Decorative annotations */
+  .annotations{max-width:1400px;margin:80px auto 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+  .ann-card{background:var(--surface);border-radius:var(--radius-md);padding:20px;box-shadow:var(--shadow-sm);border:1px solid var(--border)}
+  .ann-card h4{font-family:'Tajawal',sans-serif;font-size:14px;font-weight:700;margin-bottom:8px;color:var(--brand);display:flex;align-items:center;gap:8px}
+  .ann-card h4::before{content:'';width:6px;height:18px;background:var(--brand);border-radius:3px}
+  .ann-card p{font-size:12px;color:var(--text-secondary);line-height:1.6}
+  .ann-card ul{margin-top:8px;padding-inline-start:18px}
+  .ann-card li{font-size:11px;color:var(--text-secondary);margin-bottom:4px}
+
+  .footer-note{max-width:1400px;margin:60px auto 0;text-align:center;padding:24px;color:var(--text-secondary);font-size:12px}
+  .footer-note strong{color:var(--brand);font-family:'Tajawal',sans-serif;font-weight:700}
+</style>
+</head>
+<body>
+
+<header class="doc-header">
+  <div class="pill">Lydia Pharmacy · صيدلية د. ليديا · Mobile UI</div>
+  <h1>Mobile <span class="accent">Design</span> System</h1>
+  <p>Production-ready mockups for the Flutter mobile app. Designed Arabic-first (RTL) with full LTR mirroring. Showcasing Home, Product Detail, Cart, and Profile.</p>
+</header>
+
+<div class="phone-grid">
+
+  <!-- ========== HOME ========== -->
+  <div class="phone-wrap">
+    <div class="phone">
+      <div class="screen home">
+        <div class="status-bar">
+          <span class="time">9:41</span>
+          <span class="icons">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 22h20V2L2 22z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 4C7 4 2.7 6.5 0 10l12 14L24 10c-2.7-3.5-7-6-12-6z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="18" height="10" rx="2"/><rect x="20" y="10" width="2" height="4"/></svg>
+          </span>
+        </div>
+        <div class="scroll-content">
+          <div class="top-bar">
+            <div class="logo-mini">
+              <div class="mark">L</div>
+              <div class="name">Lydia<small>Pharmacy</small></div>
+            </div>
+            <div class="top-icons">
+              <button class="icon-btn"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></button>
+              <button class="icon-btn"><svg viewBox="0 0 24 24"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><span class="dot"></span></button>
+              <button class="icon-btn"><svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg><span class="badge">3</span></button>
+            </div>
+          </div>
+
+          <div class="hero">
+            <div class="hero-content">
+              <div>
+                <div class="hero-tag">عرض خاص · LIMITED OFFER</div>
+                <h2>صحتك وجمالك<br>في رعايتنا</h2>
+                <p>خصومات تصل إلى ٢٥٪ على مستحضرات التجميل</p>
+              </div>
+              <button class="hero-cta">تسوّقي الآن ←</button>
+            </div>
+            <div class="hero-illust">💄</div>
+            <div class="dots"><span></span><span class="active"></span><span></span></div>
+          </div>
+
+          <div class="section">
+            <div class="section-head">
+              <h3>التصنيفات</h3>
+              <a href="#">عرض الكل ›</a>
+            </div>
+            <div class="cat-grid">
+              <div class="cat"><div class="cat-ico">💊</div><div class="cat-name">أدوية</div></div>
+              <div class="cat"><div class="cat-ico">💄</div><div class="cat-name">تجميل</div></div>
+              <div class="cat"><div class="cat-ico">🧴</div><div class="cat-name">عناية</div></div>
+              <div class="cat"><div class="cat-ico">🩺</div><div class="cat-name">طبية</div></div>
+              <div class="cat"><div class="cat-ico">🍼</div><div class="cat-name">أمومة</div></div>
+              <div class="cat"><div class="cat-ico">💊</div><div class="cat-name">فيتامينات</div></div>
+              <div class="cat"><div class="cat-ico">🌿</div><div class="cat-name">طبيعي</div></div>
+              <div class="cat"><div class="cat-ico">⋯</div><div class="cat-name">المزيد</div></div>
+            </div>
+          </div>
+
+          <div class="promo">
+            <div class="ico">🎫</div>
+            <div class="txt">
+              <h4>كارت الخصم الخاص</h4>
+              <p>اسألي عنه الآن واحصلي على عروض حصرية</p>
+            </div>
+            <div class="arrow">›</div>
+          </div>
+
+          <div class="section">
+            <div class="section-head">
+              <h3>الأكثر مبيعًا</h3>
+              <a href="#">عرض الكل ›</a>
+            </div>
+            <div class="product-row">
+              <div class="product-card">
+                <div class="heart active"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+                <div class="img">🧴</div>
+                <div class="info">
+                  <div class="brand">CERAVE</div>
+                  <div class="name">غسول مرطب للبشرة الجافة</div>
+                  <div class="price-row">
+                    <div class="price">٣٢٥<small>٤٠٠</small></div>
+                    <button class="add-btn">+</button>
+                  </div>
+                </div>
+              </div>
+              <div class="product-card">
+                <div class="heart"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+                <div class="img">💊</div>
+                <div class="info">
+                  <div class="brand">CENTRUM</div>
+                  <div class="name">فيتامينات متعددة للنساء</div>
+                  <div class="price-row">
+                    <div class="price">٢٤٠</div>
+                    <button class="add-btn">+</button>
+                  </div>
+                </div>
+              </div>
+              <div class="product-card">
+                <div class="heart"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+                <div class="img">💄</div>
+                <div class="info">
+                  <div class="brand">L'ORÉAL</div>
+                  <div class="name">أحمر شفاه مات طويل الأمد</div>
+                  <div class="price-row">
+                    <div class="price">١٩٥</div>
+                    <button class="add-btn">+</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="trust">
+            <div class="trust-item"><div class="num">+5.4K</div><div class="lbl">متابع</div></div>
+            <div class="trust-item divider"></div>
+            <div class="trust-item"><div class="num">100%</div><div class="lbl">توصية</div></div>
+            <div class="trust-item divider"></div>
+            <div class="trust-item"><div class="num" style="color:var(--success)">●</div><div class="lbl">مفتوحة الآن</div></div>
+          </div>
+
+          <div style="height:120px"></div>
+        </div>
+
+        <div class="fab-wa"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.4-1.4-.9-.8-1.5-1.8-1.6-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2.1-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1.1 1-1.1 2.5s1.1 2.9 1.3 3.1c.2.2 2.2 3.4 5.3 4.7.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z"/><path d="M20.5 3.5C18.3 1.2 15.3 0 12 0 5.4 0 .1 5.4.1 12c0 2.1.6 4.2 1.6 6L0 24l6.2-1.6c1.7.9 3.7 1.4 5.7 1.4 6.6 0 11.9-5.4 11.9-11.9.1-3.2-1.2-6.2-3.3-8.4zM12 21.8c-1.8 0-3.6-.5-5.2-1.4l-.4-.2-3.7 1 1-3.6-.2-.4c-1-1.6-1.5-3.5-1.5-5.4 0-5.5 4.5-9.9 9.9-9.9 2.6 0 5.1 1 7 2.9s2.9 4.4 2.9 7c.1 5.4-4.4 9.9-9.8 10z"/></svg></div>
+
+        <div class="tab-bar">
+          <div class="tab active">
+            <svg viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+            <span class="lbl">الرئيسية</span>
+          </div>
+          <div class="tab">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            <span class="lbl">التصنيفات</span>
+          </div>
+          <div class="tab cart">
+            <div class="icon-cart">
+              <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+              <span class="b">3</span>
+            </div>
+          </div>
+          <div class="tab">
+            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            <span class="lbl">المفضلة</span>
+          </div>
+          <div class="tab">
+            <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span class="lbl">حسابي</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="phone-label">M4 — Home Screen<span class="num">RTL</span><span class="sub">الشاشة الرئيسية</span></div>
+  </div>
+
+  <!-- ========== PRODUCT DETAIL ========== -->
+  <div class="phone-wrap">
+    <div class="phone">
+      <div class="screen pd">
+        <div class="status-bar">
+          <span class="time">9:41</span>
+          <span class="icons">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 22h20V2L2 22z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 4C7 4 2.7 6.5 0 10l12 14L24 10c-2.7-3.5-7-6-12-6z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="18" height="10" rx="2"/><rect x="20" y="10" width="2" height="4"/></svg>
+          </span>
+        </div>
+        <div class="scroll-content">
+          <div class="nav-bar">
+            <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
+            <div style="display:flex;gap:6px">
+              <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
+              <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+            </div>
+          </div>
+          <div class="gallery">
+            🧴
+            <div class="gallery-dots"><span></span><span class="active"></span><span></span><span></span></div>
+          </div>
+          <div class="info-sheet">
+            <div class="brand-row">
+              <span class="br">CERAVE · سيرافي</span>
+              <span class="stock">متوفر — ١٢ قطعة</span>
+            </div>
+            <h1>غسول مرطب للوجه للبشرة الجافة والحساسة ٢٣٦ مل</h1>
+            <div class="price-row">
+              <span class="price">٣٢٥ ج.م</span>
+              <span class="price-old">٤٠٠ ج.م</span>
+              <span class="save-tag">وفّري ١٩٪</span>
+            </div>
+            <div class="qty-row">
+              <span class="lbl">الكمية</span>
+              <div class="stepper">
+                <button>−</button>
+                <span class="v">2</span>
+                <button>+</button>
+              </div>
+            </div>
+            <div class="tabs">
+              <div class="tab active">الوصف</div>
+              <div class="tab">الاستخدام</div>
+              <div class="tab">التحذيرات</div>
+              <div class="tab">المكونات</div>
+            </div>
+            <div class="desc">
+              غسول لطيف وفعّال للبشرة الجافة والحساسة، يحتوي على ٣ أنواع من سيراميد ضرورية لاستعادة وحماية حاجز البشرة الطبيعي. مع حمض الهيالورونيك للترطيب العميق.
+            </div>
+            <div class="features">
+              <div class="feat">خالٍ من العطور والصابون</div>
+              <div class="feat">مناسب للاستخدام اليومي صباحًا ومساءً</div>
+              <div class="feat">طُوّر بالتعاون مع أطباء الجلدية</div>
+              <div class="feat">مُعتمد من جمعية الإكزيما الوطنية</div>
+            </div>
+          </div>
+        </div>
+        <div class="bottom-cta">
+          <button class="btn-cart">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+            إضافة إلى السلة
+          </button>
+          <button class="btn-wa"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.4-1.4-.9-.8-1.5-1.8-1.6-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2.1-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1.1 1-1.1 2.5s1.1 2.9 1.3 3.1c.2.2 2.2 3.4 5.3 4.7.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z"/><path d="M20.5 3.5C18.3 1.2 15.3 0 12 0 5.4 0 .1 5.4.1 12c0 2.1.6 4.2 1.6 6L0 24l6.2-1.6c1.7.9 3.7 1.4 5.7 1.4 6.6 0 11.9-5.4 11.9-11.9.1-3.2-1.2-6.2-3.3-8.4zM12 21.8c-1.8 0-3.6-.5-5.2-1.4l-.4-.2-3.7 1 1-3.6-.2-.4c-1-1.6-1.5-3.5-1.5-5.4 0-5.5 4.5-9.9 9.9-9.9 2.6 0 5.1 1 7 2.9s2.9 4.4 2.9 7c.1 5.4-4.4 9.9-9.8 10z"/></svg></button>
+        </div>
+      </div>
+    </div>
+    <div class="phone-label">M7 — Product Detail<span class="num">RTL</span><span class="sub">تفاصيل المنتج</span></div>
+  </div>
+
+  <!-- ========== CART ========== -->
+  <div class="phone-wrap">
+    <div class="phone">
+      <div class="screen cart">
+        <div class="status-bar">
+          <span class="time">9:41</span>
+          <span class="icons">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 22h20V2L2 22z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 4C7 4 2.7 6.5 0 10l12 14L24 10c-2.7-3.5-7-6-12-6z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="18" height="10" rx="2"/><rect x="20" y="10" width="2" height="4"/></svg>
+          </span>
+        </div>
+        <div class="scroll-content">
+          <div class="head">
+            <h1>سلة التسوّق</h1>
+            <p>٣ منتجات · جاهزة للشحن</p>
+          </div>
+
+          <div class="cart-warning">
+            <span class="ico">⚠️</span>
+            <span class="tx">انخفض المخزون لأحد المنتجات. تم تعديل الكمية تلقائيًا — يُرجى المراجعة قبل الإتمام.</span>
+          </div>
+
+          <div class="cart-list">
+            <div class="cart-item">
+              <div class="thumb">🧴</div>
+              <div class="info">
+                <div class="br">CERAVE</div>
+                <div class="nm">غسول مرطب للوجه للبشرة الجافة ٢٣٦ مل</div>
+                <div class="ctrl">
+                  <div class="stp"><button>−</button><span class="v">2</span><button>+</button></div>
+                  <span class="pr">٦٥٠ ج.م</span>
+                </div>
+              </div>
+            </div>
+            <div class="cart-item">
+              <div class="thumb">💊</div>
+              <div class="info">
+                <div class="br">CENTRUM</div>
+                <div class="nm">فيتامينات متعددة للنساء ١٠٠ قرص</div>
+                <div class="ctrl">
+                  <div class="stp"><button>−</button><span class="v">1</span><button>+</button></div>
+                  <span class="pr">٢٤٠ ج.م</span>
+                </div>
+              </div>
+            </div>
+            <div class="cart-item">
+              <div class="thumb">💄</div>
+              <div class="info">
+                <div class="br">L'ORÉAL</div>
+                <div class="nm">أحمر شفاه مات لون روبي</div>
+                <div class="ctrl">
+                  <div class="stp"><button>−</button><span class="v">1</span><button>+</button></div>
+                  <span class="pr">١٩٥ ج.م</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cart-summary">
+            <h3>ملخص الطلب</h3>
+            <div class="sum-row"><span>المجموع الفرعي</span><span class="v">١٠٨٥ ج.م</span></div>
+            <div class="sum-row"><span>التوصيل</span><span class="v">٣٠ ج.م</span></div>
+            <div class="sum-row"><span>الخصم (كارت ليديا)</span><span class="v" style="color:var(--success)">−٥٠ ج.م</span></div>
+            <div class="promo-input">
+              <input placeholder="🎫 أدخلي كود الخصم">
+              <button>تطبيق</button>
+            </div>
+            <div class="sum-row total"><span>الإجمالي</span><span class="v">١٠٦٥ ج.م</span></div>
+          </div>
+
+          <div style="height:90px"></div>
+        </div>
+
+        <div class="checkout-btn">
+          <button>
+            <span>إتمام الطلب · ١٠٦٥ ج.م</span>
+            <span class="arr">←</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="phone-label">M8 — Cart<span class="num">RTL</span><span class="sub">السلة</span></div>
+  </div>
+
+  <!-- ========== PROFILE ========== -->
+  <div class="phone-wrap">
+    <div class="phone">
+      <div class="screen pf">
+        <div class="status-bar" style="color:white">
+          <span class="time">9:41</span>
+          <span class="icons">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 22h20V2L2 22z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 4C7 4 2.7 6.5 0 10l12 14L24 10c-2.7-3.5-7-6-12-6z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="18" height="10" rx="2"/><rect x="20" y="10" width="2" height="4"/></svg>
+          </span>
+        </div>
+        <div class="scroll-content">
+          <div class="head">
+            <h1>حسابي</h1>
+            <div class="user-card">
+              <div class="avatar">م</div>
+              <div class="user-info">
+                <div class="nm">منى أحمد عبدالعزيز</div>
+                <div class="ph">+20 100 123 4567</div>
+              </div>
+              <button class="edit-btn">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="stats">
+            <div class="stat"><div class="v">١٢</div><div class="l">طلب</div></div>
+            <div class="stat"><div class="v">٢٤</div><div class="l">منتج مفضّل</div></div>
+            <div class="stat"><div class="v">٣</div><div class="l">عنوان محفوظ</div></div>
+          </div>
+
+          <div class="menu">
+            <div class="row">
+              <div class="ic">📦</div>
+              <div class="lb">طلباتي<small>تتبّعي طلباتك السابقة والجديدة</small></div>
+              <span class="arrow">‹</span>
+            </div>
+            <div class="row">
+              <div class="ic">📍</div>
+              <div class="lb">عناويني<small>إدارة عناوين التوصيل المحفوظة</small></div>
+              <span class="arrow">‹</span>
+            </div>
+            <div class="row">
+              <div class="ic">🔔</div>
+              <div class="lb">الإشعارات<small>عرض إشعارات الطلبات والعروض</small></div>
+              <span class="arrow">‹</span>
+            </div>
+            <div class="row">
+              <div class="ic">🎫</div>
+              <div class="lb">كارت الخصم<small>مزايا حصرية لعملاء ليديا</small></div>
+              <span class="arrow">‹</span>
+            </div>
+          </div>
+
+          <div class="menu">
+            <div class="row">
+              <div class="ic">🌐</div>
+              <div class="lb">اللغة</div>
+              <div class="lang-toggle"><span class="on">عربي</span><span>EN</span></div>
+            </div>
+            <div class="row">
+              <div class="ic">ℹ️</div>
+              <div class="lb">عن الصيدلية</div>
+              <span class="arrow">‹</span>
+            </div>
+            <div class="row">
+              <div class="ic">💬</div>
+              <div class="lb">تواصلي معنا</div>
+              <span class="arrow">‹</span>
+            </div>
+          </div>
+
+          <div class="menu">
+            <div class="row danger">
+              <div class="ic">🚪</div>
+              <div class="lb">تسجيل الخروج</div>
+              <span class="arrow">‹</span>
+            </div>
+          </div>
+
+          <div style="text-align:center;padding:14px;font-size:10px;color:var(--text-tertiary)">Lydia Pharmacy · v1.0.0</div>
+          <div style="height:80px"></div>
+        </div>
+
+        <div class="tab-bar">
+          <div class="tab"><svg viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg><span class="lbl">الرئيسية</span></div>
+          <div class="tab"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg><span class="lbl">التصنيفات</span></div>
+          <div class="tab cart"><div class="icon-cart"><svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg><span class="b">3</span></div></div>
+          <div class="tab"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span class="lbl">المفضلة</span></div>
+          <div class="tab active"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span class="lbl">حسابي</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="phone-label">M14 — Profile<span class="num">RTL</span><span class="sub">حسابي</span></div>
+  </div>
+
+</div>
+
+<!-- Annotations -->
+<div class="annotations">
+  <div class="ann-card">
+    <h4>Design Tokens Applied</h4>
+    <p>Brand red <code style="background:#FCEAEC;padding:1px 6px;border-radius:4px;color:var(--brand);font-family:'Inter',monospace;font-size:11px">#C8102E</code> drives primary CTAs and accents. Tajawal display + Cairo body fonts. 8-pt spacing. 12 px card radius. Uniform <code style="background:var(--surface-muted);padding:1px 6px;border-radius:4px;font-family:'Inter',monospace;font-size:11px">--shadow-sm</code> on cards.</p>
+  </div>
+  <div class="ann-card">
+    <h4>RTL-First Layout</h4>
+    <p>Every screen here is rendered <strong>RTL</strong>. Cart steppers, product carousels, navigation arrows, and progress indicators all mirror correctly. LTR is achieved by flipping a single <code style="background:var(--surface-muted);padding:1px 6px;border-radius:4px;font-family:'Inter',monospace;font-size:11px">dir</code> attribute.</p>
+  </div>
+  <div class="ann-card">
+    <h4>Thumb-Zone Optimized</h4>
+    <p>Bottom tab bar with 5 tabs. The center cart action is elevated (FAB-style) to catch the thumb. WhatsApp "Ask the Pharmacist" floats above the tab bar — present everywhere without consuming viewport.</p>
+  </div>
+  <div class="ann-card">
+    <h4>States Demonstrated</h4>
+    <ul>
+      <li>Cart: stock-cap warning banner (EC-3)</li>
+      <li>Product: in-stock indicator + discount tag</li>
+      <li>Home: live "Open Now" badge (US-1.5)</li>
+      <li>Profile: language toggle (AR/EN)</li>
+      <li>Hero: paginated carousel with active dot</li>
+    </ul>
+  </div>
+</div>
+
+<div class="footer-note">
+  <strong>Lydia Pharmacy Mobile UI v1.0</strong> · Designed for Flutter · Ready for Engineering Handoff · صيدلية د. ليديا
+</div>
+
+</body>
+</html>

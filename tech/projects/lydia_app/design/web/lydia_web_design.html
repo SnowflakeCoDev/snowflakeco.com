@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lydia Pharmacy — Web Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Tajawal:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --brand:#C8102E;
+    --brand-hover:#A50D26;
+    --brand-soft:#FCEAEC;
+    --dark:#1A1A1A;
+    --surface:#FFFFFF;
+    --surface-alt:#FAFAFA;
+    --surface-muted:#F2F2F4;
+    --text-primary:#1A1A1A;
+    --text-secondary:#6B6B70;
+    --text-tertiary:#A0A0A6;
+    --success:#2E8B57;
+    --warning:#E08E00;
+    --error:#D32F2F;
+    --info:#0B6FB8;
+    --border:#E5E5E8;
+    --shadow-sm:0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md:0 4px 12px rgba(0,0,0,0.08);
+    --shadow-lg:0 12px 32px rgba(0,0,0,0.12);
+    --shadow-cta:0 6px 16px rgba(200,16,46,0.25);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased}
+  html,body{font-family:'Cairo',sans-serif;background:#EDEDF0;color:var(--text-primary)}
+  body{padding:48px 24px 80px;background-image:radial-gradient(circle at 0% 0%, #FCEAEC 0%, transparent 30%),radial-gradient(circle at 100% 100%, #FFE9D6 0%, transparent 30%),#EDEDF0}
+
+  /* Doc Header */
+  .doc-header{max-width:1480px;margin:0 auto 56px;text-align:center}
+  .doc-header .pill{display:inline-flex;align-items:center;gap:8px;background:var(--surface);padding:6px 14px;border-radius:999px;font-size:12px;font-weight:600;color:var(--brand);box-shadow:var(--shadow-sm);margin-bottom:16px}
+  .doc-header .pill::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--brand);animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+  .doc-header h1{font-family:'Tajawal',sans-serif;font-size:42px;font-weight:800;letter-spacing:-0.02em;margin-bottom:8px}
+  .doc-header h1 .accent{color:var(--brand)}
+  .doc-header p{color:var(--text-secondary);font-size:15px;max-width:640px;margin:0 auto}
+
+  /* Browser frame */
+  .browser{max-width:1480px;margin:0 auto 60px;background:var(--surface);border-radius:14px;overflow:hidden;box-shadow:0 30px 80px -20px rgba(0,0,0,0.25), 0 4px 12px rgba(0,0,0,0.06);direction:ltr}
+  .browser-bar{background:#E8E8EC;padding:12px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border)}
+  .browser-dots{display:flex;gap:6px}
+  .browser-dots span{width:12px;height:12px;border-radius:50%}
+  .browser-dots span:nth-child(1){background:#FF5F57}
+  .browser-dots span:nth-child(2){background:#FEBC2E}
+  .browser-dots span:nth-child(3){background:#28C840}
+  .browser-url{flex:1;background:white;border-radius:6px;padding:6px 12px;font-family:'Inter',monospace;font-size:12px;color:var(--text-secondary);display:flex;align-items:center;gap:8px;max-width:520px;margin:0 auto}
+  .browser-url::before{content:'🔒';font-size:11px}
+  .browser-url strong{color:var(--text-primary)}
+  .screen-label{position:absolute;background:var(--brand);color:white;padding:6px 14px;border-radius:0 0 12px 12px;font-size:12px;font-weight:700;font-family:'Tajawal',sans-serif;z-index:50;top:0;inset-inline-start:24px;display:flex;align-items:center;gap:6px}
+  .browser-content{position:relative;direction:rtl}
+
+  /* ==================== HEADER ==================== */
+  .web-header{background:white;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:30}
+  .top-strip{background:var(--dark);color:white;font-size:12px;padding:8px 0}
+  .top-strip-inner{max-width:1320px;margin:0 auto;padding:0 32px;display:flex;justify-content:space-between;align-items:center}
+  .top-strip .left{display:flex;gap:18px;opacity:.85}
+  .top-strip .left span{display:flex;align-items:center;gap:5px}
+  .top-strip .left .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#5BD068;animation:pulse 2s infinite}
+  .top-strip .right{display:flex;gap:14px}
+  .top-strip a{color:white;text-decoration:none;opacity:.85;font-size:11px}
+
+  .header-main{padding:18px 0}
+  .header-inner{max-width:1320px;margin:0 auto;padding:0 32px;display:flex;align-items:center;gap:32px}
+  .logo{display:flex;align-items:center;gap:12px;flex-shrink:0}
+  .logo .mark{width:46px;height:46px;border-radius:50%;background:var(--brand);display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:24px;font-family:'Tajawal',sans-serif;box-shadow:var(--shadow-cta);position:relative}
+  .logo .mark::after{content:'';position:absolute;inset:-3px;border-radius:50%;border:1.5px solid var(--brand);opacity:.4}
+  .logo .name{font-family:'Tajawal',sans-serif;font-weight:800;font-size:18px;line-height:1.05}
+  .logo .name small{display:block;font-size:10px;color:var(--text-secondary);font-weight:500;letter-spacing:.08em;text-transform:uppercase}
+
+  .search-wrap{flex:1;max-width:520px;position:relative}
+  .search-wrap input{width:100%;padding:13px 44px 13px 16px;border:1.5px solid var(--border);border-radius:999px;font-family:inherit;font-size:14px;background:var(--surface-alt);transition:.2s}
+  .search-wrap input:focus{outline:none;border-color:var(--brand);background:white;box-shadow:0 0 0 4px var(--brand-soft)}
+  .search-wrap .icon{position:absolute;inset-inline-end:16px;top:50%;transform:translateY(-50%);color:var(--text-tertiary)}
+  .search-wrap .icon svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
+
+  .header-actions{display:flex;gap:6px;align-items:center}
+  .h-btn{display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 12px;border:none;background:none;cursor:pointer;color:var(--text-primary);position:relative}
+  .h-btn svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2}
+  .h-btn .t{font-size:10px;font-weight:600}
+  .h-btn .badge{position:absolute;top:4px;inset-inline-end:6px;background:var(--brand);color:white;font-size:9px;font-weight:700;min-width:16px;height:16px;border-radius:8px;display:flex;align-items:center;justify-content:center;padding:0 4px}
+  .h-btn.cart{background:var(--brand);color:white;border-radius:12px;padding:10px 18px}
+  .h-btn.cart:hover{background:var(--brand-hover)}
+  .h-btn.cart svg{stroke:white}
+  .h-btn.cart .badge{background:white;color:var(--brand);position:static;margin-bottom:0;border-radius:999px;padding:1px 7px}
+  .h-btn.cart .row-flex{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600}
+
+  .nav-strip{border-top:1px solid var(--border);padding:10px 0}
+  .nav-inner{max-width:1320px;margin:0 auto;padding:0 32px;display:flex;align-items:center;gap:24px;font-size:13px}
+  .nav-strip .menu-pill{display:flex;align-items:center;gap:8px;background:var(--brand);color:white;padding:8px 16px;border-radius:8px;font-weight:600;cursor:pointer}
+  .nav-strip a{color:var(--text-primary);text-decoration:none;font-weight:500;display:flex;align-items:center;gap:6px;padding:6px 0}
+  .nav-strip a:hover{color:var(--brand)}
+  .nav-strip .ml-auto{margin-inline-start:auto;display:flex;align-items:center;gap:14px;color:var(--text-secondary);font-size:12px}
+  .nav-strip .ml-auto .delivery{display:flex;align-items:center;gap:6px}
+
+  /* ==================== HOME HERO ==================== */
+  .hero-section{padding:32px 0 0;background:var(--surface-alt)}
+  .hero-grid{max-width:1320px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:1fr 380px;gap:24px}
+  .hero-main{position:relative;height:420px;border-radius:24px;overflow:hidden;background:linear-gradient(120deg,#C8102E 0%,#7A0B1F 100%)}
+  .hero-main::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 80% 30%,rgba(255,255,255,0.18) 0%,transparent 50%),radial-gradient(circle at 20% 80%,rgba(255,193,200,0.2) 0%,transparent 40%)}
+  .hero-content{position:relative;z-index:2;padding:56px;height:100%;display:flex;flex-direction:column;justify-content:space-between;color:white}
+  .hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.15);padding:6px 14px;border-radius:999px;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;align-self:flex-start;backdrop-filter:blur(8px)}
+  .hero-content h1{font-family:'Tajawal',sans-serif;font-size:54px;font-weight:800;line-height:1.05;margin-top:18px;max-width:60%;letter-spacing:-0.02em}
+  .hero-content p{margin-top:14px;font-size:16px;opacity:.9;max-width:50%;line-height:1.5}
+  .hero-ctas{display:flex;gap:12px;margin-top:24px}
+  .btn-white{background:white;color:var(--brand);border:none;padding:14px 28px;border-radius:999px;font-weight:700;font-size:14px;font-family:inherit;cursor:pointer;display:flex;align-items:center;gap:8px;box-shadow:0 4px 12px rgba(0,0,0,0.15)}
+  .btn-ghost-w{background:transparent;color:white;border:1.5px solid rgba(255,255,255,0.5);padding:14px 24px;border-radius:999px;font-weight:600;font-size:13px;font-family:inherit;cursor:pointer}
+  .hero-illust{position:absolute;inset-inline-end:40px;bottom:0;font-size:280px;line-height:1;opacity:.95;filter:drop-shadow(0 20px 40px rgba(0,0,0,0.3))}
+  .hero-pagination{position:absolute;bottom:32px;inset-inline-start:56px;display:flex;gap:6px;z-index:3}
+  .hero-pagination span{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.3)}
+  .hero-pagination span.active{width:32px;border-radius:4px;background:white}
+
+  .hero-side{display:grid;grid-template-rows:1fr 1fr;gap:24px}
+  .side-card{position:relative;border-radius:20px;overflow:hidden;padding:24px;display:flex;flex-direction:column;justify-content:space-between;color:white;min-height:198px}
+  .side-card.dark{background:linear-gradient(135deg,#1a1a1a 0%,#3a1014 100%)}
+  .side-card.warm{background:linear-gradient(135deg,#E08E00 0%,#A86700 100%)}
+  .side-card .tag{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;opacity:.8}
+  .side-card h3{font-family:'Tajawal',sans-serif;font-size:22px;font-weight:700;margin-top:6px;line-height:1.2}
+  .side-card .more{align-self:flex-start;font-size:12px;font-weight:600;display:flex;align-items:center;gap:6px;opacity:.95}
+  .side-card .ico{position:absolute;inset-inline-end:14px;bottom:14px;font-size:80px;opacity:.85}
+
+  /* ============ PROMOTIONAL STRIPE ============ */
+  .stripe{max-width:1320px;margin:32px auto 0;padding:0 32px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .stripe-item{background:white;border-radius:14px;padding:18px 20px;display:flex;align-items:center;gap:14px;box-shadow:var(--shadow-sm);border:1px solid var(--border)}
+  .stripe-item .ic{width:46px;height:46px;border-radius:12px;background:var(--brand-soft);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+  .stripe-item .tx h4{font-family:'Tajawal',sans-serif;font-size:14px;font-weight:700}
+  .stripe-item .tx p{font-size:11px;color:var(--text-secondary);margin-top:2px}
+
+  /* ============ CATEGORIES ============ */
+  .section-block{max-width:1320px;margin:48px auto 0;padding:0 32px}
+  .section-head-w{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
+  .section-head-w h2{font-family:'Tajawal',sans-serif;font-size:28px;font-weight:800;letter-spacing:-0.01em}
+  .section-head-w h2 small{display:block;font-size:13px;color:var(--text-secondary);font-weight:500;letter-spacing:0;margin-top:2px}
+  .section-head-w a{color:var(--brand);font-size:13px;font-weight:600;text-decoration:none;display:flex;align-items:center;gap:6px;padding:8px 14px;border:1px solid var(--brand-soft);border-radius:999px;background:var(--brand-soft);transition:.2s}
+  .section-head-w a:hover{background:var(--brand);color:white}
+
+  .cat-grid-w{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+  .cat-card{background:white;border-radius:16px;padding:24px 16px;text-align:center;cursor:pointer;border:1px solid var(--border);transition:.25s;position:relative;overflow:hidden}
+  .cat-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:transparent}
+  .cat-card .ico{width:64px;height:64px;border-radius:18px;background:var(--brand-soft);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:30px;transition:.25s}
+  .cat-card:hover .ico{transform:scale(1.08)}
+  .cat-card:nth-child(2) .ico{background:#E8F4FF}
+  .cat-card:nth-child(3) .ico{background:#E8F8EE}
+  .cat-card:nth-child(4) .ico{background:#FFF4E0}
+  .cat-card:nth-child(5) .ico{background:#F1ECFE}
+  .cat-card:nth-child(6) .ico{background:#FFE9DC}
+  .cat-card h4{font-size:14px;font-weight:700;font-family:'Tajawal',sans-serif}
+  .cat-card p{font-size:11px;color:var(--text-secondary);margin-top:2px}
+
+  /* ============ PRODUCTS ============ */
+  .product-grid-w{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
+  .pcard{background:white;border-radius:16px;overflow:hidden;border:1px solid var(--border);position:relative;transition:.25s;cursor:pointer}
+  .pcard:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:transparent}
+  .pcard .pcard-tags{position:absolute;top:12px;inset-inline-start:12px;display:flex;flex-direction:column;gap:5px;z-index:3}
+  .pcard .pcard-tags .tag{padding:3px 8px;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:.02em}
+  .pcard .pcard-tags .tag.discount{background:var(--brand);color:white}
+  .pcard .pcard-tags .tag.new{background:#1B6FB8;color:white}
+  .pcard .pcard-tags .tag.bestseller{background:#E08E00;color:white}
+  .pcard .heart-w{position:absolute;top:12px;inset-inline-end:12px;width:34px;height:34px;border-radius:50%;background:white;display:flex;align-items:center;justify-content:center;z-index:3;box-shadow:var(--shadow-sm);cursor:pointer;border:none}
+  .pcard .heart-w svg{width:16px;height:16px;stroke:var(--text-primary);fill:none;stroke-width:2}
+  .pcard .heart-w.active svg{fill:var(--brand);stroke:var(--brand)}
+  .pcard .pimg{width:100%;height:200px;background:linear-gradient(135deg,#FAFAFA 0%,#F2F2F4 100%);display:flex;align-items:center;justify-content:center;font-size:70px;position:relative}
+  .pcard .pinfo{padding:16px}
+  .pcard .pbrand{font-size:10px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.06em;font-weight:700}
+  .pcard .pname{font-size:13px;font-weight:600;line-height:1.4;margin-top:4px;height:36px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+  .pcard .prating{display:flex;align-items:center;gap:4px;margin-top:6px;font-size:11px;color:var(--text-secondary)}
+  .pcard .prating .stars{color:#E08E00}
+  .pcard .pfooter{margin-top:10px;padding-top:10px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+  .pcard .pprice{font-family:'Inter',sans-serif;font-weight:800;color:var(--brand);font-size:16px}
+  .pcard .pprice small{color:var(--text-tertiary);text-decoration:line-through;font-weight:500;font-size:11px;margin-inline-start:6px}
+  .pcard .add-w{width:34px;height:34px;border-radius:8px;background:var(--brand-soft);color:var(--brand);border:none;font-size:18px;font-weight:600;cursor:pointer;transition:.2s}
+  .pcard .add-w:hover{background:var(--brand);color:white}
+
+  /* ============ FOOTER ============ */
+  .footer-w{background:#0F0F12;color:white;margin-top:64px;padding:56px 0 24px}
+  .footer-grid{max-width:1320px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:48px}
+  .footer-grid h4{font-family:'Tajawal',sans-serif;font-size:14px;font-weight:700;margin-bottom:16px;color:white;letter-spacing:.02em}
+  .footer-grid ul{list-style:none}
+  .footer-grid li{margin-bottom:8px}
+  .footer-grid a{color:rgba(255,255,255,0.65);text-decoration:none;font-size:13px}
+  .footer-grid a:hover{color:white}
+  .footer-grid .brand-col p{color:rgba(255,255,255,0.65);font-size:13px;line-height:1.7;margin:14px 0}
+  .footer-grid .social-row{display:flex;gap:8px;margin-top:14px}
+  .footer-grid .social{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;transition:.2s}
+  .footer-grid .social:hover{background:var(--brand)}
+  .footer-grid .contact-line{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px;color:rgba(255,255,255,0.7);font-size:12px}
+  .footer-grid .contact-line .ic{font-size:14px;flex-shrink:0}
+  .footer-bottom{max-width:1320px;margin:32px auto 0;padding:24px 32px 0;border-top:1px solid rgba(255,255,255,0.08);display:flex;justify-content:space-between;align-items:center;font-size:11px;color:rgba(255,255,255,0.5)}
+
+  /* =============================================== */
+  /* PAGE 2 — PRODUCT DETAIL                          */
+  /* =============================================== */
+  .pdp{padding:24px 0;background:var(--surface-alt)}
+  .pdp-inner{max-width:1320px;margin:0 auto;padding:0 32px}
+  .breadcrumb{font-size:12px;color:var(--text-secondary);margin-bottom:18px;display:flex;align-items:center;gap:6px}
+  .breadcrumb a{color:var(--text-secondary);text-decoration:none}
+  .breadcrumb a:hover{color:var(--brand)}
+  .breadcrumb .sep{color:var(--text-tertiary)}
+  .breadcrumb .current{color:var(--text-primary);font-weight:600}
+
+  .pdp-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;background:white;border-radius:24px;padding:32px;box-shadow:var(--shadow-sm)}
+
+  .pdp-gallery{display:flex;gap:14px}
+  .pdp-thumbs{display:flex;flex-direction:column;gap:10px;flex-shrink:0}
+  .pdp-thumb{width:64px;height:64px;border-radius:10px;background:var(--surface-alt);display:flex;align-items:center;justify-content:center;font-size:28px;cursor:pointer;border:2px solid transparent;transition:.2s}
+  .pdp-thumb:hover{border-color:var(--border)}
+  .pdp-thumb.active{border-color:var(--brand);background:var(--brand-soft)}
+  .pdp-main-img{flex:1;height:480px;background:linear-gradient(135deg,#FCEAEC 0%,#F8F8F8 100%);border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:200px;position:relative;overflow:hidden}
+  .pdp-main-img .badge-discount{position:absolute;top:18px;inset-inline-start:18px;background:var(--brand);color:white;padding:8px 14px;border-radius:10px;font-weight:700;font-size:13px;font-family:'Tajawal',sans-serif}
+  .pdp-main-img .zoom-hint{position:absolute;bottom:18px;inset-inline-end:18px;background:rgba(0,0,0,0.7);color:white;padding:6px 12px;border-radius:999px;font-size:11px;font-weight:500;backdrop-filter:blur(4px)}
+
+  .pdp-info .br-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+  .pdp-info .br{font-size:12px;color:var(--text-secondary);font-weight:700;letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+  .pdp-info .br::before{content:'';width:3px;height:14px;background:var(--brand);border-radius:2px}
+  .pdp-info .stk{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--success);font-weight:600;background:#E8F8EE;padding:4px 10px;border-radius:999px}
+  .pdp-info .stk::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--success);box-shadow:0 0 0 3px rgba(46,139,87,0.2)}
+  .pdp-info h1{font-family:'Tajawal',sans-serif;font-size:30px;font-weight:800;line-height:1.25;margin-bottom:14px;letter-spacing:-0.01em}
+  .pdp-rating{display:flex;align-items:center;gap:10px;margin-bottom:18px}
+  .pdp-rating .stars{color:#E08E00;font-size:14px}
+  .pdp-rating .num{font-size:13px;color:var(--text-secondary)}
+  .pdp-rating .num strong{color:var(--text-primary);font-weight:700}
+  .pdp-price-box{background:linear-gradient(135deg,#FFF7F8 0%,#FCEAEC 100%);border-radius:14px;padding:18px;margin-bottom:24px;border:1px solid #FAD8DD}
+  .pdp-price-row{display:flex;align-items:baseline;gap:12px;margin-bottom:8px}
+  .pdp-price{font-family:'Inter',sans-serif;font-size:36px;font-weight:800;color:var(--brand);letter-spacing:-0.02em}
+  .pdp-price-old{color:var(--text-tertiary);text-decoration:line-through;font-weight:500;font-size:18px;font-family:'Inter',sans-serif}
+  .pdp-save{background:var(--brand);color:white;padding:4px 12px;border-radius:999px;font-size:12px;font-weight:700}
+  .pdp-price-note{font-size:12px;color:var(--text-secondary);display:flex;align-items:center;gap:6px}
+
+  .pdp-actions{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;margin-bottom:18px}
+  .pdp-stepper{display:flex;align-items:center;background:var(--surface-alt);border-radius:12px;border:1.5px solid var(--border);height:52px}
+  .pdp-stepper button{width:44px;height:100%;background:none;border:none;font-size:18px;font-weight:600;color:var(--text-primary);cursor:pointer}
+  .pdp-stepper button:hover{color:var(--brand)}
+  .pdp-stepper .v{padding:0 8px;font-weight:700;font-family:'Inter',sans-serif;font-size:16px}
+  .btn-add-w{height:52px;background:var(--brand);color:white;border:none;border-radius:12px;font-weight:700;font-size:14px;font-family:inherit;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:var(--shadow-cta);transition:.2s}
+  .btn-add-w:hover{background:var(--brand-hover);transform:translateY(-1px)}
+  .btn-fav-w{width:52px;height:52px;border-radius:12px;background:white;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.2s}
+  .btn-fav-w:hover{border-color:var(--brand)}
+  .btn-fav-w svg{width:20px;height:20px;stroke:var(--text-primary);fill:none;stroke-width:2}
+  .btn-wa-w{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;background:#25D366;color:white;border:none;border-radius:12px;padding:14px;font-weight:600;font-size:14px;font-family:inherit;cursor:pointer;margin-bottom:24px}
+  .btn-wa-w svg{width:20px;height:20px;fill:white}
+
+  .pdp-pillars{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:24px}
+  .pdp-pillar{display:flex;gap:10px;align-items:flex-start;padding:10px;background:var(--surface-alt);border-radius:10px}
+  .pdp-pillar .ic{width:32px;height:32px;border-radius:8px;background:var(--brand-soft);color:var(--brand);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+  .pdp-pillar .tx h5{font-size:12px;font-weight:700;font-family:'Tajawal',sans-serif}
+  .pdp-pillar .tx p{font-size:10px;color:var(--text-secondary);margin-top:1px}
+
+  .pdp-tabs{display:flex;gap:4px;border-bottom:2px solid var(--border);margin-bottom:18px}
+  .pdp-tab{padding:12px 18px;font-size:13px;font-weight:600;color:var(--text-secondary);position:relative;cursor:pointer;background:none;border:none;font-family:inherit}
+  .pdp-tab.active{color:var(--brand)}
+  .pdp-tab.active::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:2px;background:var(--brand);border-radius:2px}
+  .pdp-desc{font-size:13px;color:var(--text-secondary);line-height:1.8}
+
+  /* ===================== CART PAGE ===================== */
+  .cart-page{padding:32px 0;background:var(--surface-alt);min-height:600px}
+  .cart-page-inner{max-width:1320px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:1fr 380px;gap:24px}
+  .cart-page h1{font-family:'Tajawal',sans-serif;font-size:32px;font-weight:800;margin-bottom:6px;letter-spacing:-0.01em;grid-column:1/-1}
+  .cart-page .sub{color:var(--text-secondary);font-size:14px;margin-bottom:24px;grid-column:1/-1}
+
+  .cart-list-w{background:white;border-radius:18px;padding:8px;box-shadow:var(--shadow-sm)}
+  .cart-row{display:grid;grid-template-columns:90px 1fr auto auto auto;gap:18px;align-items:center;padding:18px;border-bottom:1px solid var(--border)}
+  .cart-row:last-child{border-bottom:none}
+  .cart-row .thb{width:90px;height:90px;border-radius:14px;background:var(--surface-alt);display:flex;align-items:center;justify-content:center;font-size:42px}
+  .cart-row .det h4{font-family:'Tajawal',sans-serif;font-size:15px;font-weight:700;margin-bottom:2px}
+  .cart-row .det .br{font-size:11px;color:var(--text-secondary);text-transform:uppercase;font-weight:700;letter-spacing:.06em;margin-bottom:6px}
+  .cart-row .det .meta{font-size:12px;color:var(--text-secondary)}
+  .cart-row .det .meta span{display:inline-flex;align-items:center;gap:4px;margin-inline-end:14px}
+  .cart-row .det .meta .check{color:var(--success);font-weight:600}
+  .cart-row .qty-w{display:flex;align-items:center;background:var(--surface-alt);border-radius:10px;border:1px solid var(--border);height:40px}
+  .cart-row .qty-w button{width:36px;height:100%;background:none;border:none;font-size:14px;font-weight:600;cursor:pointer}
+  .cart-row .qty-w .v{padding:0 12px;font-family:'Inter',sans-serif;font-weight:700;font-size:14px}
+  .cart-row .ln-price{font-family:'Inter',sans-serif;font-weight:800;color:var(--brand);font-size:18px;text-align:end;min-width:100px}
+  .cart-row .rm{width:36px;height:36px;border-radius:10px;background:var(--surface-alt);border:none;cursor:pointer;color:var(--text-secondary);font-size:16px;display:flex;align-items:center;justify-content:center}
+  .cart-row .rm:hover{background:#FCEAEC;color:var(--error)}
+
+  .cart-summary-w{background:white;border-radius:18px;padding:24px;box-shadow:var(--shadow-sm);position:sticky;top:140px;align-self:flex-start}
+  .cart-summary-w h3{font-family:'Tajawal',sans-serif;font-size:18px;font-weight:800;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+  .sum-row-w{display:flex;justify-content:space-between;align-items:center;padding:8px 0;font-size:13px;color:var(--text-secondary)}
+  .sum-row-w .v{font-family:'Inter',sans-serif;font-weight:600;color:var(--text-primary)}
+  .sum-row-w.discount .v{color:var(--success);font-weight:700}
+  .promo-w{display:flex;gap:6px;margin:14px 0;padding:10px;background:linear-gradient(135deg,#FFF7F8 0%,#FCEAEC 100%);border-radius:10px;border:1px dashed #FAD8DD}
+  .promo-w input{flex:1;border:none;background:transparent;outline:none;font-family:inherit;font-size:12px;direction:rtl;text-align:right}
+  .promo-w input::placeholder{color:var(--text-tertiary)}
+  .promo-w button{background:var(--brand);color:white;border:none;padding:6px 14px;border-radius:8px;font-size:11px;font-weight:600;cursor:pointer}
+  .sum-total-w{padding-top:14px;border-top:1px solid var(--border);margin-top:6px;display:flex;justify-content:space-between;align-items:baseline}
+  .sum-total-w .lbl{font-size:14px;font-weight:700}
+  .sum-total-w .v{font-family:'Inter',sans-serif;font-weight:800;color:var(--brand);font-size:24px;letter-spacing:-0.02em}
+  .checkout-btn-w{width:100%;background:var(--brand);color:white;border:none;border-radius:12px;padding:16px;font-weight:700;font-size:15px;font-family:inherit;cursor:pointer;margin-top:18px;box-shadow:var(--shadow-cta);display:flex;align-items:center;justify-content:center;gap:8px;transition:.2s}
+  .checkout-btn-w:hover{background:var(--brand-hover);transform:translateY(-1px)}
+  .secure-row{margin-top:14px;padding-top:14px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:center;gap:8px;font-size:11px;color:var(--text-secondary)}
+
+  /* ============ ANNOTATIONS ============ */
+  .annotations-w{max-width:1480px;margin:60px auto 0;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .ann{background:var(--surface);border-radius:14px;padding:22px;box-shadow:var(--shadow-sm);border:1px solid var(--border)}
+  .ann h4{font-family:'Tajawal',sans-serif;font-size:14px;font-weight:700;margin-bottom:10px;color:var(--brand);display:flex;align-items:center;gap:8px}
+  .ann h4::before{content:'';width:6px;height:18px;background:var(--brand);border-radius:3px}
+  .ann p{font-size:12px;color:var(--text-secondary);line-height:1.6}
+  .ann ul{margin-top:8px;padding-inline-start:18px}
+  .ann li{font-size:11px;color:var(--text-secondary);margin-bottom:4px}
+  .ann code{background:var(--brand-soft);padding:1px 6px;border-radius:4px;color:var(--brand);font-family:'Inter',monospace;font-size:11px}
+
+  .footer-note{max-width:1480px;margin:48px auto 0;text-align:center;padding:24px;color:var(--text-secondary);font-size:12px}
+  .footer-note strong{color:var(--brand);font-family:'Tajawal',sans-serif;font-weight:700}
+
+  /* ===================================================== */
+  /* RESPONSIVE LAYERS                                     */
+  /* ===================================================== */
+
+  /* Mobile menu toggle (hidden on desktop) */
+  .mobile-toggle{display:none;width:40px;height:40px;border-radius:10px;background:var(--surface-alt);border:1px solid var(--border);cursor:pointer;align-items:center;justify-content:center;flex-shrink:0}
+  .mobile-toggle svg{width:22px;height:22px;stroke:var(--text-primary);fill:none;stroke-width:2.2}
+
+  /* ============ Large laptop ≤ 1280px ============ */
+  @media (max-width: 1280px){
+    body{padding:32px 16px 60px}
+    .doc-header h1{font-size:36px}
+    .top-strip-inner,.header-inner,.nav-inner,.hero-grid,.stripe,.section-block,.footer-grid,.footer-bottom,.pdp-inner,.cart-page-inner{padding-left:24px;padding-right:24px}
+    .hero-content{padding:40px}
+    .hero-content h1{font-size:46px;max-width:70%}
+    .hero-illust{font-size:220px;inset-inline-end:24px}
+    .product-grid-w{grid-template-columns:repeat(4,1fr)}
+    .annotations-w{grid-template-columns:repeat(2,1fr)}
+  }
+
+  /* ============ Tablet landscape ≤ 1024px ============ */
+  @media (max-width: 1024px){
+    .doc-header{margin-bottom:36px}
+    .doc-header h1{font-size:30px}
+    .doc-header p{font-size:13px}
+    .browser{margin-bottom:40px;border-radius:12px}
+
+    /* Header */
+    .top-strip{font-size:11px;padding:6px 0}
+    .top-strip .left{gap:12px}
+    .top-strip .left span:nth-child(3){display:none}
+    .header-main{padding:14px 0}
+    .header-inner{gap:16px}
+    .logo .mark{width:40px;height:40px;font-size:20px}
+    .logo .name{font-size:16px}
+    .search-wrap{max-width:none}
+    .h-btn{padding:6px 8px}
+    .h-btn .t{display:none}
+    .h-btn.cart{padding:10px 14px}
+    .h-btn.cart .row-flex span:not(.badge){display:none}
+    .nav-strip a:nth-child(n+5){display:none}
+    .nav-strip .ml-auto{display:none}
+
+    /* Hero */
+    .hero-grid{grid-template-columns:1fr;gap:16px}
+    .hero-main{height:340px;border-radius:18px}
+    .hero-content{padding:32px}
+    .hero-content h1{font-size:38px;max-width:65%}
+    .hero-content p{max-width:60%;font-size:14px}
+    .hero-illust{font-size:180px;inset-inline-end:20px;bottom:-10px}
+    .hero-pagination{inset-inline-start:32px;bottom:24px}
+    .hero-side{grid-template-rows:none;grid-template-columns:1fr 1fr}
+    .side-card{min-height:160px}
+
+    /* Stripe */
+    .stripe{grid-template-columns:repeat(2,1fr);gap:12px;margin-top:24px}
+    .stripe-item{padding:14px}
+    .stripe-item .ic{width:40px;height:40px;font-size:18px}
+
+    /* Sections */
+    .section-block{margin-top:36px}
+    .section-head-w h2{font-size:22px}
+    .section-head-w h2 small{font-size:12px}
+    .cat-grid-w{grid-template-columns:repeat(4,1fr);gap:12px}
+    .cat-card{padding:18px 10px}
+    .cat-card .ico{width:54px;height:54px;font-size:24px;margin-bottom:8px}
+    .cat-card h4{font-size:13px}
+    .product-grid-w{grid-template-columns:repeat(3,1fr);gap:14px}
+    .pcard .pimg{height:170px;font-size:56px}
+
+    /* Footer */
+    .footer-w{padding:40px 0 20px;margin-top:48px}
+    .footer-grid{grid-template-columns:1fr 1fr;gap:32px}
+    .footer-bottom{flex-direction:column;gap:10px;text-align:center}
+
+    /* PDP */
+    .pdp-grid{grid-template-columns:1fr;gap:32px;padding:24px;border-radius:18px}
+    .pdp-main-img{height:380px;font-size:160px}
+    .pdp-info h1{font-size:26px}
+    .pdp-price{font-size:30px}
+
+    /* Cart */
+    .cart-page-inner{grid-template-columns:1fr;gap:18px}
+    .cart-page h1{font-size:26px}
+    .cart-summary-w{position:static}
+
+    /* Annotations */
+    .annotations-w{grid-template-columns:repeat(2,1fr)}
+  }
+
+  /* ============ Tablet portrait ≤ 768px ============ */
+  @media (max-width: 768px){
+    body{padding:20px 10px 40px}
+    .doc-header{margin-bottom:28px}
+    .doc-header h1{font-size:24px;letter-spacing:-0.01em}
+    .doc-header p{font-size:12px;padding:0 8px}
+    .doc-header .pill{font-size:11px;padding:5px 12px}
+
+    /* Browser frame becomes minimal */
+    .browser{border-radius:10px;margin-bottom:32px}
+    .browser-bar{padding:8px 10px}
+    .browser-dots span{width:9px;height:9px}
+    .browser-url{font-size:10px;padding:4px 8px;max-width:none}
+    .screen-label{font-size:10px;padding:4px 10px;inset-inline-start:14px}
+
+    .top-strip-inner,.header-inner,.nav-inner,.hero-grid,.stripe,.section-block,.footer-grid,.footer-bottom,.pdp-inner,.cart-page-inner{padding-left:14px;padding-right:14px}
+
+    /* Header — collapse to mobile pattern */
+    .top-strip{display:none}
+    .header-main{padding:10px 0}
+    .header-inner{gap:10px;flex-wrap:wrap}
+    .mobile-toggle{display:flex}
+    .logo{order:2;flex:1;justify-content:center}
+    .logo .mark{width:36px;height:36px;font-size:18px}
+    .logo .name{font-size:14px}
+    .logo .name small{font-size:9px}
+    .header-actions{order:3;gap:2px}
+    .header-actions .h-btn:not(.cart):not(.mobile-fav){display:none}
+    .h-btn.cart{padding:8px 10px}
+    .h-btn.cart .row-flex{font-size:11px}
+    .search-wrap{order:4;flex:1 1 100%;max-width:none}
+    .search-wrap input{padding:11px 40px 11px 14px;font-size:13px}
+    .nav-strip{display:none}
+
+    /* Hero */
+    .hero-section{padding:18px 0 0}
+    .hero-main{height:260px;border-radius:14px}
+    .hero-content{padding:22px}
+    .hero-tag{font-size:9px;padding:4px 10px}
+    .hero-content h1{font-size:26px;margin-top:10px;max-width:70%;line-height:1.1}
+    .hero-content p{font-size:12px;max-width:75%;margin-top:8px}
+    .hero-ctas{margin-top:14px;gap:8px}
+    .btn-white{padding:11px 20px;font-size:12px}
+    .btn-ghost-w{padding:11px 16px;font-size:11px}
+    .hero-illust{font-size:120px;inset-inline-end:8px}
+    .hero-pagination{inset-inline-start:22px;bottom:16px}
+    .hero-pagination span{width:6px;height:6px}
+    .hero-pagination span.active{width:22px}
+
+    .hero-side{grid-template-columns:1fr 1fr;gap:10px}
+    .side-card{min-height:120px;padding:16px;border-radius:14px}
+    .side-card h3{font-size:16px}
+    .side-card .tag{font-size:9px}
+    .side-card .more{font-size:10px}
+    .side-card .ico{font-size:54px;inset-inline-end:8px;bottom:8px}
+
+    /* Stripe */
+    .stripe{grid-template-columns:1fr 1fr;gap:8px;margin-top:18px}
+    .stripe-item{padding:10px;gap:8px;border-radius:10px}
+    .stripe-item .ic{width:34px;height:34px;font-size:15px;border-radius:9px}
+    .stripe-item .tx h4{font-size:11px}
+    .stripe-item .tx p{font-size:9px;display:none}
+
+    /* Sections */
+    .section-block{margin-top:28px}
+    .section-head-w{margin-bottom:16px}
+    .section-head-w h2{font-size:18px}
+    .section-head-w h2 small{font-size:11px}
+    .section-head-w a{font-size:11px;padding:6px 10px}
+
+    .cat-grid-w{grid-template-columns:repeat(3,1fr);gap:8px}
+    .cat-card{padding:14px 6px;border-radius:12px}
+    .cat-card .ico{width:46px;height:46px;font-size:20px;border-radius:14px;margin-bottom:6px}
+    .cat-card h4{font-size:12px}
+    .cat-card p{font-size:9px}
+
+    .product-grid-w{grid-template-columns:repeat(2,1fr);gap:10px}
+    .pcard{border-radius:12px}
+    .pcard .pimg{height:140px;font-size:46px}
+    .pcard .pinfo{padding:12px}
+    .pcard .pname{font-size:12px;height:34px}
+    .pcard .pprice{font-size:14px}
+    .pcard .pprice small{font-size:10px}
+    .pcard .add-w{width:30px;height:30px;font-size:16px}
+    .pcard .pcard-tags .tag{font-size:9px;padding:2px 6px}
+    .pcard .heart-w{width:30px;height:30px;top:8px;inset-inline-end:8px}
+    .pcard .pcard-tags{top:8px;inset-inline-start:8px}
+
+    /* Footer */
+    .footer-w{padding:32px 0 16px;margin-top:36px}
+    .footer-grid{grid-template-columns:1fr;gap:22px;text-align:start}
+    .footer-grid .brand-col p{font-size:12px}
+    .footer-bottom{padding:20px 14px 0;font-size:10px}
+
+    /* PDP */
+    .pdp{padding:16px 0}
+    .breadcrumb{font-size:11px;margin-bottom:12px;flex-wrap:wrap}
+    .pdp-grid{padding:14px;gap:20px;border-radius:14px}
+    .pdp-gallery{flex-direction:column-reverse}
+    .pdp-thumbs{flex-direction:row;justify-content:flex-start;flex-wrap:wrap}
+    .pdp-thumb{width:50px;height:50px;font-size:22px}
+    .pdp-main-img{height:280px;font-size:120px;border-radius:14px}
+    .pdp-main-img .badge-discount{font-size:11px;padding:6px 10px;top:12px;inset-inline-start:12px}
+    .pdp-main-img .zoom-hint{font-size:10px;padding:4px 10px;bottom:12px;inset-inline-end:12px}
+    .pdp-info h1{font-size:20px;margin-bottom:10px}
+    .pdp-rating{margin-bottom:14px}
+    .pdp-rating .stars{font-size:12px}
+    .pdp-rating .num{font-size:11px}
+    .pdp-price-box{padding:14px;margin-bottom:18px;border-radius:12px}
+    .pdp-price{font-size:26px}
+    .pdp-price-old{font-size:14px}
+    .pdp-save{font-size:10px;padding:3px 9px}
+    .pdp-price-note{font-size:11px}
+    .pdp-actions{grid-template-columns:auto 1fr auto;gap:8px;margin-bottom:14px}
+    .pdp-stepper{height:46px}
+    .pdp-stepper button{width:38px;font-size:16px}
+    .pdp-stepper .v{font-size:14px;padding:0 6px}
+    .btn-add-w{height:46px;font-size:13px}
+    .btn-fav-w{width:46px;height:46px}
+    .btn-wa-w{padding:12px;font-size:13px;margin-bottom:18px}
+    .pdp-pillars{grid-template-columns:1fr 1fr;gap:8px;margin-bottom:18px}
+    .pdp-pillar{padding:8px;gap:8px}
+    .pdp-pillar .ic{width:28px;height:28px;font-size:12px}
+    .pdp-pillar .tx h5{font-size:11px}
+    .pdp-pillar .tx p{font-size:9px}
+    .pdp-tabs{margin-bottom:14px;overflow-x:auto;flex-wrap:nowrap}
+    .pdp-tab{padding:10px 14px;font-size:12px;white-space:nowrap}
+    .pdp-desc{font-size:12px}
+
+    /* Cart */
+    .cart-page{padding:18px 0}
+    .cart-page h1{font-size:22px}
+    .cart-page .sub{font-size:12px;margin-bottom:16px}
+    .cart-list-w{padding:6px;border-radius:14px}
+    .cart-row{grid-template-columns:64px 1fr auto;grid-template-areas:'thb det rm' 'qty qty price';gap:10px 12px;padding:14px}
+    .cart-row .thb{grid-area:thb;width:64px;height:64px;font-size:30px;border-radius:10px}
+    .cart-row .det{grid-area:det;min-width:0}
+    .cart-row .det h4{font-size:13px}
+    .cart-row .det .br{font-size:10px;margin-bottom:3px}
+    .cart-row .det .meta{font-size:10px}
+    .cart-row .det .meta span{margin-inline-end:8px}
+    .cart-row .qty-w{grid-area:qty;justify-self:start;height:36px}
+    .cart-row .qty-w button{width:30px;font-size:13px}
+    .cart-row .qty-w .v{font-size:13px;padding:0 8px}
+    .cart-row .ln-price{grid-area:price;font-size:15px;min-width:auto;justify-self:end;align-self:center}
+    .cart-row .rm{grid-area:rm;width:30px;height:30px;font-size:14px;align-self:start}
+
+    .cart-summary-w{padding:18px;border-radius:14px}
+    .cart-summary-w h3{font-size:16px;margin-bottom:14px;padding-bottom:10px}
+    .sum-row-w{font-size:12px}
+    .promo-w{padding:8px}
+    .promo-w input{font-size:11px}
+    .promo-w button{font-size:10px;padding:5px 10px}
+    .sum-total-w .v{font-size:20px}
+    .checkout-btn-w{padding:14px;font-size:14px;margin-top:14px}
+    .secure-row{font-size:10px}
+
+    /* Annotations */
+    .annotations-w{grid-template-columns:1fr;gap:12px;margin-top:32px}
+    .ann{padding:18px}
+    .ann h4{font-size:13px}
+    .footer-note{margin-top:24px;font-size:11px}
+  }
+
+  /* ============ Small mobile ≤ 480px ============ */
+  @media (max-width: 480px){
+    body{padding:14px 6px 30px}
+    .doc-header{margin-bottom:20px}
+    .doc-header h1{font-size:20px}
+    .doc-header .pill{font-size:10px}
+
+    .browser{border-radius:8px;margin-bottom:24px}
+    .browser-bar{padding:6px 8px;gap:5px}
+    .browser-dots span{width:8px;height:8px}
+    .browser-url::before{display:none}
+    .browser-url{font-size:9px;padding:3px 6px}
+    .screen-label{font-size:9px;padding:3px 8px;inset-inline-start:8px;border-radius:0 0 8px 8px}
+
+    .top-strip-inner,.header-inner,.nav-inner,.hero-grid,.stripe,.section-block,.footer-grid,.footer-bottom,.pdp-inner,.cart-page-inner{padding-left:10px;padding-right:10px}
+
+    /* Hero compact */
+    .hero-main{height:220px;border-radius:12px}
+    .hero-content{padding:16px}
+    .hero-content h1{font-size:20px;max-width:80%}
+    .hero-content p{display:none}
+    .hero-ctas{margin-top:12px}
+    .btn-white{padding:9px 16px;font-size:11px}
+    .btn-ghost-w{padding:9px 14px;font-size:10px}
+    .hero-illust{font-size:90px;inset-inline-end:4px}
+    .hero-pagination{inset-inline-start:16px;bottom:12px}
+
+    .hero-side{grid-template-columns:1fr;gap:8px}
+    .side-card{min-height:90px;padding:14px}
+    .side-card h3{font-size:14px}
+    .side-card .ico{font-size:44px}
+
+    /* Stripe */
+    .stripe{grid-template-columns:1fr 1fr;margin-top:14px}
+    .stripe-item .tx p{display:none}
+    .stripe-item{padding:8px;gap:6px}
+
+    /* Categories */
+    .cat-grid-w{grid-template-columns:repeat(3,1fr);gap:6px}
+    .cat-card{padding:12px 4px}
+    .cat-card .ico{width:40px;height:40px;font-size:18px}
+    .cat-card h4{font-size:11px}
+    .cat-card p{display:none}
+
+    /* Products — keep 2 columns */
+    .product-grid-w{gap:8px}
+    .pcard .pimg{height:115px;font-size:38px}
+    .pcard .pinfo{padding:10px}
+    .pcard .pbrand{font-size:9px}
+    .pcard .pname{font-size:11px;height:30px;margin-top:3px}
+    .pcard .prating{font-size:10px}
+    .pcard .pprice{font-size:13px}
+    .pcard .add-w{width:26px;height:26px;font-size:14px;border-radius:6px}
+
+    /* Section heads */
+    .section-block{margin-top:22px}
+    .section-head-w h2{font-size:16px}
+    .section-head-w h2 small{display:none}
+    .section-head-w a{font-size:10px;padding:5px 9px}
+
+    /* PDP */
+    .pdp-grid{padding:10px;gap:14px;border-radius:12px}
+    .pdp-main-img{height:220px;font-size:90px}
+    .pdp-thumb{width:42px;height:42px;font-size:18px}
+    .pdp-info h1{font-size:18px}
+    .pdp-price{font-size:22px}
+    .pdp-pillars{grid-template-columns:1fr}
+    .pdp-tab{padding:8px 12px;font-size:11px}
+
+    /* Cart row */
+    .cart-row{grid-template-columns:54px 1fr auto;padding:12px;gap:8px 10px}
+    .cart-row .thb{width:54px;height:54px;font-size:24px}
+    .cart-row .qty-w{height:32px}
+    .cart-row .qty-w button{width:26px}
+    .cart-row .ln-price{font-size:14px}
+    .cart-summary-w{padding:14px}
+    .checkout-btn-w{padding:12px;font-size:13px}
+  }
+
+  /* ============ Extra-small ≤ 360px ============ */
+  @media (max-width: 360px){
+    .hero-content h1{font-size:17px}
+    .hero-illust{display:none}
+    .stripe{grid-template-columns:1fr}
+    .cat-grid-w{grid-template-columns:repeat(2,1fr)}
+    .pdp-main-img{height:180px;font-size:70px}
+  }
+</style>
+</head>
+<body>
+
+<header class="doc-header">
+  <div class="pill">Lydia Pharmacy · صيدلية د. ليديا · Web UI</div>
+  <h1>Web <span class="accent">Design</span> System</h1>
+  <p>Production-ready responsive mockups for the web platform. Three flagship pages — Home, Product Detail, and Cart — designed Arabic-first (RTL). Fully adaptive from 1440px desktop down to 360px mobile.</p>
+</header>
+
+<!-- =========================================== -->
+<!-- BROWSER 1 — HOME PAGE                        -->
+<!-- =========================================== -->
+<div class="browser">
+  <div class="browser-bar">
+    <div class="browser-dots"><span></span><span></span><span></span></div>
+    <div class="browser-url"><strong>lydia-pharmacy.com</strong>/ar</div>
+  </div>
+  <div class="browser-content">
+    <div class="screen-label">W1 · Home Page · الصفحة الرئيسية</div>
+
+    <header class="web-header">
+      <div class="top-strip">
+        <div class="top-strip-inner">
+          <div class="left">
+            <span><span class="dot"></span> مفتوحة الآن — حتى ١١:٠٠ مساءً</span>
+            <span>📍 الحي السادس، مول جويس، العبور</span>
+            <span>🚚 توصيل سريع داخل العبور</span>
+          </div>
+          <div class="right">
+            <a href="#">📞 0100 757 999 4</a>
+            <a href="#">العربية | EN</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-main">
+        <div class="header-inner">
+          <button class="mobile-toggle" aria-label="Open menu">
+            <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+          <div class="logo">
+            <div class="mark">L</div>
+            <div class="name">Lydia Pharmacy<small>صيدلية د. ليديا</small></div>
+          </div>
+          <div class="search-wrap">
+            <input placeholder="ابحثي عن دواء، مستحضر تجميل، فيتامين...">
+            <span class="icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></span>
+          </div>
+          <div class="header-actions">
+            <button class="h-btn"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span class="t">حسابي</span></button>
+            <button class="h-btn"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span class="t">المفضلة</span><span class="badge">7</span></button>
+            <button class="h-btn cart">
+              <svg viewBox="0 0 24 24" stroke="white"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+              <div class="row-flex">السلة <span class="badge">3</span></div>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-strip">
+        <div class="nav-inner">
+          <div class="menu-pill">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            كل التصنيفات
+          </div>
+          <a href="#">الأدوية</a>
+          <a href="#">مستحضرات التجميل</a>
+          <a href="#">العناية الشخصية</a>
+          <a href="#">الأم والطفل</a>
+          <a href="#">المستلزمات الطبية</a>
+          <a href="#">الفيتامينات</a>
+          <a href="#" style="color:var(--brand);font-weight:600">🎫 كارت الخصم</a>
+          <div class="ml-auto">
+            <span class="delivery">🚚 توصيل في ٤٥ دقيقة</span>
+            <span>•</span>
+            <span>الدفع عند الاستلام</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="hero-section">
+      <div class="hero-grid">
+        <div class="hero-main">
+          <div class="hero-content">
+            <div>
+              <span class="hero-tag">⚡ عرض حصري · ينتهي قريبًا</span>
+              <h1>صحتك وجمالك<br>في رعايتنا</h1>
+              <p>اكتشفي تشكيلتنا من مستحضرات التجميل والعناية بأفضل الأسعار، مع توصيل سريع داخل العبور.</p>
+            </div>
+            <div class="hero-ctas">
+              <button class="btn-white">تسوّقي الآن <span style="font-size:18px">←</span></button>
+              <button class="btn-ghost-w">شاهدي العروض</button>
+            </div>
+          </div>
+          <div class="hero-illust">💄</div>
+          <div class="hero-pagination"><span></span><span class="active"></span><span></span><span></span></div>
+        </div>
+        <div class="hero-side">
+          <div class="side-card dark">
+            <div>
+              <div class="tag">عضوية مميزة</div>
+              <h3>كارت خصم<br>د. ليديا</h3>
+            </div>
+            <div class="more">اعرفي المزيد ←</div>
+            <div class="ico">🎫</div>
+          </div>
+          <div class="side-card warm">
+            <div>
+              <div class="tag">جديد · NEW</div>
+              <h3>وصل حديثًا<br>عناية بالبشرة</h3>
+            </div>
+            <div class="more">تسوّقي الفئة ←</div>
+            <div class="ico">🧴</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="stripe">
+      <div class="stripe-item">
+        <div class="ic">🚚</div>
+        <div class="tx"><h4>توصيل سريع</h4><p>خلال ٤٥ دقيقة داخل العبور</p></div>
+      </div>
+      <div class="stripe-item">
+        <div class="ic">💵</div>
+        <div class="tx"><h4>الدفع عند الاستلام</h4><p>ادفعي بالكاش أو بالكارت</p></div>
+      </div>
+      <div class="stripe-item">
+        <div class="ic">✅</div>
+        <div class="tx"><h4>منتجات أصلية</h4><p>١٠٠٪ معتمدة وموثوقة</p></div>
+      </div>
+      <div class="stripe-item">
+        <div class="ic">💬</div>
+        <div class="tx"><h4>اسأل الصيدلي</h4><p>استشارة فورية واتساب</p></div>
+      </div>
+    </div>
+
+    <section class="section-block">
+      <div class="section-head-w">
+        <h2>تسوّقي حسب التصنيف<small>أكثر من ٥٠٠ منتج عبر ٦ تصنيفات رئيسية</small></h2>
+        <a href="#">كل التصنيفات ←</a>
+      </div>
+      <div class="cat-grid-w">
+        <div class="cat-card"><div class="ico">💊</div><h4>الأدوية</h4><p>+١٢٠ منتج</p></div>
+        <div class="cat-card"><div class="ico">💄</div><h4>التجميل</h4><p>+٢٠٠ منتج</p></div>
+        <div class="cat-card"><div class="ico">🧴</div><h4>العناية</h4><p>+٨٠ منتج</p></div>
+        <div class="cat-card"><div class="ico">🩺</div><h4>طبية</h4><p>+٤٥ منتج</p></div>
+        <div class="cat-card"><div class="ico">🍼</div><h4>أمومة وطفل</h4><p>+٦٠ منتج</p></div>
+        <div class="cat-card"><div class="ico">💊</div><h4>فيتامينات</h4><p>+٩٠ منتج</p></div>
+      </div>
+    </section>
+
+    <section class="section-block">
+      <div class="section-head-w">
+        <h2>الأكثر مبيعًا هذا الشهر<small>منتجات تختارها عميلاتنا بثقة</small></h2>
+        <a href="#">عرض الكل ←</a>
+      </div>
+      <div class="product-grid-w">
+        <div class="pcard">
+          <div class="pcard-tags"><div class="tag discount">−١٩٪</div><div class="tag bestseller">الأكثر مبيعًا</div></div>
+          <button class="heart-w active"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+          <div class="pimg">🧴</div>
+          <div class="pinfo">
+            <div class="pbrand">CERAVE · سيرافي</div>
+            <div class="pname">غسول مرطب للوجه للبشرة الجافة ٢٣٦ مل</div>
+            <div class="prating"><span class="stars">★★★★★</span> <span><strong>٤.٨</strong> · ١٢٤ تقييم</span></div>
+            <div class="pfooter"><div class="pprice">٣٢٥<small>٤٠٠</small></div><button class="add-w">+</button></div>
+          </div>
+        </div>
+        <div class="pcard">
+          <div class="pcard-tags"><div class="tag new">جديد</div></div>
+          <button class="heart-w"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+          <div class="pimg">💊</div>
+          <div class="pinfo">
+            <div class="pbrand">CENTRUM</div>
+            <div class="pname">فيتامينات متعددة للنساء ١٠٠ قرص</div>
+            <div class="prating"><span class="stars">★★★★★</span> <span><strong>٤.٩</strong> · ٨٧ تقييم</span></div>
+            <div class="pfooter"><div class="pprice">٢٤٠</div><button class="add-w">+</button></div>
+          </div>
+        </div>
+        <div class="pcard">
+          <div class="pcard-tags"><div class="tag discount">−٢٥٪</div></div>
+          <button class="heart-w"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+          <div class="pimg">💄</div>
+          <div class="pinfo">
+            <div class="pbrand">L'ORÉAL · لوريال</div>
+            <div class="pname">أحمر شفاه مات طويل الأمد لون روبي</div>
+            <div class="prating"><span class="stars">★★★★☆</span> <span><strong>٤.٦</strong> · ٥٢ تقييم</span></div>
+            <div class="pfooter"><div class="pprice">١٩٥<small>٢٦٠</small></div><button class="add-w">+</button></div>
+          </div>
+        </div>
+        <div class="pcard">
+          <button class="heart-w"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+          <div class="pimg">🧴</div>
+          <div class="pinfo">
+            <div class="pbrand">VICHY · فيشي</div>
+            <div class="pname">سيروم فيتامين سي لتفتيح البشرة ٢٠ مل</div>
+            <div class="prating"><span class="stars">★★★★★</span> <span><strong>٤.٧</strong> · ٩٣ تقييم</span></div>
+            <div class="pfooter"><div class="pprice">٤٨٠</div><button class="add-w">+</button></div>
+          </div>
+        </div>
+        <div class="pcard">
+          <div class="pcard-tags"><div class="tag bestseller">الأكثر مبيعًا</div></div>
+          <button class="heart-w active"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+          <div class="pimg">🍼</div>
+          <div class="pinfo">
+            <div class="pbrand">PAMPERS</div>
+            <div class="pname">حفاضات أطفال مقاس ٤ — ٦٠ قطعة</div>
+            <div class="prating"><span class="stars">★★★★★</span> <span><strong>٤.٩</strong> · ٢٠٤ تقييم</span></div>
+            <div class="pfooter"><div class="pprice">٣١٠</div><button class="add-w">+</button></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer-w">
+      <div class="footer-grid">
+        <div class="brand-col">
+          <div class="logo" style="margin-bottom:0">
+            <div class="mark">L</div>
+            <div class="name" style="color:white">Lydia Pharmacy<small style="color:rgba(255,255,255,0.5)">صيدلية د. ليديا</small></div>
+          </div>
+          <p>صيدليتك الأولى في العبور لكل ما يخص صحتك وجمالك. نخدمكم بكل احترام وتقدير من الإدارة الجديدة.</p>
+          <div class="social-row">
+            <div class="social">📘</div>
+            <div class="social">📸</div>
+            <div class="social">💬</div>
+            <div class="social">🌐</div>
+          </div>
+        </div>
+        <div>
+          <h4>تسوّقي</h4>
+          <ul>
+            <li><a href="#">كل التصنيفات</a></li>
+            <li><a href="#">العروض الحالية</a></li>
+            <li><a href="#">الأكثر مبيعًا</a></li>
+            <li><a href="#">المنتجات الجديدة</a></li>
+            <li><a href="#">كارت الخصم</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>المساعدة</h4>
+          <ul>
+            <li><a href="#">عن الصيدلية</a></li>
+            <li><a href="#">تواصلي معنا</a></li>
+            <li><a href="#">سياسة الخصوصية</a></li>
+            <li><a href="#">الشروط والأحكام</a></li>
+            <li><a href="#">سياسة الإرجاع</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>تواصلي معنا</h4>
+          <div class="contact-line"><span class="ic">📍</span>الحي السادس — مول جويس مدخل ٢ — بجوار مسجد التيسير</div>
+          <div class="contact-line"><span class="ic">📞</span>012 7997 4473</div>
+          <div class="contact-line"><span class="ic">📞</span>0100 7579 994</div>
+          <div class="contact-line"><span class="ic">🕐</span>يوميًا ٩ صباحًا — ١١ مساءً</div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Lydia Pharmacy · جميع الحقوق محفوظة</span>
+        <span>صُمّم وطُوّر بحب في القاهرة 🇪🇬</span>
+      </div>
+    </footer>
+  </div>
+</div>
+
+<!-- =========================================== -->
+<!-- BROWSER 2 — PRODUCT DETAIL PAGE              -->
+<!-- =========================================== -->
+<div class="browser">
+  <div class="browser-bar">
+    <div class="browser-dots"><span></span><span></span><span></span></div>
+    <div class="browser-url"><strong>lydia-pharmacy.com</strong>/ar/product/cerave-hydrating-cleanser</div>
+  </div>
+  <div class="browser-content">
+    <div class="screen-label">W4 · Product Detail · تفاصيل المنتج</div>
+
+    <header class="web-header">
+      <div class="header-main">
+        <div class="header-inner">
+          <button class="mobile-toggle" aria-label="Open menu">
+            <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+          <div class="logo">
+            <div class="mark">L</div>
+            <div class="name">Lydia Pharmacy<small>صيدلية د. ليديا</small></div>
+          </div>
+          <div class="search-wrap">
+            <input placeholder="ابحثي عن دواء، مستحضر تجميل، فيتامين..." value="cerave">
+            <span class="icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></span>
+          </div>
+          <div class="header-actions">
+            <button class="h-btn"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span class="t">حسابي</span></button>
+            <button class="h-btn"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span class="t">المفضلة</span><span class="badge">7</span></button>
+            <button class="h-btn cart">
+              <svg viewBox="0 0 24 24" stroke="white"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+              <div class="row-flex">السلة <span class="badge">3</span></div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="pdp">
+      <div class="pdp-inner">
+        <div class="breadcrumb">
+          <a href="#">الرئيسية</a>
+          <span class="sep">›</span>
+          <a href="#">العناية الشخصية</a>
+          <span class="sep">›</span>
+          <a href="#">العناية بالبشرة</a>
+          <span class="sep">›</span>
+          <span class="current">غسول سيرافي المرطب</span>
+        </div>
+
+        <div class="pdp-grid">
+          <div class="pdp-gallery">
+            <div class="pdp-thumbs">
+              <div class="pdp-thumb active">🧴</div>
+              <div class="pdp-thumb">📦</div>
+              <div class="pdp-thumb">📋</div>
+              <div class="pdp-thumb">💧</div>
+            </div>
+            <div class="pdp-main-img">
+              🧴
+              <div class="badge-discount">وفّري ١٩٪</div>
+              <div class="zoom-hint">🔍 مرّري للتكبير</div>
+            </div>
+          </div>
+
+          <div class="pdp-info">
+            <div class="br-row">
+              <span class="br">CERAVE · سيرافي</span>
+              <span class="stk">متوفر — ١٢ قطعة</span>
+            </div>
+            <h1>غسول مرطب للوجه للبشرة الجافة والحساسة ٢٣٦ مل</h1>
+            <div class="pdp-rating">
+              <span class="stars">★★★★★</span>
+              <span class="num"><strong>٤.٨</strong> من ٥</span>
+              <span class="num">·</span>
+              <span class="num">١٢٤ تقييم</span>
+              <span class="num">·</span>
+              <span class="num" style="color:var(--brand);font-weight:600">+٥٠٠ عملية شراء</span>
+            </div>
+
+            <div class="pdp-price-box">
+              <div class="pdp-price-row">
+                <span class="pdp-price">٣٢٥ ج.م</span>
+                <span class="pdp-price-old">٤٠٠ ج.م</span>
+                <span class="pdp-save">وفّري ٧٥ ج.م</span>
+              </div>
+              <div class="pdp-price-note">💳 الدفع عند الاستلام · 🚚 توصيل في ٤٥ دقيقة داخل العبور</div>
+            </div>
+
+            <div class="pdp-actions">
+              <div class="pdp-stepper">
+                <button>−</button>
+                <span class="v">2</span>
+                <button>+</button>
+              </div>
+              <button class="btn-add-w">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+                إضافة إلى السلة · ٦٥٠ ج.م
+              </button>
+              <button class="btn-fav-w"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+            </div>
+
+            <button class="btn-wa-w">
+              <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.4-1.4-.9-.8-1.5-1.8-1.6-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2.1-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1.1 1-1.1 2.5s1.1 2.9 1.3 3.1c.2.2 2.2 3.4 5.3 4.7.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z"/><path d="M20.5 3.5C18.3 1.2 15.3 0 12 0 5.4 0 .1 5.4.1 12c0 2.1.6 4.2 1.6 6L0 24l6.2-1.6c1.7.9 3.7 1.4 5.7 1.4 6.6 0 11.9-5.4 11.9-11.9.1-3.2-1.2-6.2-3.3-8.4z"/></svg>
+              تواصلي مع الصيدلي حول هذا المنتج عبر واتساب
+            </button>
+
+            <div class="pdp-pillars">
+              <div class="pdp-pillar"><div class="ic">✓</div><div class="tx"><h5>منتج أصلي</h5><p>معتمد من الشركة المنتجة</p></div></div>
+              <div class="pdp-pillar"><div class="ic">🚚</div><div class="tx"><h5>توصيل سريع</h5><p>خلال ٤٥ دقيقة في العبور</p></div></div>
+              <div class="pdp-pillar"><div class="ic">💵</div><div class="tx"><h5>الدفع كاش</h5><p>عند الاستلام بدون رسوم</p></div></div>
+              <div class="pdp-pillar"><div class="ic">↩</div><div class="tx"><h5>إرجاع سهل</h5><p>خلال ٧ أيام من الاستلام</p></div></div>
+            </div>
+
+            <div class="pdp-tabs">
+              <button class="pdp-tab active">الوصف</button>
+              <button class="pdp-tab">طريقة الاستخدام</button>
+              <button class="pdp-tab">التحذيرات</button>
+              <button class="pdp-tab">المكونات</button>
+            </div>
+            <div class="pdp-desc">
+              غسول لطيف وفعّال للبشرة الجافة والحساسة، طُوّر بالتعاون مع أطباء الجلدية. يحتوي على ٣ أنواع من سيراميد ضرورية لاستعادة وحماية حاجز البشرة الطبيعي، بالإضافة إلى حمض الهيالورونيك الذي يوفر ترطيبًا عميقًا ودائمًا. خالٍ من العطور والصابون، ومناسب للاستخدام اليومي صباحًا ومساءً. مُعتمد من جمعية الإكزيما الوطنية الأمريكية.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- =========================================== -->
+<!-- BROWSER 3 — CART PAGE                        -->
+<!-- =========================================== -->
+<div class="browser">
+  <div class="browser-bar">
+    <div class="browser-dots"><span></span><span></span><span></span></div>
+    <div class="browser-url"><strong>lydia-pharmacy.com</strong>/ar/cart</div>
+  </div>
+  <div class="browser-content">
+    <div class="screen-label">W5 · Cart Page · سلة التسوّق</div>
+
+    <header class="web-header">
+      <div class="header-main">
+        <div class="header-inner">
+          <button class="mobile-toggle" aria-label="Open menu">
+            <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+          <div class="logo">
+            <div class="mark">L</div>
+            <div class="name">Lydia Pharmacy<small>صيدلية د. ليديا</small></div>
+          </div>
+          <div class="search-wrap">
+            <input placeholder="ابحثي عن دواء، مستحضر تجميل، فيتامين...">
+            <span class="icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></span>
+          </div>
+          <div class="header-actions">
+            <button class="h-btn"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span class="t">حسابي</span></button>
+            <button class="h-btn"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span class="t">المفضلة</span><span class="badge">7</span></button>
+            <button class="h-btn cart">
+              <svg viewBox="0 0 24 24" stroke="white"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+              <div class="row-flex">السلة <span class="badge">3</span></div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="cart-page">
+      <div class="cart-page-inner">
+        <h1>سلة التسوّق</h1>
+        <div class="sub">٣ منتجات في سلتك · جاهزة للشحن إلى الحي السادس، العبور</div>
+
+        <div class="cart-list-w">
+          <div class="cart-row">
+            <div class="thb">🧴</div>
+            <div class="det">
+              <div class="br">CERAVE · سيرافي</div>
+              <h4>غسول مرطب للوجه للبشرة الجافة والحساسة ٢٣٦ مل</h4>
+              <div class="meta">
+                <span class="check">✓ متوفر</span>
+                <span>٣٢٥ ج.م للقطعة</span>
+              </div>
+            </div>
+            <div class="qty-w"><button>−</button><span class="v">2</span><button>+</button></div>
+            <div class="ln-price">٦٥٠ ج.م</div>
+            <button class="rm">×</button>
+          </div>
+          <div class="cart-row">
+            <div class="thb">💊</div>
+            <div class="det">
+              <div class="br">CENTRUM</div>
+              <h4>فيتامينات متعددة للنساء فوق ٥٠ — ١٠٠ قرص</h4>
+              <div class="meta">
+                <span class="check">✓ متوفر</span>
+                <span>٢٤٠ ج.م للقطعة</span>
+              </div>
+            </div>
+            <div class="qty-w"><button>−</button><span class="v">1</span><button>+</button></div>
+            <div class="ln-price">٢٤٠ ج.م</div>
+            <button class="rm">×</button>
+          </div>
+          <div class="cart-row">
+            <div class="thb">💄</div>
+            <div class="det">
+              <div class="br">L'ORÉAL · لوريال</div>
+              <h4>أحمر شفاه مات طويل الأمد — لون روبي</h4>
+              <div class="meta">
+                <span class="check">✓ متوفر</span>
+                <span style="color:var(--warning)">⚠ آخر ٣ قطع</span>
+              </div>
+            </div>
+            <div class="qty-w"><button>−</button><span class="v">1</span><button>+</button></div>
+            <div class="ln-price">١٩٥ ج.م</div>
+            <button class="rm">×</button>
+          </div>
+        </div>
+
+        <div class="cart-summary-w">
+          <h3>ملخص الطلب</h3>
+          <div class="sum-row-w"><span>المجموع الفرعي (٤ منتجات)</span><span class="v">١٠٨٥ ج.م</span></div>
+          <div class="sum-row-w"><span>التوصيل (داخل العبور)</span><span class="v">٣٠ ج.م</span></div>
+          <div class="sum-row-w discount"><span>خصم كارت ليديا 🎫</span><span class="v">−٥٠ ج.م</span></div>
+
+          <div class="promo-w">
+            <input placeholder="🎫 أدخلي كود الخصم">
+            <button>تطبيق</button>
+          </div>
+
+          <div class="sum-total-w">
+            <span class="lbl">الإجمالي</span>
+            <span class="v">١٠٦٥ ج.م</span>
+          </div>
+
+          <button class="checkout-btn-w">
+            إتمام الطلب
+            <span style="font-size:18px">←</span>
+          </button>
+
+          <div class="secure-row">
+            <span>🔒</span>
+            <span>دفع آمن · بياناتك محمية ١٠٠٪</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- ============== ANNOTATIONS ============== -->
+<div class="annotations-w">
+  <div class="ann">
+    <h4>Header & Navigation</h4>
+    <p>Three-tier sticky header: top utility strip (status, location, lang), main row (logo, search, actions), category nav. Cart button uses the brand red as a permanent CTA-color anchor.</p>
+  </div>
+  <div class="ann">
+    <h4>Hero Composition</h4>
+    <p>Asymmetric grid: <code>1fr / 380px</code>. Main hero pairs with two stacked side cards (Discount Card promo + New Arrivals). The Lydia red flows from logo into the primary banner — single brand voice across the fold.</p>
+  </div>
+  <div class="ann">
+    <h4>Product Detail</h4>
+    <p>Two-column with vertical thumbnail strip. Price box uses soft gradient + badge for discount visibility. Quad-pillar trust block (origin, delivery, payment, returns) below CTAs.</p>
+  </div>
+  <div class="ann">
+    <h4>Cart & Checkout</h4>
+    <p>Sticky summary card (right column) follows scroll. Promo code in dashed-border treatment to read as input zone. Stock-status warnings inline on each row. Total uses largest type for hierarchy.</p>
+  </div>
+</div>
+
+<div class="footer-note">
+  <strong>Lydia Pharmacy Web UI v1.0</strong> · Tested at 1440px desktop · Responsive down to 320px · RTL-first · Ready for Engineering Handoff
+</div>
+
+</body>
+</html>
