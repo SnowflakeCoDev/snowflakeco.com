@@ -7752,7 +7752,7 @@ a2x:function a2x(a,b){this.a=a
 this.b=b},
 adw:function adw(){},
 awg(a,b,c,d,e,f){var s=t.N,r=t.z,q=f.i("x<0>")
-return new A.mc(e,c,d,A.aj(["content-type","application/json","apiKey","django-insecure-57k_t2qtto2fm_pf)=d=zkz-til^r&!z7+b4414hlmmlhvd9_i"],s,s),A.q(s,r),[],[],A.q(s,r),A.c([],q),A.c([],q),$.ag(),f.i("mc<0>"))},
+return new A.mc(e,c,d,A.aj(["content-type","application/json","apiKey","django-insecure-g5z4@1%^oi7kxu^absr688qme-*ff+_m^65ly3kobnnzy(7rwi"],s,s),A.q(s,r),[],[],A.q(s,r),A.c([],q),A.c([],q),$.ag(),f.i("mc<0>"))},
 mc:function mc(a,b,c,d,e,f,g,h,i,j,k,l){var _=this
 _.e=a
 _.f=b
@@ -88840,7 +88840,7 @@ $.azy=A.q(t.C_,t.lT)
 $.WY=!1
 $.WK=null
 $.h8=null
-$.aH0="http://127.0.0.1:8000"
+$.aH0="https://snowflakecobackend.com/aiprompt"
 $.i3=A.aNv()
 $.ar2=0
 $.aG1=A.c([],A.an("x<aRP>"))
