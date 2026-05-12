@@ -1,11 +1,11 @@
 {
-    "name": "Snowflake Company AI — Prompt Packs",
-    "short_name": "Snowflake Company AI — Prompt Packs",
+    "name": "ai_prompt_egy_app",
+    "short_name": "ai_prompt_egy_app",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "Snowflake Company AI — Prompt Packs",
+    "description": "A new Flutter project.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
