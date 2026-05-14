@@ -724,6 +724,7 @@ class CompiledApp {
       _1667: x0 => x0.status,
       _1668: (x0,x1) => { x0.responseType = x1 },
       _1670: x0 => x0.response,
+      _1690: (x0,x1) => x0.open(x1),
       _3507: () => globalThis.window,
       _3570: x0 => x0.navigator,
       _3959: x0 => x0.userAgent,
