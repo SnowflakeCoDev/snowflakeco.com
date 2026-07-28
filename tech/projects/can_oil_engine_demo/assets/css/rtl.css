@@ -1,0 +1,4 @@
+html[dir="rtl"] .sidebar { border-inline-end: 1px solid var(--border); }
+html[dir="rtl"] .hero { background-image: linear-gradient(270deg,rgba(0,0,0,.94),rgba(0,0,0,.69) 48%,rgba(0,0,0,.53)),url("../images/source-reference.jpg"); }
+html[dir="rtl"] .hero h1 { max-width:780px; }
+html[dir="rtl"] input[type="date"], html[dir="rtl"] input[type="datetime-local"] { text-align:right; }

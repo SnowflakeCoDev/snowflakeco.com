@@ -1,0 +1,21 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>إضافة منتج | Oil Engine</title><link rel="icon" href="assets/images/favicon.svg"><link rel="stylesheet" href="assets/css/variables.css"><link rel="stylesheet" href="assets/css/base.css"><link rel="stylesheet" href="assets/css/layout.css"><link rel="stylesheet" href="assets/css/components.css"><link rel="stylesheet" href="assets/css/rtl.css"><link rel="stylesheet" href="assets/css/responsive.css"></head><body data-page="product-form"><main>
+<form id="product-form" class="card"><div class="card-header"><h2 data-i18n="productForm"></h2><span class="badge badge-warning" data-i18n="demoNotice"></span></div><div class="form-grid">
+  <div class="field"><label for="name-ar" data-i18n="nameAr"></label><input id="name-ar" required value="زيت محرك 20W-50 سائب"><small class="error-text"></small></div>
+  <div class="field"><label for="name-en" data-i18n="nameEn"></label><input id="name-en" required value="Bulk Engine Oil 20W-50"><small class="error-text"></small></div>
+  <div class="field"><label for="sku" data-i18n="sku"></label><input id="sku" required value="OIL-20W50-BULK"><small class="error-text"></small></div>
+  <div class="field"><label for="barcode" data-i18n="barcode"></label><input id="barcode" value="6221234567890"></div>
+  <div class="field"><label for="category" data-i18n="category"></label><select id="category"><option>زيوت سيارات / Car Oils</option><option>سوائل وخدمات / Fluids</option></select></div>
+  <div class="field"><label for="brand" data-i18n="brand"></label><input id="brand" value="Shell"></div>
+  <div class="field"><label for="viscosity" data-i18n="viscosity"></label><input id="viscosity" value="20W-50"></div>
+  <div class="field"><label for="stock-unit" data-i18n="unit"></label><select id="stock-unit"><option value="litre" data-i18n="litre"></option><option value="bottle" data-i18n="bottle"></option><option value="piece" data-i18n="piece"></option></select></div>
+  <div class="field hide" id="container-field"><label for="container-size" data-i18n="containerSize"></label><input id="container-size" type="number" step=".001" value="1"></div>
+  <div class="field"><label for="opening" data-i18n="openingQty"></label><input id="opening" type="number" step=".001" value="100"></div>
+  <div class="field"><label for="minimum" data-i18n="minStock"></label><input id="minimum" type="number" step=".001" value="20"></div>
+  <div class="field owner-only"><label for="purchase-price" data-i18n="purchasePrice"></label><input id="purchase-price" type="number" step=".01" value="140.00"></div>
+  <div class="field"><label for="selling-price" data-i18n="sellingPrice"></label><input id="selling-price" type="number" step=".01" value="200.00"></div>
+  <div class="field owner-only"><span class="field-label" data-i18n="estimatedMargin"></span><strong id="margin-preview" class="gold"></strong></div>
+  <div class="field"><label class="checkbox"><input id="bulk-oil" type="checkbox" checked> <span data-i18n="bulkOil"></span></label></div>
+  <div class="field"><label class="checkbox"><input type="checkbox" checked> <span data-i18n="active"></span></label></div>
+  <div class="field span-2"><label for="product-notes" data-i18n="notes"></label><textarea id="product-notes"></textarea><small id="litre-guide" class="gold" data-i18n="decimalGuide"></small></div>
+</div><div class="actions-row"><a class="btn btn-secondary" href="products.html" data-i18n="cancel"></a><button class="btn btn-primary" type="submit" data-i18n="save"></button></div></form>
+</main><script src="assets/js/translations.js"></script><script src="assets/js/demo-data.js"></script><script src="assets/js/common.js"></script><script src="assets/js/product-form.js"></script></body></html>

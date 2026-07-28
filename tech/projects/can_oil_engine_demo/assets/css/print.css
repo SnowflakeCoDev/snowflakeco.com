@@ -1,0 +1,12 @@
+@media print {
+  :root { color-scheme:light; }
+  body { background:white !important; color:#111 !important; }
+  .sidebar,.app-header,.demo-strip,.no-print,.footer-note,.toast-region { display:none !important; }
+  .main-wrap { margin:0 !important; }
+  .page-content { max-width:none; padding:0; }
+  .card,.table-wrap { color:#111; background:white; border-color:#bbb; box-shadow:none; }
+  th { color:#333; background:#eee; }
+  td,th { border-color:#ccc; }
+  .invoice-print-logo { display:block !important; width:190px; margin-bottom:24px; }
+  @page { margin:14mm; }
+}
