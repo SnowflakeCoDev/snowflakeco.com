@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="../../">
+  <title>MamaCare FAQ controller</title>
+</head>
+<body>
+  <script>
+    // Flutter's normal web build supplies this bootstrap at the web root.
+    // The query parameter selects controller-only startup in lib/main.dart.
+    function reportStartupError() {
+      parent.postMessage(JSON.stringify({ channel:'mamacare-faq-controller', startupError:true }), location.origin);
+    }
+    addEventListener('error', reportStartupError);
+    addEventListener('unhandledrejection', reportStartupError);
+  </script>
+  <script src="flutter_bootstrap.js" async onerror="reportStartupError()"></script>
+</body>
+</html>

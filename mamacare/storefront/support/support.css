@@ -1,0 +1,61 @@
+:root { color-scheme:light; --plum:#5a2a38; --rose:#c9686f; --muted:#78656c; --line:#eedfdf; --paper:#fff9f7; }
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; scroll-padding-top:24px; }
+body { margin:0; background:var(--paper); color:var(--plum); font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif; line-height:1.7; }
+a { color:inherit; text-underline-offset:4px; }
+button { font:inherit; color:var(--plum); background:transparent; border:1px solid var(--line); border-radius:999px; padding:8px 20px; cursor:pointer; }
+button:hover { background:#fbeaec; border-color:var(--rose); }
+:focus-visible { outline:3px solid var(--rose); outline-offset:4px; }
+[hidden] { display:none !important; }
+.skip-link { position:absolute; inset-inline-start:20px; top:-80px; padding:12px; background:white; z-index:2; }
+.skip-link:focus { top:8px; }
+.site-header { max-width:1200px; margin:auto; padding:24px 32px; display:flex; justify-content:space-between; align-items:center; gap:20px; border-bottom:1px solid var(--line); }
+.brand { display:flex; align-items:center; gap:10px; text-decoration:none; }
+.brand img { width:46px; height:46px; flex-shrink:0; border-radius:50%; object-fit:cover; border:2px solid #f3d9d3; }
+.brand span { font-family:"Fraunces",serif; font-weight:640; font-size:1.25rem; color:var(--plum); }
+.header-actions { display:flex; align-items:center; gap:26px; font-size:14px; }
+.header-actions a { text-decoration:none; }
+main { max-width:1120px; margin:auto; padding:0 32px 56px; }
+.hero { text-align:center; padding:64px 16px 44px; }
+.eyebrow { font-size:12px; font-weight:700; letter-spacing:.18em; color:var(--rose); margin:0 0 10px; }
+h1 { font-family:Georgia,"Times New Roman",serif; font-weight:500; font-size:clamp(36px,5vw,56px); line-height:1.2; margin:0 0 20px; overflow-wrap:anywhere; }
+.intro { color:var(--muted); max-width:540px; margin:auto; }
+.document-card { min-width:0; background:white; border:1px solid var(--line); border-radius:22px; padding:38px 42px; box-shadow:0 10px 40px #5a2a3805; }
+article h2 { font-size:18px; line-height:1.6; margin:0 0 16px; overflow-wrap:anywhere; }
+article p { white-space:pre-wrap; overflow-wrap:anywhere; color:#5f5157; font-size:15px; line-height:1.9; margin:0 0 14px; }
+article p:last-child { margin-bottom:0; }
+.back-top { display:block; width:fit-content; margin:32px auto 0; font-size:13px; color:var(--muted); }
+footer { max-width:1136px; margin:auto; padding:26px 32px; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:20px; color:var(--muted); font-size:12px; }
+[dir="rtl"] h1 { font-family:Tahoma,system-ui,sans-serif; }
+[dir="rtl"] .brand span { font-family:"Tajawal",sans-serif; }
+[dir="rtl"] .eyebrow { letter-spacing:normal; }
+@media (max-width:760px) {
+  .site-header { padding:18px 20px; }
+  .header-actions { gap:12px; }
+  .header-actions > a { display:none; }
+  button { padding:7px 14px; }
+  main { padding:0 18px 32px; }
+  .hero { padding:42px 4px 30px; }
+  .document-card { padding:26px 22px; border-radius:16px; }
+  footer { padding:22px 20px; flex-wrap:wrap; }
+}
+@media print {
+  body { background:white; color:black; }
+  main { max-width:none; padding:0; }
+  .hero { padding:10px 0 24px; }
+  .document-card { border:0; box-shadow:none; padding:0; }
+}
+
+.support-layout { max-width:800px; margin:auto; }
+#contact-heading { margin:28px 0 20px; }
+.contact-details { margin:0; }
+.contact-details > div { display:grid; grid-template-columns:140px minmax(0,1fr); gap:20px; padding:18px 0; border-top:1px solid var(--line); }
+.contact-details dt { font-size:14px; font-weight:700; }
+.contact-details dd { margin:0; color:#5f5157; overflow-wrap:anywhere; }
+.support-email { display:inline-block; max-width:100%; }
+.support-email:hover { color:var(--rose); }
+@media (max-width:600px) {
+  .contact-details > div { grid-template-columns:minmax(0,1fr); gap:6px; }
+}
+@media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
+@media print { .site-header, .back-top, footer { display:none !important; } }

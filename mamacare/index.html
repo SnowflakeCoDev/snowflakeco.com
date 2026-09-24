@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="en-GB" dir="ltr" id="root">
 <head>
+<script>
+  // Keep previously shared information URLs working on the HTML storefront.
+  const legacyPage = new URLSearchParams(location.search).get('p')?.toLowerCase();
+  const informationPage = new Map([['viewtermswebpage', 'terms'], ['viewprivacypolicywebpage', 'policy'], ['viewfaqwebpage', 'faq'], ['viewsupportwebpage', 'support']]).get(legacyPage);
+  if (informationPage) {
+    const pageUrl = new URL('storefront/' + informationPage + '/index.html', location.href);
+    const language = new URLSearchParams(location.search).get('lang');
+    if (language === 'ar' || language === 'en') pageUrl.searchParams.set('lang', language);
+    location.replace(pageUrl.href);
+  }
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MamaCareHub — Your companion through every stage of motherhood</title>
@@ -220,6 +231,7 @@ footer{background:#F3DDD8;padding:48px 0 36px;margin-top:40px}
       <a href="#screens" data-i18n="nav_app">The app</a>
       <a href="#reviews" data-i18n="nav_reviews">Reviews</a>
       <a href="#shop" data-i18n="nav_shop">Shop</a>
+      <a href="help/account_deletion_guide.html" data-i18n="nav_help">Help</a>
     </div>
     <button class="lang-toggle" id="langBtn" aria-label="Switch language">العربية</button>
   </div>
@@ -399,10 +411,11 @@ footer{background:#F3DDD8;padding:48px 0 36px;margin-top:40px}
       <p class="disclaimer" data-i18n="disc">This app provides general pregnancy and child-care information for educational purposes only. It is not a substitute for professional medical advice. Always consult your healthcare provider for personal guidance.</p>
     </div>
     <div class="foot-links">
-      <a href="https://snowflakeco.com/mamacare/information/?p=viewTermsWebPage" target="_blank" rel="noopener" data-i18n="fl_terms">Terms</a>
-      <a href="https://snowflakeco.com/mamacare/information/?p=viewPrivacyPolicyWebPage" target="_blank" rel="noopener" data-i18n="fl_privacy">Privacy</a>
-      <a href="https://snowflakeco.com/mamacare/information/?p=viewSupportWebPage" target="_blank" rel="noopener" data-i18n="fl_support">Support</a>
-      <a href="https://snowflakeco.com/mamacare/information/?p=viewFAQWebPage" target="_blank" rel="noopener" data-i18n="fl_faq">FAQ</a>
+      <a id="termsLink" href="storefront/terms/index.html" data-i18n="fl_terms">Terms</a>
+      <a id="policyLink" href="storefront/policy/index.html" data-i18n="fl_privacy">Privacy</a>
+      <a id="supportLink" href="storefront/support/index.html" data-i18n="fl_support">Support</a>
+      <a id="faqLink" href="storefront/faq/index.html" data-i18n="fl_faq">FAQ</a>
+      <a href="help/account_deletion_guide.html" data-i18n="fl_help">Help</a>
     </div>
     <p class="copy" data-i18n="copy">© 2026 Mama Care Hub — All rights reserved 🌸</p>
   </div>
@@ -411,7 +424,7 @@ footer{background:#F3DDD8;padding:48px 0 36px;margin-top:40px}
 <script>
 const i18n = {
   ar: {
-    nav_features:"المزايا", nav_app:"التطبيق", nav_reviews:"آراء الأمهات", nav_shop:"المتجر",
+    nav_features:"المزايا", nav_app:"التطبيق", nav_reviews:"آراء الأمهات", nav_shop:"المتجر", nav_help:"المساعدة",
     hero_badge:"موثوق من قبل <b>أكثر من 100 ألف أم</b> حول العالم",
     hero_title:"رفيقتكِ الموثوقة في <em>كل مرحلة</em> من رحلة الأمومة",
     hero_lead:"من التخطيط للحمل، مروراً بمتابعة الحمل أسبوعاً بأسبوع، وحتى السنوات الأولى لطفلك — يجمع «ماما كير هَب» كل ما تحتاجينه من رعاية ومعرفة وأدوات في مكان واحد لطيف.",
@@ -450,7 +463,7 @@ const i18n = {
     shop_p:"مستلزمات مختارة بعناية لكل مرحلة — من فيتامينات الحمل إلى أساسيات غرفة الطفل، اخترناها بنفس الاهتمام الذي صنعنا به التطبيق.",
     shop_cta:"آب ستور", shop_cta2:"جوجل بلاي",
     disc:"يقدّم هذا التطبيق معلومات عامة عن الحمل ورعاية الطفل لأغراض تعليمية فقط، وهو ليس بديلاً عن الاستشارة الطبية المتخصصة. استشيري دائماً مقدّم الرعاية الصحية الخاص بك.",
-    fl_terms:"الشروط والأحكام", fl_privacy:"سياسة الخصوصية", fl_support:"الدعم", fl_faq:"الأسئلة الشائعة",
+    fl_terms:"الشروط والأحكام", fl_privacy:"سياسة الخصوصية", fl_support:"الدعم", fl_faq:"الأسئلة الشائعة", fl_help:"المساعدة",
     copy:"© 2026 ماما كير هَب — جميع الحقوق محفوظة 🌸"
   }
 };
@@ -458,12 +471,11 @@ const i18n = {
 const enCache = {};
 document.querySelectorAll('[data-i18n]').forEach(el=>{ enCache[el.dataset.i18n] = el.innerHTML; });
 
-let lang = 'en';
+let lang = new URLSearchParams(location.search).get('lang') === 'ar' ? 'ar' : 'en';
 const btn = document.getElementById('langBtn');
 const root = document.getElementById('root');
 
-btn.addEventListener('click', ()=>{
-  lang = lang === 'en' ? 'ar' : 'en';
+function applyLanguage() {
   const dict = lang === 'ar' ? i18n.ar : enCache;
   document.querySelectorAll('[data-i18n]').forEach(el=>{
     const v = dict[el.dataset.i18n];
@@ -472,7 +484,20 @@ btn.addEventListener('click', ()=>{
   root.setAttribute('lang', lang === 'ar' ? 'ar-SA' : 'en-GB');
   root.setAttribute('dir',  lang === 'ar' ? 'rtl' : 'ltr');
   btn.textContent = lang === 'ar' ? 'English' : 'العربية';
+  document.getElementById('termsLink').href = 'storefront/terms/index.html?lang=' + lang;
+  document.getElementById('policyLink').href = 'storefront/policy/index.html?lang=' + lang;
+  document.getElementById('faqLink').href = 'storefront/faq/index.html?lang=' + lang;
+  document.getElementById('supportLink').href = 'storefront/support/index.html?lang=' + lang;
+}
+
+btn.addEventListener('click', ()=>{
+  lang = lang === 'en' ? 'ar' : 'en';
+  const url = new URL(location.href);
+  url.searchParams.set('lang', lang);
+  history.replaceState(null, '', url);
+  applyLanguage();
 });
+applyLanguage();
 </script>
 </body>
 </html>

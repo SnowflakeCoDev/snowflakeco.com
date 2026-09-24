@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <title>MamaCare Hub · Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+    <symbol id="globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c5 5 5 13 0 18-5-5-5-13 0-18Z"/></symbol>
+    <symbol id="upload" viewBox="0 0 24 24"><path d="M12 16V3m-4 4 4-4 4 4M4 15v5a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5"/></symbol>
+    <symbol id="download" viewBox="0 0 24 24"><path d="M12 3v13m-4-4 4 4 4-4M4 16v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"/></symbol>
+    <symbol id="box" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5ZM3 8v9l9 5 9-5V8M12 13v9M7.5 5.5l9 5"/></symbol>
+    <symbol id="check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></symbol>
+    <symbol id="folder" viewBox="0 0 24 24"><path d="M3 7V5h7l2 3h9v12H3V7Z"/></symbol>
+    <symbol id="heart" viewBox="0 0 24 24"><path d="M20.5 4.5a5 5 0 0 0-7 0L12 6l-1.5-1.5a5 5 0 0 0-7 7L12 20l8.5-8.5a5 5 0 0 0 0-7Z"/></symbol>
+    <symbol id="info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7v.01"/></symbol>
+    <symbol id="file" viewBox="0 0 24 24"><path d="M14 2H5v20h14V7l-5-5ZM14 2v6h5M8 12h8M8 16h5"/></symbol>
+    <symbol id="menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+    <symbol id="close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+  </svg>
+  <a class="skip" href="#main" data-i18n="skip">Skip to content</a>
+  <div class="backdrop" id="backdrop" aria-hidden="true"></div>
+  <aside class="drawer" id="drawer" aria-label="Main navigation">
+    <button class="icon-button drawer-close" id="close-drawer" aria-label="Close menu" data-label="closeMenu"><svg class="icon" aria-hidden="true"><use href="#close"/></svg></button>
+    <div class="brand"><img src="../logo.jpg" alt="MamaCare logo"><div><span class="brand-name">Mama Care<span style="font-weight:400"> Hub</span></span><span class="brand-caption" data-i18n="adminWorkspace">Admin workspace</span></div></div>
+    <div class="nav-label" data-i18n="workspace">WORKSPACE</div>
+    <nav>
+      <a class="nav-item" href="language/index.html"><svg class="icon" aria-hidden="true"><use href="#globe"/></svg><span data-i18n="language">Language</span><span class="nav-dot"></span></a>
+      <button class="nav-item" data-page="import" aria-current="page"><svg class="icon" aria-hidden="true"><use href="#upload"/></svg><span data-i18n="importProducts">Import Products</span><span class="nav-dot"></span></button>
+    </nav>
+    <div class="drawer-bottom"><div class="care-note"><svg class="icon" aria-hidden="true"><use href="#heart"/></svg><strong data-i18n="careTitle">A little care. A big difference.</strong><span data-i18n="careText">Thoughtfully made for every step of motherhood.</span></div><div class="profile"><span class="avatar" aria-hidden="true">MC</span><div><strong data-i18n="admin">Store administrator</strong><small>MamaCare Hub</small></div></div></div>
+  </aside>
+  <div class="workspace" id="workspace">
+    <header class="topbar">
+      <button class="icon-button menu-button" id="open-drawer" aria-label="Open menu" data-label="openMenu" aria-expanded="false" aria-controls="drawer"><svg class="icon" aria-hidden="true"><use href="#menu"/></svg></button>
+      <div class="breadcrumb"><span data-i18n="dashboard">Dashboard</span><span class="separator" aria-hidden="true">/</span><strong id="breadcrumb-page">Import Products</strong></div>
+      <div class="topbar-end"><span class="language-label"><svg class="icon" aria-hidden="true"><use href="#globe"/></svg><span id="current-language" hidden>English</span><select id="language-select" aria-label="Display language" data-label="displayLanguage"><option value="en">English</option><option value="ar">العربية</option></select></span><span class="avatar" aria-label="MamaCare Hub">MC</span></div>
+    </header>
+    <main id="main" tabindex="-1">
+      <section id="import-page" aria-labelledby="import-heading">
+        <div class="page-heading"><div><p class="eyebrow" data-i18n="catalog">YOUR PRODUCT CATALOG</p><h1 id="import-heading" data-i18n="importProducts">Import Products</h1><p class="subtitle" data-i18n="intro">Bring your products together, with a little less effort.</p></div><button class="button" id="download-template"><svg class="icon" aria-hidden="true"><use href="#download"/></svg><span data-i18n="downloadTemplate">Download template</span></button></div>
+        <div class="stats">
+          <div class="stat"><div><span class="stat-label" data-i18n="productsInFile">Products in file</span><strong class="stat-number" id="product-count">0</strong></div><span class="stat-icon"><svg class="icon" aria-hidden="true"><use href="#box"/></svg></span></div>
+          <div class="stat"><div><span class="stat-label" data-i18n="readyToReview">Ready to review</span><strong class="stat-number" id="ready-count">0</strong></div><span class="stat-icon"><svg class="icon" aria-hidden="true"><use href="#check"/></svg></span></div>
+          <div class="stat"><div><span class="stat-label" data-i18n="categories">Categories</span><strong class="stat-number" id="category-count">0</strong></div><span class="stat-icon"><svg class="icon" aria-hidden="true"><use href="#folder"/></svg></span></div>
+        </div>
+        <div class="content-grid">
+          <section class="panel" aria-labelledby="upload-heading"><div class="panel-head"><h2 id="upload-heading" data-i18n="uploadFile">Upload your product file</h2><span class="step-tag">CSV</span></div><div class="upload-body"><div class="drop-zone" id="drop-zone"><div class="upload-icon"><svg class="icon" aria-hidden="true"><use href="#upload"/></svg></div><h3 data-i18n="dropTitle">Drag & drop your file here</h3><p data-i18n="dropSubtitle">or choose a file from your device</p><button class="button primary" id="choose-file"><svg class="icon" aria-hidden="true"><use href="#folder"/></svg><span data-i18n="browseFiles">Browse files</span></button><input type="file" id="file-input" accept=".csv,text/csv" hidden><span class="file-hint" data-i18n="fileHint">CSV files only · Up to 5 MB</span></div><p class="local-note"><svg class="icon" aria-hidden="true"><use href="#info"/></svg><span data-i18n="localNote">Preview your file here. Products are not saved to your store.</span></p><p class="notice" id="notice" role="status" aria-live="polite"></p></div></section>
+          <aside class="guide" aria-labelledby="guide-heading"><div class="guide-title"><svg class="icon" aria-hidden="true"><use href="#info"/></svg><h2 id="guide-heading" data-i18n="quickGuide">A quick guide</h2></div><ol class="steps"><li><span class="step-number">1</span><div><h3 data-i18n="step1Title">Start with the template</h3><p data-i18n="step1Text">Download our CSV template to get the columns just right.</p></div></li><li><span class="step-number">2</span><div><h3 data-i18n="step2Title">Add your products</h3><p data-i18n="step2Text">Fill in the name, SKU, price, and category for each product.</p></div></li><li><span class="step-number">3</span><div><h3 data-i18n="step3Title">Upload & review</h3><p data-i18n="step3Text">Choose your file and check the product preview below.</p></div></li></ol><div class="guide-foot"><svg class="icon" aria-hidden="true"><use href="#heart"/></svg><span data-i18n="guideFoot">A little preparation goes a long way.</span></div></aside>
+        </div>
+        <section class="panel preview" aria-labelledby="preview-heading"><div class="panel-head"><div><h2 id="preview-heading" data-i18n="productPreview">Product preview</h2><p class="preview-subtitle" id="preview-subtitle" data-i18n="previewSubtitle">Your products will appear here after you select a file.</p></div><button class="button" id="clear-file" hidden data-i18n="clear">Clear</button></div><div class="empty" id="empty-state"><svg class="icon" aria-hidden="true"><use href="#box"/></svg><h3 data-i18n="noProducts">A fresh start for your products</h3><p data-i18n="emptyText">Upload a CSV file to see your product preview.</p></div><div class="table-wrap" id="table-wrap" hidden role="region" aria-label="Product preview" data-label="productPreview" tabindex="0"><table><thead><tr><th data-i18n="name">Product name</th><th data-i18n="sku">SKU</th><th data-i18n="price">Price</th><th data-i18n="category">Category</th></tr></thead><tbody id="product-rows"></tbody></table><p class="preview-limit" id="preview-limit" hidden data-i18n="previewLimit">Showing the first 100 products.</p></div></section>
+      </section>
+      <footer class="footer"><span>© <span id="year"></span> MamaCare Hub</span><span class="footer-heart" data-i18n="footer">Made with care, for those who care.</span></footer>
+    </main>
+  </div>
+  <script>
+    'use strict';
+    const $ = (id) => document.getElementById(id);
+    const english = {};
+    document.querySelectorAll('[data-i18n]').forEach(el => { english[el.dataset.i18n] = el.textContent; });
+    Object.assign(english, { openMenu:'Open menu', closeMenu:'Close menu', invalidFile:'Please choose a CSV file no larger than 5 MB.', invalidCsv:'This CSV could not be read. Check the quotes and column count, then try again.', missingColumns:'Use the template columns: name, sku, price, category.', invalidRows:'Each product needs a name, a unique SKU, a non-negative numeric price, and a category.', emptyFile:'This file has no products. Add a product row below the column headings.', loaded:'Your file is ready to review.', readError:'The file could not be opened. Please try again.' });
+    const arabic = { skip:'انتقل إلى المحتوى', adminWorkspace:'مساحة الإدارة', workspace:'مساحة العمل', language:'اللغة', importProducts:'استيراد المنتجات', careTitle:'قليل من الرعاية، وأثر كبير.', careText:'صُمّم بعناية لكل خطوة في رحلة الأمومة.', admin:'مدير المتجر', dashboard:'لوحة التحكم', catalog:'كتالوج منتجاتك', intro:'اجمع منتجاتك في مكان واحد، بجهد أقل.', downloadTemplate:'تنزيل القالب', productsInFile:'المنتجات في الملف', readyToReview:'جاهزة للمراجعة', categories:'الفئات', uploadFile:'ارفع ملف منتجاتك', dropTitle:'اسحب ملفك وأفلته هنا', dropSubtitle:'أو اختر ملفًا من جهازك', browseFiles:'تصفح الملفات', fileHint:'ملفات CSV فقط · حتى ٥ ميجابايت', localNote:'عاين ملفك هنا. لن تُحفظ المنتجات في متجرك.', quickGuide:'دليل سريع', step1Title:'ابدأ بالقالب', step1Text:'نزّل قالب CSV للحصول على الأعمدة المطلوبة.', step2Title:'أضف منتجاتك', step2Text:'أدخل اسم كل منتج ورمزه وسعره وفئته.', step3Title:'ارفع وراجع', step3Text:'اختر ملفك وراجع معاينة المنتجات أدناه.', guideFoot:'القليل من التحضير يصنع فرقًا.', productPreview:'معاينة المنتجات', previewSubtitle:'ستظهر منتجاتك هنا بعد اختيار ملف.', clear:'مسح', noProducts:'بداية جديدة لمنتجاتك', emptyText:'ارفع ملف CSV لمعاينة منتجاتك.', name:'اسم المنتج', sku:'رمز المنتج', price:'السعر', category:'الفئة', previewLimit:'عرض أول ١٠٠ منتج.', preferences:'تفضيلاتك', languageIntro:'اجعل مساحة العمل أقرب إليك.', displayLanguage:'لغة العرض', languageDescription:'اختر لغة لوحة التحكم. يُحفظ تفضيلك على هذا الجهاز عندما يكون تخزين المتصفح متاحًا.', preferredLanguage:'اللغة المفضلة', footer:'صُنع بعناية، لمن يمنحون الرعاية.', openMenu:'فتح القائمة', closeMenu:'إغلاق القائمة', invalidFile:'اختر ملف CSV لا يزيد حجمه عن ٥ ميجابايت.', invalidCsv:'تعذرت قراءة الملف. راجع علامات الاقتباس وعدد الأعمدة وحاول مجددًا.', missingColumns:'استخدم أعمدة القالب: name, sku, price, category.', invalidRows:'كل منتج يحتاج إلى اسم ورمز فريد وسعر رقمي غير سالب وفئة.', emptyFile:'لا يحتوي الملف على منتجات. أضف صفًا أسفل عناوين الأعمدة.', loaded:'ملفك جاهز للمراجعة.', readError:'تعذر فتح الملف. حاول مجددًا.' };
+    let language = 'en', page = 'import', noticeKey = '', fileName = '', products = [], readVersion = 0;
+    const translate = key => (language === 'ar' ? arabic[key] : english[key]) || english[key] || key;
+    function setLanguage(value) {
+      language = value === 'ar' ? 'ar' : 'en';
+      document.documentElement.lang = language;
+      document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
+      document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = translate(el.dataset.i18n); });
+      document.querySelectorAll('[data-label]').forEach(el => { el.setAttribute('aria-label', translate(el.dataset.label)); });
+      $('drawer').setAttribute('aria-label', translate('workspace'));
+      $('current-language').textContent = language === 'ar' ? 'العربية' : 'English';
+      $('language-select').value = language;
+      $('breadcrumb-page').textContent = translate(page === 'import' ? 'importProducts' : 'language');
+      document.title = `MamaCare Hub · ${translate('dashboard')}`;
+      $('notice').textContent = noticeKey ? translate(noticeKey) : '';
+      if (fileName) $('preview-subtitle').textContent = fileName;
+      try { localStorage.setItem('mamacare-dashboard-language', language); } catch (_) { /* Storage is optional. */ }
+    }
+    const mobile = window.matchMedia('(max-width: 760px)');
+    function setDrawer(open, restoreFocus = true) {
+      const visible = open && mobile.matches;
+      $('drawer').classList.toggle('open', visible);
+      $('backdrop').classList.toggle('open', visible);
+      document.body.classList.toggle('drawer-open', visible);
+      $('open-drawer').setAttribute('aria-expanded', String(visible));
+      $('drawer').inert = mobile.matches && !visible;
+      $('workspace').inert = visible;
+      if (visible) $('close-drawer').focus();
+      else if (restoreFocus && mobile.matches) $('open-drawer').focus();
+    }
+    $('open-drawer').addEventListener('click', () => setDrawer(true));
+    $('close-drawer').addEventListener('click', () => setDrawer(false));
+    $('backdrop').addEventListener('click', () => setDrawer(false));
+    mobile.addEventListener('change', () => setDrawer(false, false));
+    document.addEventListener('keydown', event => {
+      if (!$('drawer').classList.contains('open')) return;
+      if (event.key === 'Escape') setDrawer(false);
+      if (event.key === 'Tab') {
+        const items = $('drawer').querySelectorAll('button, a[href]');
+        const first = items[0], last = items[items.length - 1];
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+      }
+    });
+    document.querySelectorAll('[data-page]').forEach(button => button.addEventListener('click', () => {
+      page = button.dataset.page;
+      document.querySelectorAll('[data-page]').forEach(item => item.removeAttribute('aria-current'));
+      button.setAttribute('aria-current', 'page');
+      $('import-page').hidden = page !== 'import';
+      $('breadcrumb-page').textContent = translate(page === 'import' ? 'importProducts' : 'language');
+      setDrawer(false, false);
+      $('main').focus({ preventScroll:true });
+    }));
+    $('language-select').addEventListener('change', event => setLanguage(event.target.value));
+    $('download-template').addEventListener('click', () => {
+      const blob = new Blob(['\uFEFFname,sku,price,category\r\nOrganic cotton baby blanket,MC-001,249.00,Baby essentials\r\n'], { type:'text/csv;charset=utf-8' });
+      const url = URL.createObjectURL(blob), link = document.createElement('a');
+      link.href = url; link.download = 'mamacare-products-template.csv';
+      document.body.appendChild(link); link.click(); link.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    });
+    // Parse quoted commas, escaped quotes, CRLF, and multiline CSV fields.
+    function parseCsv(text) {
+      text = text.replace(/^\uFEFF/, '');
+      const rows = []; let row = [], field = '', quoted = false, closed = false;
+      const endField = () => { row.push(field.trim()); field = ''; closed = false; };
+      const endRow = () => { endField(); if (row.some(value => value !== '')) rows.push(row); row = []; };
+      for (let i = 0; i < text.length; i++) {
+        const char = text[i];
+        if (quoted) {
+          if (char === '"' && text[i + 1] === '"') { field += '"'; i++; }
+          else if (char === '"') { quoted = false; closed = true; }
+          else field += char;
+        } else if (char === ',') endField();
+        else if (char === '\n' || char === '\r') { endRow(); if (char === '\r' && text[i + 1] === '\n') i++; }
+        else if (char === '"') { if (field || closed) throw Error('invalidCsv'); quoted = true; }
+        else { if (closed && char.trim()) throw Error('invalidCsv'); if (!closed) field += char; }
+      }
+      if (quoted) throw Error('invalidCsv');
+      endRow();
+      return rows;
+    }
+    function renderProducts() {
+      $('product-count').textContent = products.length;
+      $('ready-count').textContent = products.length;
+      $('category-count').textContent = new Set(products.map(item => item.category)).size;
+      $('empty-state').hidden = products.length > 0;
+      $('table-wrap').hidden = products.length === 0;
+      $('clear-file').hidden = products.length === 0;
+      $('preview-limit').hidden = products.length <= 100;
+      $('preview-subtitle').textContent = fileName || translate('previewSubtitle');
+      $('product-rows').replaceChildren();
+      const fragment = document.createDocumentFragment();
+      products.slice(0, 100).forEach(product => {
+        const tr = document.createElement('tr');
+        ['name','sku','price','category'].forEach(key => { const td = document.createElement('td'); td.textContent = product[key]; tr.appendChild(td); });
+        fragment.appendChild(tr);
+      });
+      $('product-rows').appendChild(fragment);
+    }
+    async function loadFile(file) {
+      if (!file) return;
+      const version = ++readVersion;
+      products = []; fileName = ''; noticeKey = ''; $('notice').textContent = ''; renderProducts();
+      try {
+        if (!/\.csv$/i.test(file.name) || file.size > 5 * 1024 * 1024) throw Error('invalidFile');
+        const content = await file.text();
+        if (version !== readVersion) return;
+        const rows = parseCsv(content);
+        if (!rows.length) throw Error('emptyFile');
+        const headers = rows.shift().map(value => value.toLowerCase());
+        const required = ['name','sku','price','category'];
+        if (!required.every(key => headers.includes(key)) || new Set(headers).size !== headers.length) throw Error('missingColumns');
+        if (!rows.length) throw Error('emptyFile');
+        const seen = new Set();
+        const parsed = rows.map(row => {
+          if (row.length !== headers.length) throw Error('invalidCsv');
+          const item = Object.fromEntries(required.map(key => [key, row[headers.indexOf(key)]]));
+          if (!required.every(key => item[key]) || !/^(?:\d+(?:\.\d*)?|\.\d+)$/.test(item.price) || !Number.isFinite(Number(item.price)) || seen.has(item.sku)) throw Error('invalidRows');
+          seen.add(item.sku); return item;
+        });
+        products = parsed; fileName = file.name; noticeKey = 'loaded';
+      } catch (error) {
+        if (version !== readVersion) return;
+        noticeKey = Object.hasOwn(english, error.message) ? error.message : 'readError';
+      }
+      renderProducts(); $('notice').textContent = translate(noticeKey);
+    }
+    $('choose-file').addEventListener('click', () => $('file-input').click());
+    $('file-input').addEventListener('change', event => { loadFile(event.target.files[0]); event.target.value = ''; });
+    ['dragenter','dragover'].forEach(name => $('drop-zone').addEventListener(name, event => { event.preventDefault(); $('drop-zone').classList.add('dragging'); }));
+    $('drop-zone').addEventListener('dragleave', event => { if (!$('drop-zone').contains(event.relatedTarget)) $('drop-zone').classList.remove('dragging'); });
+    $('drop-zone').addEventListener('drop', event => { event.preventDefault(); $('drop-zone').classList.remove('dragging'); loadFile(event.dataTransfer.files[0]); });
+    // Prevent accidental navigation when a file lands outside the upload area.
+    window.addEventListener('dragover', event => event.preventDefault());
+    window.addEventListener('drop', event => event.preventDefault());
+    $('clear-file').addEventListener('click', () => { readVersion++; products = []; fileName = ''; noticeKey = ''; $('notice').textContent = ''; renderProducts(); $('choose-file').focus(); });
+    $('year').textContent = new Date().getFullYear();
+    let savedLanguage = 'en';
+    try { savedLanguage = localStorage.getItem('mamacare-dashboard-language') || 'en'; } catch (_) { /* Use the default language. */ }
+    setLanguage(savedLanguage); setDrawer(false, false);
+  </script>
+</body>
+</html>

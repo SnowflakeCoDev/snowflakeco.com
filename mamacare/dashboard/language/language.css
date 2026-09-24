@@ -1,0 +1,64 @@
+.sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+button:disabled,input:disabled { opacity:.55; cursor:not-allowed; }
+.fields { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+.field { display:flex; flex-direction:column; gap:7px; margin-top:20px; min-width:0; }
+.field label { font-size:12px; font-weight:600; }
+.field input { width:100%; min-width:0; border:1px solid #d9c7cc; border-radius:8px; padding:11px 12px; background:#fff; color:var(--ink); }
+.field input::placeholder { color:#97878e; }
+.field input:read-only { background:#fcf8f8; color:var(--muted); font-size:12px; }
+.field input[aria-invalid="true"] { border-color:#ae354a; }
+.form-actions { display:flex; justify-content:flex-end; gap:10px; margin-top:22px; }
+.feedback { margin-bottom:20px; padding:13px 18px; border-radius:9px; background:var(--blush); color:var(--wine); font-size:13px; overflow-wrap:anywhere; }
+.error-message,.field-error { color:#a12940; font-size:12px; overflow-wrap:anywhere; }
+.error-message { margin-top:15px; }
+.list-toolbar { display:flex; align-items:flex-end; justify-content:space-between; padding:0 24px 20px; gap:20px; }
+.search-field { width:340px; max-width:100%; }
+.result-count { font-size:11px; color:var(--muted); padding-bottom:12px; white-space:nowrap; }
+.language-table-wrap { overflow-x:auto; }
+.language-table { font-size:12px; }
+.language-table th,.language-table td { padding:15px 14px; }
+.language-table th { white-space:nowrap; }
+.language-table td { max-width:230px; }
+.language-table td:first-child { color:var(--muted); font-weight:400; }
+.language-table td:nth-child(2) { font-weight:600; min-width:110px; }
+.language-table td:nth-child(6),.language-table td:nth-child(7) { font-size:11px; color:var(--muted); min-width:95px; }
+.language-table tr:last-child td { border-bottom:0; }
+.status-badge { display:inline-block; background:#f4efef; color:#6a5d63; padding:3px 9px; border-radius:20px; font-size:10px; white-space:nowrap; }
+.status-badge.enabled { background:var(--blush); color:var(--wine); }
+.edit-button { color:var(--wine); padding:7px 10px; min-height:36px; }
+.edit-button .icon { width:14px; height:14px; }
+.retry-button { margin-top:18px; }
+#list-state { padding:48px 20px; }
+#list-state p { max-width:540px; margin-inline:auto; overflow-wrap:anywhere; }
+dialog { color:var(--ink); width:min(560px,calc(100% - 32px)); max-height:calc(100dvh - 40px); padding:0; border:1px solid var(--line); border-radius:16px; box-shadow:0 24px 90px #352b302e; overflow-y:auto; }
+dialog::backdrop { background:#30212766; }
+dialog .panel-head h2 { font-size:21px; }
+dialog .eyebrow { margin-bottom:5px; }
+fieldset { margin:0; padding:0 24px; border:0; min-width:0; }
+.form-intro { margin-top:21px; }
+.enabled-control { display:flex; gap:12px; align-items:center; padding:16px; margin-top:22px; border-radius:10px; background:var(--blush); cursor:pointer; }
+.enabled-control input { width:18px; height:18px; accent-color:var(--wine); }
+.enabled-control strong,.enabled-control small { display:block; }
+.enabled-control strong { font-size:12px; font-weight:600; }
+.enabled-control small { font-size:11px; color:var(--muted); margin-top:2px; }
+.form-error { margin:18px 24px 0; }
+.dialog-actions { padding:20px 24px; border-top:1px solid var(--line); margin-top:26px; }
+body:has(dialog[open]) { overflow:hidden; }
+@media(max-width:1100px) {
+  .language-table thead { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); }
+  .language-table,.language-table tbody { display:block; }
+  .language-table tbody { padding:16px; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+  .language-table tr { display:block; border:1px solid var(--line); border-radius:10px; padding:12px; min-width:0; }
+  .language-table td { display:flex; justify-content:space-between; gap:12px; border:0; padding:7px 0; max-width:none; min-width:0!important; font-size:12px!important; }
+  .language-table td::before { content:attr(data-label); color:var(--muted); font-weight:400; font-size:11px; flex-shrink:0; }
+  .language-table td > span { text-align:end; min-width:0; overflow-wrap:anywhere; }
+}
+@media(max-width:600px) {
+  .language-table tbody { grid-template-columns:1fr; }
+  .fields { grid-template-columns:1fr; gap:0; }
+  .list-toolbar { padding-inline:17px; flex-wrap:wrap; gap:8px; }
+  .search-field { width:100%; }
+  .result-count { padding:0; }
+  fieldset { padding-inline:20px; }
+  .dialog-actions { padding-inline:20px; }
+}

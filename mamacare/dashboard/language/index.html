@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <title>Languages · MamaCare Hub</title>
+  <link rel="stylesheet" href="../dashboard.css">
+  <link rel="stylesheet" href="language.css">
+  <script src="controller.js" defer></script>
+  <script src="language.js" defer></script>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+    <symbol id="globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c5 5 5 13 0 18-5-5-5-13 0-18Z"/></symbol>
+    <symbol id="upload" viewBox="0 0 24 24"><path d="M12 16V3m-4 4 4-4 4 4M4 15v5a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5"/></symbol>
+    <symbol id="heart" viewBox="0 0 24 24"><path d="M20.5 4.5a5 5 0 0 0-7 0L12 6l-1.5-1.5a5 5 0 0 0-7 7L12 20l8.5-8.5a5 5 0 0 0 0-7Z"/></symbol>
+    <symbol id="menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+    <symbol id="close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+    <symbol id="plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="icon-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14-5L3 9m0-6v6h6M4 13a8 8 0 0 0 14 5l3-3m0 6v-6h-6"/></symbol>
+    <symbol id="check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></symbol>
+    <symbol id="edit" viewBox="0 0 24 24"><path d="m14 5 5 5M4 20l5-1L21 7a2 2 0 0 0-5-5L4 14v6Z"/></symbol>
+  </svg>
+  <a class="skip" href="#main" data-i18n="skip">Skip to content</a>
+  <div class="backdrop" id="backdrop" aria-hidden="true"></div>
+  <aside class="drawer" id="drawer" aria-label="Main navigation">
+    <button class="icon-button drawer-close" id="close-drawer" aria-label="Close menu" data-label="closeMenu"><svg class="icon" aria-hidden="true"><use href="#close"/></svg></button>
+    <div class="brand"><img src="../../logo.jpg" alt="MamaCare logo"><div><span class="brand-name">MamaCare<span style="font-weight:400"> Hub</span></span><span class="brand-caption" data-i18n="adminWorkspace">Admin workspace</span></div></div>
+    <div class="nav-label" data-i18n="workspace">WORKSPACE</div>
+    <nav>
+      <a class="nav-item" href="index.html" aria-current="page"><svg class="icon" aria-hidden="true"><use href="#globe"/></svg><span data-i18n="language">Language</span><span class="nav-dot"></span></a>
+      <a class="nav-item" href="../index.html"><svg class="icon" aria-hidden="true"><use href="#upload"/></svg><span data-i18n="importProducts">Import Products</span><span class="nav-dot"></span></a>
+    </nav>
+    <div class="drawer-bottom"><div class="care-note"><svg class="icon" aria-hidden="true"><use href="#heart"/></svg><strong data-i18n="careTitle">A little care. A big difference.</strong><span data-i18n="careText">Thoughtfully made for every step of motherhood.</span></div><div class="profile"><span class="avatar" aria-hidden="true">MC</span><div><strong data-i18n="admin">Store administrator</strong><small>MamaCare Hub</small></div></div></div>
+  </aside>
+  <div class="workspace" id="workspace">
+    <header class="topbar">
+      <button class="icon-button menu-button" id="open-drawer" aria-label="Open menu" data-label="openMenu" aria-expanded="false" aria-controls="drawer"><svg class="icon" aria-hidden="true"><use href="#menu"/></svg></button>
+      <div class="breadcrumb"><span data-i18n="dashboard">Dashboard</span><span class="separator" aria-hidden="true">/</span><strong data-i18n="languages">Languages</strong></div>
+      <div class="topbar-end"><label class="language-label"><svg class="icon" aria-hidden="true"><use href="#globe"/></svg><select id="language-select" aria-label="Display language" data-label="displayLanguage"><option value="en">English</option><option value="ar">العربية</option></select></label><span class="avatar" aria-label="MamaCare Hub">MC</span></div>
+    </header>
+    <main id="main" tabindex="-1">
+      <div class="page-heading"><div><p class="eyebrow" data-i18n="eyebrow">YOUR APP, IN EVERY LANGUAGE</p><h1 data-i18n="languages">Languages</h1><p class="subtitle" data-i18n="intro">Manage the languages available across MamaCare Hub.</p></div><button class="button primary" id="add-language" disabled><svg class="icon" aria-hidden="true"><use href="#plus"/></svg><span data-i18n="addLanguage">Add language</span></button></div>
+      <div class="stats">
+        <div class="stat"><div><span class="stat-label" data-i18n="totalLanguages">Total languages</span><strong class="stat-number" id="total-count">—</strong></div><span class="stat-icon"><svg class="icon" aria-hidden="true"><use href="#globe"/></svg></span></div>
+        <div class="stat"><div><span class="stat-label" data-i18n="enabled">Enabled</span><strong class="stat-number" id="enabled-count">—</strong></div><span class="stat-icon"><svg class="icon" aria-hidden="true"><use href="#check"/></svg></span></div>
+        <div class="stat"><div><span class="stat-label" data-i18n="disabled">Disabled</span><strong class="stat-number" id="disabled-count">—</strong></div><span class="stat-icon"><svg class="icon" aria-hidden="true"><use href="#globe"/></svg></span></div>
+      </div>
+      <p class="feedback" id="feedback" role="status" aria-live="polite" hidden></p>
+      <section class="panel" aria-labelledby="list-heading" id="language-list">
+        <div class="panel-head"><div><h2 id="list-heading" data-i18n="allLanguages">All languages</h2><p class="preview-subtitle" data-i18n="listHint">Keep your language names, locale codes, and availability up to date.</p></div><button class="button" id="refresh" disabled><svg class="icon" aria-hidden="true"><use href="#icon-refresh"/></svg><span data-i18n="refresh">Refresh</span></button></div>
+        <div class="list-toolbar"><div class="field search-field"><label for="search" data-i18n="search">Search languages</label><input id="search" type="search" disabled placeholder="Search by name or code" data-placeholder="searchPlaceholder"></div><span class="result-count" id="result-count" aria-live="polite"></span></div>
+        <div class="empty" id="list-state" role="status"><svg class="icon" aria-hidden="true"><use href="#globe"/></svg><h3 id="state-title">Loading languages…</h3><p id="state-description">Getting the latest languages from your dashboard.</p><button class="button retry-button" id="retry" hidden data-i18n="tryAgain">Try again</button></div>
+        <div class="language-table-wrap" id="table-wrap" hidden><table class="language-table"><caption class="sr-only" data-i18n="allLanguages">All languages</caption><thead><tr><th scope="col" data-i18n="id">ID</th><th scope="col" data-i18n="name">Name</th><th scope="col" data-i18n="countryCode">Country code</th><th scope="col" data-i18n="languageCode">Language code</th><th scope="col" data-i18n="status">Status</th><th scope="col" data-i18n="createdDate">Created date</th><th scope="col" data-i18n="updatedDate">Updated date</th><th scope="col" data-i18n="action">Action</th></tr></thead><tbody id="language-rows"></tbody></table></div>
+      </section>
+      <footer class="footer"><span>© <span id="year"></span> MamaCare Hub</span><span class="footer-heart" data-i18n="footer">Made with care, for those who care.</span></footer>
+    </main>
+  </div>
+  <dialog id="language-dialog" aria-labelledby="form-heading">
+    <form id="language-form">
+      <div class="panel-head"><div><p class="eyebrow" data-i18n="languageDetails">LANGUAGE DETAILS</p><h2 id="form-heading">Add language</h2></div><button class="icon-button" type="button" id="close-form" aria-label="Close" data-label="close"><svg class="icon" aria-hidden="true"><use href="#close"/></svg></button></div>
+      <fieldset id="form-fields">
+        <p class="subtitle form-intro" data-i18n="formIntro">Add the language name and locale codes used by your app.</p>
+        <label class="enabled-control" for="is-enabled"><input id="is-enabled" type="checkbox"><span><strong data-i18n="enableLanguage">Enable this language</strong><small data-i18n="enableHint">Make this language available in the app.</small></span></label>
+        <div class="field"><label for="name" data-i18n="name">Name</label><input id="name" name="name" required autocomplete="off" placeholder="English" autofocus><span class="field-error" id="name-error" hidden></span></div>
+        <div class="fields"><div class="field"><label for="country-code" data-i18n="countryCode">Country code</label><input id="country-code" name="countryCode" required maxlength="10" autocomplete="off" spellcheck="false" placeholder="US" dir="ltr"><span class="field-error" id="countryCode-error" hidden></span></div><div class="field"><label for="language-code" data-i18n="languageCode">Language code</label><input id="language-code" name="languageCode" required maxlength="10" autocomplete="off" spellcheck="false" placeholder="en" dir="ltr"><span class="field-error" id="languageCode-error" hidden></span></div></div>
+        <div class="fields dates" id="date-fields" hidden><div class="field"><label for="created-date" data-i18n="createdDate">Created date</label><input id="created-date" readonly></div><div class="field"><label for="updated-date" data-i18n="updatedDate">Updated date</label><input id="updated-date" readonly></div></div>
+      </fieldset>
+      <p class="error-message form-error" id="form-error" role="alert" hidden></p>
+      <div class="form-actions dialog-actions"><button class="button" type="button" id="cancel-form" data-i18n="cancel">Cancel</button><button class="button primary" type="submit" id="save-language">Add language</button></div>
+    </form>
+  </dialog>
+</body>
+</html>
