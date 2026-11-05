@@ -1,38 +1,79 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
-  <base href="/">
-
-  <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="Snowflake Online Store">
-
-  <!-- iOS meta tags & icons -->
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="snow_flake_navigation">
-  <link rel="apple-touch-icon" href="snowflake_logo.jpeg">
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="snowflake_logo.jpeg"/>
-
-  <title>Snowflake Company</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#004EEF">
+  <meta name="description" content="Snowflake builds brands for everyday life. Meet our family of brands: Mama Care Hub and Modo Store.">
+  <title>Snowflake — Building brands for everyday life</title>
+  <link rel="icon" type="image/png" href="brand-assets/snowflake-logo.png">
+  <link rel="apple-touch-icon" href="brand-assets/snowflake-logo.png">
   <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+  <script src="navigation.js" defer></script>
 </head>
 <body>
-  <script src="flutter_bootstrap.js" async></script>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header wrap">
+    <a class="brand" href="#" aria-label="Snowflake home"><img src="brand-assets/snowflake-cover.png" width="2172" height="724" alt="Snowflake Online Store"></a>
+    <nav aria-label="Main navigation"><a href="#brands">Our brands</a><a href="#approach">Our approach</a></nav>
+    <a class="header-cta" href="#brands">Meet the family <span aria-hidden="true">↗</span></a>
+  </header>
+
+  <main id="main">
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> A company of brands</p>
+        <h1 id="hero-title">Good ideas.<br>Great <span class="blue-word">brands<svg viewBox="0 0 300 20" aria-hidden="true"><path d="M3 14 Q145 -4 297 10"/></svg></span>.<br>Everyday impact.</h1>
+        <p class="hero-description">We’re Snowflake. We turn ideas into brands with a purpose, building a family of businesses made for everyday life.</p>
+        <a class="button button-blue" href="#brands">Discover our brands <span aria-hidden="true">↗</span></a>
+        <div class="hero-note"><span class="mini-marks" aria-hidden="true"><i></i><i></i><i></i></span> Different identities. One shared ambition.</div>
+      </div>
+      <div class="brand-world" role="group" aria-label="Snowflake brings together Mama Care Hub and Modo Store in one family of brands.">
+        <div class="world-grid"></div><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <span class="world-label">THE SNOWFLAKE FAMILY</span>
+        <div class="world-center"><img src="brand-assets/snowflake-logo.png" width="1254" height="1254" alt=""></div>
+        <a class="floating-brand floating-mama" href="https://snowflakeco.com/mamacare/"><img src="brand-assets/mama-care-hub-logo.png" width="1080" height="1335" alt=""><span>Mama Care Hub</span></a>
+        <div class="floating-brand floating-modo"><img src="brand-assets/modo-store-logo.png" width="1254" height="1254" alt=""><span>Modo Store</span></div>
+        <span class="world-spark spark-one" aria-hidden="true">✳</span><span class="world-spark spark-two" aria-hidden="true">+</span>
+        <span class="world-dot dot-one"></span><span class="world-dot dot-two"></span>
+        <div class="world-caption"><span class="caption-line"></span> Built with purpose.<br><strong>Connected by Snowflake.</strong></div>
+      </div>
+    </section>
+
+    <div class="belief-strip" aria-label="Our principles"><div class="wrap belief-inner"><span>Ideas with purpose</span><i aria-hidden="true">✳</i><span>Brands with character</span><i aria-hidden="true">✳</i><span>Built for everyday life</span></div></div>
+
+    <section class="brands-section wrap" id="brands" aria-labelledby="brands-title">
+      <div class="section-heading"><div><p class="eyebrow"><span class="section-number">01 /</span> Our portfolio</p><h2 id="brands-title">Meet the brands<br>we’re building.</h2></div><p>Each with its own identity.<br>All part of the Snowflake story.</p></div>
+      <div class="brand-cards">
+        <article class="brand-card mama-card" aria-labelledby="mama-title">
+          <a class="brand-card-link" href="https://snowflakeco.com/mamacare/" aria-labelledby="mama-title">
+          <div class="brand-art mama-art"><span class="brand-index">01</span><div class="art-ring"></div><img src="brand-assets/mama-care-hub-logo.png" width="1080" height="1335" alt="Mama Care Hub floral mother and baby logo" loading="lazy"></div>
+          <div class="brand-details"><div><p class="brand-category">Part of the Snowflake family</p><h3 id="mama-title">Mama Care Hub</h3></div><span class="brand-symbol mama-symbol" aria-hidden="true">✳</span></div>
+          <p class="brand-description">A brand with care at its heart. A distinctive identity inspired by the connection between mother and child.</p>
+          <span class="brand-visit">Visit website <span aria-hidden="true">↗</span></span>
+          </a>
+        </article>
+        <article class="brand-card modo-card" aria-labelledby="modo-title">
+          <div class="brand-art modo-art"><span class="brand-index">02</span><div class="art-ring"></div><img src="brand-assets/modo-store-logo.png" width="1254" height="1254" alt="Modo Store black and gold logo" loading="lazy"></div>
+          <div class="brand-details"><div><p class="brand-category">Part of the Snowflake family</p><h3 id="modo-title">Modo Store</h3></div><span class="brand-symbol modo-symbol" aria-hidden="true">✳</span></div>
+          <p class="brand-description">A store with a character of its own. A bold identity that brings a fresh expression to our growing family of brands.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="approach-section" id="approach" aria-labelledby="approach-title"><div class="wrap">
+      <div class="section-heading"><div><p class="eyebrow"><span class="section-number">02 /</span> The Snowflake approach</p><h2 id="approach-title">One company.<br>A world of possibilities.</h2></div><p>We believe a great brand starts with a clear idea —<br class="desktop-break"> and grows through thoughtful execution.</p></div>
+      <div class="approach-grid">
+        <div class="approach-item"><span class="approach-icon icon-blue" aria-hidden="true">↗</span><h3>Find the purpose.</h3><p>Start with an idea that has a meaningful place in people’s everyday lives.</p></div>
+        <div class="approach-item"><span class="approach-icon icon-teal" aria-hidden="true">✳</span><h3>Build the identity.</h3><p>Give each brand its own voice, personality, and reason to be remembered.</p></div>
+        <div class="approach-item"><span class="approach-icon icon-coral" aria-hidden="true">+</span><h3>Grow with intention.</h3><p>Bring the idea to life and keep building, with care in every next step.</p></div>
+      </div>
+    </div></section>
+
+    <section class="closing-section wrap" aria-labelledby="closing-title"><div class="closing-panel"><div><p class="eyebrow">Many ideas. A shared future.</p><h2 id="closing-title">Different brands.<br>One Snowflake.</h2><a class="button button-white" href="#brands">Explore the family <span aria-hidden="true">↗</span></a></div><div class="closing-emblem" aria-hidden="true"><img src="brand-assets/snowflake-logo.png" width="1254" height="1254" alt="" loading="lazy"></div></div></section>
+  </main>
+
+  <footer class="site-footer wrap"><a class="footer-brand" href="#" aria-label="Snowflake home"><img src="brand-assets/snowflake-logo.png" width="1254" height="1254" alt=""><span>Snowflake<span class="footer-tagline">Building brands. Creating possibilities.</span></span></a><p>© 2026 Snowflake. All rights reserved.</p><a class="back-top" href="#">Back to top <span aria-hidden="true">↑</span></a></footer>
 </body>
 </html>
