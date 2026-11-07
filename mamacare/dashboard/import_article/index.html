@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <title>Import article · MamaCare Hub</title>
+  <link rel="stylesheet" href="../dashboard.css">
+  <link rel="stylesheet" href="import_article.css">
+  <script src="controller.js" defer></script>
+  <script src="import_article.js" defer></script>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+    <symbol id="globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c5 5 5 13 0 18-5-5-5-13 0-18Z"/></symbol>
+    <symbol id="upload" viewBox="0 0 24 24"><path d="M12 16V3m-4 4 4-4 4 4M4 15v5a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5"/></symbol>
+    <symbol id="heart" viewBox="0 0 24 24"><path d="M20.5 4.5a5 5 0 0 0-7 0L12 6l-1.5-1.5a5 5 0 0 0-7 7L12 20l8.5-8.5a5 5 0 0 0 0-7Z"/></symbol>
+    <symbol id="menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+    <symbol id="close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+    <symbol id="plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="icon-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14-5L3 9m0-6v6h6M4 13a8 8 0 0 0 14 5l3-3m0 6v-6h-6"/></symbol>
+    <symbol id="check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></symbol>
+    <symbol id="edit" viewBox="0 0 24 24"><path d="m14 5 5 5M4 20l5-1L21 7a2 2 0 0 0-5-5L4 14v6Z"/></symbol>
+  </svg>
+  <a class="skip" href="#main" data-i18n="skip">Skip to content</a>
+  <div class="backdrop" id="backdrop" aria-hidden="true"></div>
+  <aside class="drawer" id="drawer" aria-label="Main navigation">
+    <button class="icon-button drawer-close" id="close-drawer" aria-label="Close menu" data-label="closeMenu"><svg class="icon" aria-hidden="true"><use href="#close"/></svg></button>
+    <div class="brand"><img src="../../logo.jpg" alt="MamaCare logo"><div><span class="brand-name">MamaCare<span style="font-weight:400"> Hub</span></span><span class="brand-caption" data-i18n="adminWorkspace">Admin workspace</span></div></div>
+    <div class="nav-label" data-i18n="workspace">WORKSPACE</div>
+    <nav>
+      <a class="nav-item" href="../language/index.html"><svg class="icon" aria-hidden="true"><use href="#globe"/></svg><span data-i18n="language">Language</span><span class="nav-dot"></span></a>
+      <a class="nav-item" href="../index.html"><svg class="icon" aria-hidden="true"><use href="#upload"/></svg><span data-i18n="importProducts">Import Products</span><span class="nav-dot"></span></a>
+      <a class="nav-item" href="../pregnancy_week/index.html"><svg class="icon" aria-hidden="true"><use href="#heart"/></svg><span data-i18n="pregnancyWeeks">Pregnancy weeks</span><span class="nav-dot"></span></a>
+      <a class="nav-item" href="index.html" aria-current="page"><svg class="icon" aria-hidden="true"><use href="#upload"/></svg><span data-i18n="importArticle">Import article</span><span class="nav-dot"></span></a>
+      <a class="nav-item" href="../article/index.html"><svg class="icon" aria-hidden="true"><use href="#globe"/></svg><span data-i18n="articles">Articles</span><span class="nav-dot"></span></a>
+    </nav>
+    <div class="drawer-bottom"><div class="care-note"><svg class="icon" aria-hidden="true"><use href="#heart"/></svg><strong data-i18n="careTitle">A little care. A big difference.</strong><span data-i18n="careText">Thoughtfully made for every step of motherhood.</span></div><div class="profile"><span class="avatar" aria-hidden="true">MC</span><div><strong data-i18n="admin">Store administrator</strong><small>MamaCare Hub</small></div></div></div>
+  </aside>
+  <div class="workspace" id="workspace">
+    <header class="topbar">
+      <button class="icon-button menu-button" id="open-drawer" aria-label="Open menu" data-label="openMenu" aria-expanded="false" aria-controls="drawer"><svg class="icon" aria-hidden="true"><use href="#menu"/></svg></button>
+      <div class="breadcrumb"><span data-i18n="dashboard">Dashboard</span><span class="separator" aria-hidden="true">/</span><strong data-i18n="importArticle">Import article</strong></div>
+      <div class="topbar-end"><label class="language-label"><svg class="icon" aria-hidden="true"><use href="#globe"/></svg><select id="language-select" aria-label="Display language" data-label="displayLanguage"><option value="en">English</option><option value="ar">العربية</option></select></label><span class="avatar" aria-label="MamaCare Hub">MC</span></div>
+    </header>
+    <main id="main" tabindex="-1">
+      <div class="page-heading"><div><p class="eyebrow" data-i18n="eyebrow">YOUR NEXT ARTICLE STARTS HERE</p><h1 data-i18n="importArticle">Import article</h1><p class="subtitle" data-i18n="intro">Drop a JSON file or paste your article below.</p></div></div>
+      <section class="panel" aria-labelledby="input-heading">
+        <div class="panel-head"><div><h2 id="input-heading" data-i18n="articleJson">Article JSON</h2><p class="preview-subtitle" data-i18n="inputHint">Choose either option. Your file contents will appear in the text field.</p></div><span class="step-tag" data-i18n="jsonOnly">JSON only</span></div>
+        <div class="upload-body">
+          <div class="drop-zone" id="drop-zone" aria-labelledby="drop-title" aria-describedby="file-hint">
+            <span class="upload-icon"><svg class="icon" aria-hidden="true"><use href="#upload"/></svg></span>
+            <h3 id="drop-title" data-i18n="dropTitle">Drag and drop your JSON file here</h3>
+            <p data-i18n="dropSubtitle">or choose a file from your device</p>
+            <button class="button" type="button" id="browse-files" data-i18n="browseFiles">Choose JSON file</button>
+            <input id="json-file" type="file" accept=".json,application/json" hidden>
+            <span class="file-hint" id="file-hint" data-i18n="fileHint">One .json file · Up to 5 MB</span>
+          </div>
+          <p id="file-name" class="file-name" dir="auto" role="status" hidden></p>
+          <div class="input-divider"><span data-i18n="orPaste">OR PASTE JSON</span></div>
+          <form id="json-form" novalidate>
+            <div class="json-field"><label for="json-text" data-i18n="jsonContent">JSON content</label><textarea id="json-text" rows="14" dir="ltr" spellcheck="false" autocapitalize="off" autocomplete="off" aria-describedby="json-hint feedback" placeholder='{"content_information": {"topic": {"en_gb": "Article title"}}}'></textarea><p class="preview-subtitle" id="json-hint" data-i18n="jsonHint">Write or paste the full article JSON, including content_information.</p></div>
+            <p class="feedback" id="feedback" role="status" aria-live="polite" hidden></p>
+            <div class="form-actions"><button class="button" type="button" id="clear-json" data-i18n="clear" disabled>Clear</button><button class="button" type="button" id="format-json" data-i18n="format" disabled>Format JSON</button><button class="button" type="submit" id="validate-json" data-i18n="checkJson" disabled>Check JSON</button><button class="button primary" type="button" id="import-json" disabled>Import article</button></div>
+            <p class="feedback" id="import-result" role="status" aria-live="polite" hidden></p>
+            <p class="local-note" data-i18n="localNote">Review your JSON, then choose Import article to save it. Existing articles are updated automatically.</p>
+          </form>
+        </div>
+      </section>
+      <section class="panel preview" id="preview" aria-labelledby="preview-heading" hidden>
+        <div class="panel-head"><div><h2 id="preview-heading" data-i18n="articlePreview">Article preview</h2><p class="preview-subtitle" data-i18n="previewHint">A quick overview of your JSON content.</p></div><span class="step-tag" data-i18n="validJson">Valid JSON</span></div>
+        <div class="preview-body"><h3 id="article-topic" dir="auto"></h3><p id="article-category" class="preview-subtitle" dir="auto" hidden></p><ul class="section-list" id="section-list"></ul><p class="preview-subtitle" id="no-sections" data-i18n="noSections" hidden>No content sections included.</p></div>
+      </section>
+      <footer class="footer"><span>© <span id="year"></span> MamaCare Hub</span><span class="footer-heart" data-i18n="footer">Made with care, for those who care.</span></footer>
+    </main>
+  </div>
+</body>
+</html>

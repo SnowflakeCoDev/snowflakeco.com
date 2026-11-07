@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <title>Pregnancy weeks · MamaCare Hub</title>
+  <link rel="stylesheet" href="../dashboard.css">
+  <link rel="stylesheet" href="../language/language.css">
+  <script src="controller.js" defer></script>
+  <link rel="stylesheet" href="pregnancy_week.css">
+  <script src="pregnancy_week.js" defer></script>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+    <symbol id="globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c5 5 5 13 0 18-5-5-5-13 0-18Z"/></symbol>
+    <symbol id="upload" viewBox="0 0 24 24"><path d="M12 16V3m-4 4 4-4 4 4M4 15v5a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5"/></symbol>
+    <symbol id="heart" viewBox="0 0 24 24"><path d="M20.5 4.5a5 5 0 0 0-7 0L12 6l-1.5-1.5a5 5 0 0 0-7 7L12 20l8.5-8.5a5 5 0 0 0 0-7Z"/></symbol>
+    <symbol id="menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+    <symbol id="close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+    <symbol id="icon-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14-5L3 9m0-6v6h6M4 13a8 8 0 0 0 14 5l3-3m0 6v-6h-6"/></symbol>
+    <symbol id="icon-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></symbol>
+    <symbol id="icon-copied" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+  </svg>
+  <a class="skip" href="#main" data-i18n="skip">Skip to content</a>
+  <div class="backdrop" id="backdrop" aria-hidden="true"></div>
+  <aside class="drawer" id="drawer" aria-label="Main navigation">
+    <button class="icon-button drawer-close" id="close-drawer" aria-label="Close menu" data-label="closeMenu"><svg class="icon" aria-hidden="true"><use href="#close"/></svg></button>
+    <div class="brand"><img src="../../logo.jpg" alt="MamaCare logo"><div><span class="brand-name">MamaCare<span style="font-weight:400"> Hub</span></span><span class="brand-caption" data-i18n="adminWorkspace">Admin workspace</span></div></div>
+    <div class="nav-label" data-i18n="workspace">WORKSPACE</div>
+    <nav>
+      <a class="nav-item" href="../language/index.html"><svg class="icon" aria-hidden="true"><use href="#globe"/></svg><span data-i18n="language">Language</span><span class="nav-dot"></span></a>
+      <a class="nav-item" href="../index.html"><svg class="icon" aria-hidden="true"><use href="#upload"/></svg><span data-i18n="importProducts">Import Products</span><span class="nav-dot"></span></a>
+      <a class="nav-item" href="index.html" aria-current="page"><svg class="icon" aria-hidden="true"><use href="#heart"/></svg><span data-i18n="pregnancyWeeks">Pregnancy weeks</span><span class="nav-dot"></span></a>
+      <a class="nav-item" href="../import_article/index.html"><svg class="icon" aria-hidden="true"><use href="#upload"/></svg><span data-i18n="importArticle">Import article</span><span class="nav-dot"></span></a>
+      <a class="nav-item" href="../article/index.html"><svg class="icon" aria-hidden="true"><use href="#globe"/></svg><span data-i18n="articles">Articles</span><span class="nav-dot"></span></a>
+    </nav>
+    <div class="drawer-bottom"><div class="care-note"><svg class="icon" aria-hidden="true"><use href="#heart"/></svg><strong data-i18n="careTitle">A little care. A big difference.</strong><span data-i18n="careText">Thoughtfully made for every step of motherhood.</span></div><div class="profile"><span class="avatar" aria-hidden="true">MC</span><div><strong data-i18n="admin">Store administrator</strong><small>MamaCare Hub</small></div></div></div>
+  </aside>
+  <div class="workspace" id="workspace">
+    <header class="topbar">
+      <button class="icon-button menu-button" id="open-drawer" aria-label="Open menu" data-label="openMenu" aria-expanded="false" aria-controls="drawer"><svg class="icon" aria-hidden="true"><use href="#menu"/></svg></button>
+      <div class="breadcrumb"><span data-i18n="dashboard">Dashboard</span><span class="separator" aria-hidden="true">/</span><strong data-i18n="pregnancyWeeks">Pregnancy weeks</strong></div>
+      <div class="topbar-end"><label class="language-label"><svg class="icon" aria-hidden="true"><use href="#globe"/></svg><select id="language-select" aria-label="Display language" data-label="displayLanguage"><option value="en">English</option><option value="ar">العربية</option></select></label><span class="avatar" aria-label="MamaCare Hub">MC</span></div>
+    </header>
+    <main id="main" tabindex="-1">
+      <div class="page-heading"><div><p class="eyebrow" data-i18n="eyebrow">CARE, WEEK BY WEEK</p><h1 id="page-title" tabindex="-1">Pregnancy weeks</h1><p class="subtitle" id="page-intro">Browse pregnancy weeks and open a week to view its details.</p></div><a class="button" id="back-link" href="index.html" hidden data-i18n="backToList">Back to weeks</a></div>
+      <section class="panel" aria-labelledby="list-heading" id="week-list">
+        <div class="panel-head"><div><h2 id="list-heading" data-i18n="allWeeks">All pregnancy weeks</h2><p class="preview-subtitle" data-i18n="listHint">Select a week to view its pregnancy information.</p></div><button class="button" id="refresh" disabled><svg class="icon" aria-hidden="true"><use href="#icon-refresh"/></svg><span data-i18n="refresh">Refresh</span></button></div>
+        <div class="list-toolbar"><div class="field search-field"><label for="search" data-i18n="search">Search weeks</label><input id="search" type="search" disabled placeholder="Search by week or name" data-placeholder="searchPlaceholder"></div><span class="result-count" id="result-count" aria-live="polite"></span></div>
+        <div class="language-table-wrap" id="table-wrap" hidden><table class="language-table"><caption class="sr-only" data-i18n="allWeeks">All pregnancy weeks</caption><thead><tr><th scope="col" data-i18n="id">ID</th><th scope="col" data-i18n="weekNumber">Week</th><th scope="col" data-i18n="keyName">Name</th><th scope="col" data-i18n="trimester">Trimester</th><th scope="col" data-i18n="updatedDate">Updated date</th><th scope="col" data-i18n="action">Action</th></tr></thead><tbody id="week-rows"></tbody></table></div>
+      </section>
+      <div class="empty panel" id="list-state" role="status"><svg class="icon" aria-hidden="true"><use href="#heart"/></svg><h3 id="state-title">Loading pregnancy weeks…</h3><p id="state-description">Getting the latest information from your dashboard.</p><button class="button retry-button" id="retry" hidden data-i18n="tryAgain">Try again</button></div>
+      <section id="week-detail" aria-labelledby="detail-heading" hidden>
+        <div class="panel"><div class="panel-head"><h2 id="detail-heading" data-i18n="weekDetails">Week details</h2><button class="button" id="refresh-detail" data-i18n="refresh">Refresh</button></div><div class="detail-overview"><img id="week-image" class="detail-image" alt="" hidden><dl id="week-metadata"></dl></div></div>
+        <div class="detail-grid" id="detail-sections"></div>
+      </section>
+      <p class="copy-feedback" id="copy-feedback" role="status" aria-live="polite" aria-atomic="true"></p>
+      <footer class="footer"><span>© <span id="year"></span> MamaCare Hub</span><span class="footer-heart" data-i18n="footer">Made with care, for those who care.</span></footer>
+    </main>
+  </div>
+</body>
+</html>

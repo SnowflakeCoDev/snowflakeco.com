@@ -22,6 +22,9 @@
     results:'{shown} of {total} languages',
   });
   const ar = {
+    articles:'المقالات',
+    importArticle:'استيراد مقال',
+    pregnancyWeeks:'أسابيع الحمل',
     skip:'انتقل إلى المحتوى', adminWorkspace:'مساحة الإدارة', workspace:'مساحة العمل', language:'اللغة', importProducts:'استيراد المنتجات',
     careTitle:'قليل من الرعاية، وأثر كبير.', careText:'صُمّم بعناية لكل خطوة في رحلة الأمومة.', admin:'مدير المتجر', dashboard:'لوحة التحكم',
     languages:'اللغات', eyebrow:'تطبيقك بكل اللغات', intro:'إدارة اللغات المتاحة في ماما كير هَب.', addLanguage:'إضافة لغة', totalLanguages:'إجمالي اللغات', enabled:'مفعّلة', disabled:'غير مفعّلة',

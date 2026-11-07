@@ -1,0 +1,32 @@
+textarea { font:inherit; color:inherit; }
+textarea:focus-visible { outline:3px solid var(--coral); outline-offset:4px; }
+button:disabled { opacity:.55; cursor:not-allowed; }
+.drop-zone { min-height:220px; }
+.drop-zone.dragging { outline:3px solid var(--coral); outline-offset:3px; }
+.file-name { margin-top:13px; color:var(--wine); font-size:12px; overflow-wrap:anywhere; }
+.input-divider { display:flex; align-items:center; gap:15px; margin:25px 0; color:var(--muted); font-size:10px; letter-spacing:1.5px; }
+.input-divider::before,.input-divider::after { content:""; flex:1; border-top:1px solid var(--line); }
+.json-field { display:flex; flex-direction:column; gap:9px; }
+.json-field label { font-size:12px; font-weight:600; }
+.json-field textarea { width:100%; min-height:280px; resize:vertical; border:1px solid #d9c7cc; border-radius:9px; padding:16px; background:#fffdfc; font:12px/1.8 ui-monospace,SFMono-Regular,Consolas,monospace; tab-size:2; }
+.json-field textarea::placeholder { color:#97878e; }
+.json-field textarea[aria-invalid="true"] { border-color:#a12940; }
+.feedback { margin-top:17px; padding:12px 15px; border-radius:8px; background:var(--blush); color:var(--wine); font-size:12px; overflow-wrap:anywhere; }
+.feedback.error { background:#fff0f2; color:#a12940; }
+.feedback.success { background:#edf6ee; color:#276239; }
+.form-actions { display:flex; flex-wrap:wrap; justify-content:flex-end; gap:10px; margin-top:20px; }
+.local-note { margin-top:16px; }
+.preview-body { padding:24px; }
+#article-topic { font-size:18px; line-height:1.6; font-weight:600; overflow-wrap:anywhere; white-space:pre-line; }
+.section-list { list-style:none; padding:0; margin:20px 0 0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+.section-list:empty { margin:0; }
+.section-list li { display:flex; justify-content:space-between; align-items:center; gap:12px; border:1px solid var(--line); border-radius:8px; padding:12px 14px; font-size:12px; min-width:0; }
+.section-list li span { overflow-wrap:anywhere; }
+.section-count { display:grid; place-items:center; min-width:25px; height:25px; padding:0 6px; border-radius:50%; background:var(--blush); color:var(--wine); font-size:11px; }
+#no-sections { margin-top:15px; }
+@media(max-width:600px) {
+  .preview-body { padding:18px; }
+  .section-list { grid-template-columns:1fr; }
+  .form-actions .primary { flex-basis:100%; }
+  .json-field textarea { padding:12px; font-size:12px; }
+}
