@@ -68,7 +68,7 @@
       <a id="ios-link" class="store-link" href="https://apps.apple.com/us/app/mama-care-hub/id6751168561">Download on the App Store</a>
       <a id="android-link" class="store-link" href="https://play.google.com/store/apps/details?id=app.snowflakeco.mama_care_hub_app">Get it on Google Play</a>
     </div>
-    <noscript><p>Enable JavaScript to automatically select the app store for your device.</p></noscript>
+    <noscript><p>Enable JavaScript to automatically open the app store for your device.</p></noscript>
   </main>
   <script>
     (() => {
@@ -81,14 +81,14 @@
         (/Macintosh/i.test(userAgent) && navigator.maxTouchPoints > 1)
       );
 
-      if (isIOS) {
-        document.getElementById('android-link').hidden = true;
+      const storeLink = isIOS
+        ? document.getElementById('ios-link')
+        : isAndroid ? document.getElementById('android-link') : null;
+
+      if (storeLink) {
         document.getElementById('device-message').textContent =
-          'Download MamaCare Hub for your iPhone or iPad from the App Store.';
-      } else if (isAndroid) {
-        document.getElementById('ios-link').hidden = true;
-        document.getElementById('device-message').textContent =
-          'Download MamaCare Hub for your Android device from Google Play.';
+          'Opening your app store… If it does not open, choose a store below.';
+        window.location.replace(storeLink.href);
       }
     })();
   </script>
